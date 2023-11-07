@@ -9,7 +9,7 @@ export default function Login() {
       <Text style={styles.paragraph}>Implement Login Logic here</Text>
       <Button title='Reset' color='white' onPress={() => router.push('/(auth)/Reset')} />
       <Button title='Register' color='white' onPress={() => router.push('/(auth)/Register')} />
-      <Button title='To Home Screen' color='yellow' onPress={() => router.replace('/(drawer)/(tabs)')} />
+      <Button title='To Home Screen' color='yellow' onPress={() => router.replace('/(drawer)/(tabs)/(toptabs)/A')} />
     </View>
   );
 }

@@ -7,7 +7,7 @@ export default function Register() {
       <Text style={styles.display}>Register</Text>
       <Text style={styles.paragraph}>Implement Register Logic here</Text>
       <Button title='Login' color='white' onPress={() => router.push('/(auth)/Login')} />
-      <Button title='To Home Screen' color='yellow' onPress={() => router.replace('/(drawer)/(tabs)')} />
+      <Button title='To Home Screen' color='yellow' onPress={() => router.replace('/(drawer)/(tabs)/(toptabs)/A')} />
     </View>
   );
 }

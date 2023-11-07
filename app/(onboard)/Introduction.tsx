@@ -5,8 +5,8 @@ export default function Introduction() {
   return (
     <View style={styles.container}>
       <Text style={styles.display}>Introduction</Text>
-      <Text style={styles.paragraph}>Implement Introduction Logic here</Text>
-      <Button title='Get Started' color='purple' onPress={()=> router.replace('/(auth)/Register')} />
+      <Text style={styles.paragraph}>Implement Introduction onboard logic and slides here</Text>
+      <Button title='Next' color='purple' onPress={()=> router.replace('/Welcome')} />
     </View>
   );
 }
