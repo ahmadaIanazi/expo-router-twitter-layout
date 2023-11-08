@@ -2,7 +2,6 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { useFonts } from 'expo-font';
 import { SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
-import Layout from './layout_setup';
 import Providers from './providers_setup';
 import Routing from './routing_setup';
 

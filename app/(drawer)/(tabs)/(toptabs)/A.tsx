@@ -1,7 +1,7 @@
 import { Button, StyleSheet } from 'react-native';
 
 import { router, useNavigation } from 'expo-router';
-import { Text, View } from '../../../../components/Themed';
+import { Text, View } from 'react-native';
 
 export default function ToptabOne() {
   const navigation = useNavigation();

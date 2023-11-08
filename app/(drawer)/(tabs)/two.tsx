@@ -1,6 +1,6 @@
 import { Button, StyleSheet, TextInput } from 'react-native';
 
-import { Text, View } from '../../../components/Themed';
+import { Text, View } from 'react-native';
 import { router } from 'expo-router';
 import { useState } from 'react';
 
