@@ -9,7 +9,7 @@ export default function ToptabOne() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>A</Text>
-      <Button title='Open Modal' color='white' onPress={() => router.push('/modal')} />
+      <Button title='Open Modal' color='white' onPress={() => router.push('/Settings')} />
       <Button title='Toggle Drawer' color='white' onPress={() => navigation.toggleDrawer()} />
     </View>
   );

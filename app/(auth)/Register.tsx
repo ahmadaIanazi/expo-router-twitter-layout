@@ -1,31 +1,5 @@
-import { router } from 'expo-router';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import Register from '../../boards/Register';
 
-export default function Register() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.display}>Register</Text>
-      <Text style={styles.paragraph}>Implement Register Logic here</Text>
-      <Button title='Login' color='white' onPress={() => router.push('/(auth)/Login')} />
-      <Button title='To Home Screen' color='yellow' onPress={() => router.replace('/(drawer)/(tabs)/(toptabs)/A')} />
-    </View>
-  );
+export default function RegisterLayout() {
+  return <Register />
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'purple',
-  },
-  display: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 48,
-  },
-  paragraph: {
-    color: 'white',
-    fontSize: 14,
-  },
-});

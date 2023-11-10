@@ -1,0 +1,33 @@
+{
+  "amount": 1000,
+  "amount_format": "10.00 SAR",
+  "callback_url": "https://moyasar.com/thanks",
+  "captured": 0,
+  "captured_at": null,
+  "captured_format": "0.00 SAR",
+  "created_at": "2023-05-01T12:58:35.466Z",
+  "currency": "SAR",
+  "description": "Coffee Order #1",
+  "fee": 0,
+  "fee_format": "0.00 SAR",
+  "id": "d1d7c2d7-95d1-4cbe-be4e-17047175c0e7",
+  "invoice_id": null,
+  "ip": "145.82.5.225",
+  "refunded": 0,
+  "refunded_at": null,
+  "refunded_format": "0.00 SAR",
+  "source": {
+    "company": "visa",
+    "gateway_id": "moyasar_cc_cEpqbd3jibHfW2C2ZBuMeUb",
+    "message": null,
+    "name": "Ahmad alanazi",
+    "number": "XXXX-XXXX-XXXX-1111",
+    "reference_number": null,
+    "token": null,
+    "transaction_url": "https://api.moyasar.com/v1/transaction_auths/f0b3a7ef-2077-422d-9e5c-de224eeac431/form?token=auth_qhMhbn5kxx7rSnuxsay6sdpwH7LetG7BhMr",
+    "type": "creditcard"
+  },
+  "status": "initiated",
+  "updated_at": "2023-05-01T12:58:35.466Z",
+  "voided_at": null
+}

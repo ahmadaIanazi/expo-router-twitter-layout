@@ -12,10 +12,12 @@ export default function Layout() {
       <Stack.Screen name='(onboard)/Welcome' options={{ headerShown: false }} />
       {/* ---- # Authentication  */}
       <Stack.Screen name='(auth)/Login' options={{ headerShown: false }} />
+      <Stack.Screen name='(auth)/LoginByPhone' options={{ headerShown: false }} />
       <Stack.Screen name='(auth)/Register' options={{ headerShown: false }} />
       <Stack.Screen name='(auth)/Reset' options={{ headerShown: false }} />
       {/* ---- # Modals  */}
       <Stack.Screen name='(modals)/modal' options={{ presentation: 'modal' }} />
+      <Stack.Screen name='(modals)/Settings' options={{ presentation: 'modal' }} />
     </Stack>
   );
 }

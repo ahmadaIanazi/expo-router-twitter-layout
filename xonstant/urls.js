@@ -1,0 +1,10 @@
+// export const BaseURL = "http://65.0.170.87:3000/bettaga/api/v1/"
+export const baseURL = 'https://app.bettaga.com/bettaga/api/v1/';
+export const API_URL = 'https://us-central1-bettagah-570df.cloudfunctions.net/app/';
+export const Domain_local_3000 = 'http://localhost:3000/';
+export const Domain_local_3001 = 'http://localhost:3001/';
+export const Domain_local_3002 = 'http://localhost:3002/';
+export const Domain_live = 'https://app.bettaga.com/bettaga/api/v1/';
+export const ENROLL_URL = 'https://enroll.bettaga.com/';
+export const SHARE_URL = 'https://share.bettaga.com/';
+export const WEBSITE = 'https://www.bettaga.com/';

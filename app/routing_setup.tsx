@@ -1,24 +1,19 @@
 import { router, useSegments } from 'expo-router';
 import { useEffect } from 'react';
 import Layout from './layout_setup';
+import { useAuthStore, useNavigationStore } from '../stores';
+import { onboard_screen,
+landing_screen,
+home_screen,
+home_group} from '../zetup/routing_setup'
 
 export default function Routing() {
-  // Define your screen routes here
-  const onboard_screen = '/(onboard)/Introduction';
-  const landing_screen = '/(onboard)/Welcome';
-  const home_screen = '/(drawer)/(tabs)/';
-  const home_group = '(drawer)';
 
-  // ======= !IMPORTANT: Replace these with your actual authentication and loading logic
-  const isLoaded = true;    // Toggle it to see screens.
-  const isSignedIn = false;  // Toggle it to see screens.
-  const seenOnboard = false;    // Toggle it to see screens.
-  /**
-   * EXAMPLE
-   *   const isSignedIn = authCheck === true;
-   *   const isLoaded = loadingUser === false && loadingUserData === false;
-   */
-  // ====== !End Region
+  const { loadingUser, loadingUserData, authCheck } = useAuthStore();
+  const { seenOnboard } = useNavigationStore();
+
+  const isSignedIn = authCheck === true;
+  const isLoaded = loadingUser === false && loadingUserData === false;
 
   // Get the current route segment
   const segment = useSegments();

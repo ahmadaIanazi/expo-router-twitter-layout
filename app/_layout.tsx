@@ -4,7 +4,7 @@ import { SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import Providers from './providers_setup';
 import Routing from './routing_setup';
-
+import { SpaceMono } from '../zetup/require';
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary
@@ -20,24 +20,29 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const [loaded, error] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    SpaceMono: SpaceMono,
     ...FontAwesome.font,
   });
 
-  // Expo Router uses Error Boundaries to catch errors in the navigation tree.
   useEffect(() => {
+    console.log('#2 ROOT ERROR', error);
     if (error) throw error;
   }, [error]);
 
   useEffect(() => {
     if (loaded) {
+      console.log('#6 ROOT LOADING EFFECT');
       SplashScreen.hideAsync();
+    } else {
+      console.log('#3 ROOT NOT LOADED');
     }
   }, [loaded]);
 
   if (!loaded) {
-    return null;
+    console.log('#1 ROOT RETURN NULL');
+    return <></>;
   }
+
 
   return <RootLayoutNav />;
 }

@@ -1,0 +1,177 @@
+export const giftCardPlan = [
+  {
+    image: '../../../assets/offers/giftcardOffer.png',
+    title: 'Gift Card Builder',
+    subtitle:
+      'Drive sales and boost customer loyalty with our customizable card builder. To allow you to create Apple Passes, and share with thousands of customers, update and redeem passes, track usage in real-time, and choose a pricing plan that fits your budget. Try it now!',
+  },
+  [
+    {
+      id: 1,
+      subject: 'Share with up to 10,000 Customers',
+      text: `Share with up to 10,000 Customers: Reach more customers and boost your sales by sharing your digital gift card with a large audience.`,
+      subtext: '',
+      icon: '',
+    },
+    {
+      id: 2,
+      subject: 'Customizable Design',
+      text: `Customizable Design: Create a gift card that matches your brand's style and messaging, so your customers have a seamless experience.`,
+      subtext: '',
+      icon: '',
+    },
+    {
+      id: 3,
+      subject: `Push Notification`,
+      text: `Push Notification: Send your customers a friendly reminder about their gift card and encourage them to redeem it in your store.`,
+      subtext: '',
+      icon: '',
+    },
+    {
+      id: 4,
+      subject: `Flexible Redemption Options`,
+      text: `Flexible Redemption Options: Allow customers to redeem their gift card in-store, online, or through your app for added convenience.`,
+      subtext: '',
+      icon: '',
+    },
+    {
+      id: 5,
+      subject: `Real-Time Tracking`,
+      text: `Real-Time Tracking: Keep track of your gift card usage, balance, and customer activity in real-time for easy management.`,
+      subtext: '',
+      icon: '',
+    },
+  ],
+];
+
+export const stampCardPlan = [
+  {
+    image: '../../../assets/offers/giftcardOffer.png',
+    title: 'Gift Card Builder',
+    subtitle:
+      'Drive sales and boost customer loyalty with our customizable gift card template. Share with thousands of customers, track usage in real-time, and choose a pricing plan that fits your budget. Try it now!',
+  },
+  [
+    {
+      id: 1,
+      subject: 'Share with up to 10,000 Customers',
+      text: `Share with up to 10,000 Customers: Reach more customers and boost your sales by sharing your digital gift card with a large audience.`,
+      subtext: '',
+      icon: '',
+    },
+    {
+      id: 2,
+      subject: 'Customizable Design',
+      text: `Customizable Design: Create a gift card that matches your brand's style and messaging, so your customers have a seamless experience.`,
+      subtext: '',
+      icon: '',
+    },
+    {
+      id: 3,
+      subject: `Push Notification`,
+      text: `Push Notification: Send your customers a friendly reminder about their gift card and encourage them to redeem it in your store.`,
+      subtext: '',
+      icon: '',
+    },
+    {
+      id: 4,
+      subject: `Flexible Redemption Options`,
+      text: `Flexible Redemption Options: Allow customers to redeem their gift card in-store, online, or through your app for added convenience.`,
+      subtext: '',
+      icon: '',
+    },
+    {
+      id: 5,
+      subject: `Real-Time Tracking`,
+      text: `Real-Time Tracking: Keep track of your gift card usage, balance, and customer activity in real-time for easy management.`,
+      subtext: '',
+      icon: '',
+    },
+    {
+      id: 6,
+      subject: `Affordable Pricing`,
+      text: `Affordable Pricing: Choose a pricing plan that fits your business needs and budget.`,
+      subtext: '',
+      icon: '',
+    },
+  ],
+];
+
+export const offersData = {
+  annual: {
+    identifier: '$rc_annual',
+    offeringIdentifier: 'GiftCard',
+    packageType: 'ANNUAL',
+    product: {
+      currencyCode: 'QAR',
+      description: 'Gidt Card Yearly Subscription ',
+      discounts: [],
+      identifier: 'giftcardYearly',
+      introPrice: null,
+      price: 2499.9900000000002,
+      priceString: 'QAR 2,499.99',
+      productCategory: 'SUBSCRIPTION',
+      productType: 'NON_CONSUMABLE',
+      subscriptionPeriod: 'P1Y',
+      title: 'Gift Card Yearly',
+    },
+  },
+  availablePackages: [
+    {
+      identifier: '$rc_monthly',
+      offeringIdentifier: 'GiftCard',
+      packageType: 'MONTHLY',
+      product: {
+        currencyCode: 'QAR',
+        description: 'Monthly Subscription for Gift Card ',
+        discounts: [],
+        identifier: 'giftcardMonthly',
+        introPrice: null,
+        price: 79.99,
+        priceString: 'QAR 79.99',
+        productCategory: 'SUBSCRIPTION',
+        productType: 'NON_CONSUMABLE',
+        subscriptionPeriod: 'P1M',
+        title: 'Gift Card Monthly Subscription',
+      },
+    },
+    {
+      identifier: '$rc_annual',
+      offeringIdentifier: 'GiftCard',
+      packageType: 'ANNUAL',
+      product: {
+        currencyCode: 'QAR',
+        description: 'Gidt Card Yearly Subscription ',
+        discounts: [],
+        identifier: 'giftcardYearly',
+        introPrice: null,
+        price: 2499.9900000000002,
+        priceString: 'QAR 2,499.99',
+        productCategory: 'SUBSCRIPTION',
+        productType: 'NON_CONSUMABLE',
+        subscriptionPeriod: 'P1Y',
+        title: 'Gift Card Yearly',
+      },
+    },
+  ],
+  identifier: 'GiftCard',
+  monthly: {
+    identifier: '$rc_monthly',
+    offeringIdentifier: 'GiftCard',
+    packageType: 'MONTHLY',
+    product: {
+      currencyCode: 'QAR',
+      description: 'Monthly Subscription for Gift Card ',
+      discounts: [],
+      identifier: 'giftcardMonthly',
+      introPrice: null,
+      price: 79.99,
+      priceString: 'QAR 79.99',
+      productCategory: 'SUBSCRIPTION',
+      productType: 'NON_CONSUMABLE',
+      subscriptionPeriod: 'P1M',
+      title: 'Gift Card Monthly Subscription',
+    },
+  },
+  serverDescription: 'Gift Card Subscription Plans',
+};
