@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>630454194977-a2uvv4ha58ldl99a64ua5s3m849qqtqk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.630454194977-a2uvv4ha58ldl99a64ua5s3m849qqtqk</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAUxEFDQhFwYYIt9BB43wtn3T6o-Sj5SyI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>630454194977</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.wecodesa.bookit.www</string>
+	<key>PROJECT_ID</key>
+	<string>bookit-7ba1f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>bookit-7ba1f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:630454194977:ios:acea724b5721e0e6ee6460</string>
+</dict>
+</plist>

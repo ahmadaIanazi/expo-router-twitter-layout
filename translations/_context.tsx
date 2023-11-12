@@ -1,5 +1,9 @@
 import { createContext, Context } from 'react';
+import { ar } from './ar';
+import { en } from './en';
 
-const Localization: Context<any> = createContext({});
+type LocalizationData = typeof ar & typeof en
+
+const Localization: Context<LocalizationData> = createContext<LocalizationData>({});
 
 export default Localization;

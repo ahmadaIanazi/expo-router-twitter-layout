@@ -1,34 +1,29 @@
 import React, { ReactNode } from 'react';
-import { KeyboardAvoidingView, StyleProp, View, ViewStyle } from 'react-native';
-import { useTheme } from 'react-native-paper';
+import { StyleProp, View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useTheme } from 'react-native-paper';
 
 interface MainProps {
   children?: ReactNode;
-  align?: 'center' | 'top' | 'left' | 'right' | 'bottom';
+  align?: 'none' | 'center' | 'top' | 'left' | 'right' | 'bottom';
   padding?: number;
   safe?: 'none' | 'all' | 'top' | 'bottom' | 'left' | 'right';
-  color?: string;
-  keyboard?: boolean;
+  color?: string
 }
 
-export default function Background({
+export default function Safe({
   children,
-  align = 'center',
-  padding = 20,
-  safe = 'none',
+  align = 'none',
+  padding = 0,
+  safe = 'all',
   color,
-  keyboard = false,
 }: MainProps): React.JSX.Element {
   const colors = useTheme();
   const { top, bottom, left, right } = useSafeAreaInsets();
   const background = color ? color : colors.colors.background;
 
   const mainStyles: StyleProp<ViewStyle> = {
-    flex: 1,
     padding,
-    width: '100%',
-    alignSelf: 'center',
     backgroundColor: background,
   };
 
@@ -45,6 +40,11 @@ export default function Background({
     mainStyles.paddingLeft = left;
   } else if (safe === 'right') {
     mainStyles.paddingRight = right;
+  } else if (safe === 'none') {
+    mainStyles.paddingTop = undefined;
+    mainStyles.paddingBottom = undefined;
+    mainStyles.paddingLeft = undefined;
+    mainStyles.paddingRight = undefined;
   }
 
   if (align === 'center') {
@@ -62,17 +62,10 @@ export default function Background({
   } else if (align === 'bottom') {
     mainStyles.justifyContent = 'flex-end';
     mainStyles.alignItems = 'center';
+  } else if (align === 'none') {
+    mainStyles.justifyContent = undefined;
+    mainStyles.alignItems = undefined;
   }
 
-   return (
-     <View style={{ flex: 1, width: '100%', backgroundColor: colors.colors.background }}>
-       {keyboard ? (
-         <KeyboardAvoidingView style={mainStyles} behavior='padding'>
-           {children}
-         </KeyboardAvoidingView>
-       ) : (
-         <View style={mainStyles}>{children}</View>
-       )}
-     </View>
-   );
+  return <View style={mainStyles}>{children}</View>;
 }

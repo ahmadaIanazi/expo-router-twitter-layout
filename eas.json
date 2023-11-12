@@ -1,0 +1,47 @@
+{
+  "cli": {
+    "version": ">= 3.9.2"
+  },
+  "build": {
+    "device": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "channel": "device"
+    },
+    "simulator": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true
+      },
+      "channel": "simulator"
+    },
+    "production": {
+      "env": {
+        "FIREBASE_apiKey": "AIzaSyDe2_TjsRa5VfrsT5ro5WQ4lYd5qMYbw3E",
+        "FIREBASE_authDomain": "bettagah-570df.firebaseapp.com",
+        "FIREBASE_projectId": "bettagah-570df",
+        "FIREBASE_storageBucket": "bettagah-570df.appspot.com",
+        "FIREBASE_messagingSenderId": "17275288616",
+        "FIREBASE_appId": "1:17275288616:web:75cf338818d3781a91091d",
+        "FIREBASE_measurementId": "G-G2D2G5P0KQ"
+      },
+      "ios": {
+        "resourceClass": "m-medium"
+      },
+      "channel": "production"
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "appleId": "wecodesaudi@gmail.com",
+        "ascAppId": "6448721405",
+        "appleTeamId": "PV3M586KN2"
+      }
+    }
+  }
+}

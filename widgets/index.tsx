@@ -1,3 +1,6 @@
+import OnboardSlider from '../components/OnboardSlider';
+import OnboardingButton from '../components/OnboardingButton';
+
 import Appbar from './components/Appbar';
 import BackButton from './components/BackButton';
 import Background from './components/Background';
@@ -11,8 +14,9 @@ import Snackbar from './components/Snackbar';
 import TextInput from './components/TextInput';
 import Logo from './components/Logo';
 import Main from './components/Main';
-import OnboardSlider from '../components/OnboardSlider';
-import OnboardingButton from '../components/OnboardingButton';
+import Safe from './components/Safe';
+import PhoneInput from './components/PhoneInput';
+
 
 // react-native ui
 export { ViewComponent as View } from './components/view';
@@ -37,8 +41,10 @@ export {
   SliderIndicator,
   Snackbar,
   TextInput,
+  PhoneInput,
   Logo,
   Main,
+  Safe,
   OnboardSlider,
   OnboardingButton,
 };

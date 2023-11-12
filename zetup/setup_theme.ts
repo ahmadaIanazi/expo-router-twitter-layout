@@ -9,7 +9,7 @@ export const Theme = {
       onBackground: 'rgba(28, 27, 31, 1)',
 
       // 2. Backdrop
-      backdrop: 'rgba(255, 196, 77, 0.4)',
+      backdrop: 'rgba(255, 255, 255, 0.5)',
 
       // 3. Surface
       surface: 'rgba(255, 232, 130, 1)',
@@ -75,7 +75,7 @@ export const Theme = {
       onBackground: 'rgba(255, 255, 255, 1)',
 
       // 2. Backdrop
-      backdrop: 'rgba(255, 196, 77, 0.4',
+      backdrop: 'rgba(0, 0, 0, 0.5)',
 
       // 3. Surface
       surface: 'rgba(49, 48, 51, 1)',

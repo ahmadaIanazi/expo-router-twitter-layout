@@ -6,6 +6,10 @@ export const useUserStore = create(
   persist(
     (set, get) => ({
       // ======= FIREBASE AUTH ======= //
+      byPhone: null,
+      setByPhone: (res) => {
+        set({ byPhone: res });
+      },
       apiKey: '',
       appName: '',
       createdAt: '',

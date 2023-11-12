@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
-import { Avatar, List, Text, Switch as PaperSwitch, useTheme } from 'react-native-paper';
+import { Avatar, List, Text, Switch as PaperSwitch, useTheme, Button } from 'react-native-paper';
 
 import {
 
@@ -25,6 +25,7 @@ import {
   OnboardSlider,
   OnboardingButton,
 } from '../widgets';
+import executeAuth from '../execute/executeAuth';
 
 const SECTIONS = [
   {
@@ -65,6 +66,7 @@ const SECTIONS = [
 
 export default function SettingsExample() {
   const colors = useTheme();
+  const { executeLogout } = executeAuth()
   const [value, setValue] = useState(0);
   const { tabs, items } = useMemo(() => {
     return {
@@ -75,6 +77,15 @@ export default function SettingsExample() {
       items: SECTIONS[value].items,
     };
   }, [value]);
+
+  const handleLogout = async () => {
+    try {
+      await executeLogout()
+
+    } catch (error){
+
+    }
+  }
 
   return (
     <Main safe='bottom'>
@@ -150,6 +161,7 @@ export default function SettingsExample() {
           );
         })}
       </ScrollView>
+      <Button mode='contained' onPress={handleLogout}>Logout</Button>
     </Main>
   );
 }

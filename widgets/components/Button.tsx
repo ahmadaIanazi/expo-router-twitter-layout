@@ -8,12 +8,14 @@ interface ButtonProps {
   labelStyle?: TextStyle;
   children: ReactNode; // Add children prop
   loading?: boolean;
+  disabled?: boolean;
   onPress?: () => void; // Add onPress prop
 }
 
 export default function ActionButton({
   mode,
   loading = false, 
+  disabled = false,
   style,
   labelStyle,
   children,
@@ -24,9 +26,11 @@ export default function ActionButton({
 
   return (
     <PaperButton
+      disabled={disabled}
       style={[
         {
           width: '100%',
+          opacity: disabled || loading ? 0.5 : 1,
           marginVertical: 10,
           paddingVertical: 2,
           ...style,

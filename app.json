@@ -16,7 +16,12 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {
+        "NSUserTrackingUsageDescription": "Allow this app to collect app-related data that can be used for tracking you or your device."
+      },
+      "bundleIdentifier": "com.ahmadalanazi.simple"
     },
     "android": {
       "adaptiveIcon": {
@@ -26,16 +31,33 @@
     },
     "web": {
       "bundler": "metro",
-      // "output": "static",
       "favicon": "./resources/images/favicon.png"
     },
     "plugins": [
       "expo-router",
       "expo-tracking-transparency",
-      "expo-localization"
+      "expo-localization",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7f18454b-3ee7-4048-9119-5078fdb574a6"
+      }
     }
   }
 }

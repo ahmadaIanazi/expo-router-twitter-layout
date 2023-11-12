@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-type Types = {
+export type PlatformStore = {
   isWeb: boolean;
   setIsWeb: (res: boolean) => void;
   isTablet: boolean;
@@ -21,7 +21,7 @@ type Types = {
   setOrientation: (res: string) => void;
 };
 
-export const usePlatformStore = create<Types>((set) => ({
+export const usePlatformStore = create<PlatformStore>((set) => ({
   isWeb: false,
   setIsWeb: (res) => {
     set({ isWeb: res });
@@ -48,6 +48,7 @@ export const usePlatformStore = create<Types>((set) => ({
   },
   width: null,
   setWidth: (res) => {
+    console.log('STORE WIDTH:', res)
     set({ width: res });
   },
   height: null,

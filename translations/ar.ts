@@ -3,9 +3,6 @@ export const ar = {
     textAlign: 'right',
     direction: 'rtl',
     position:'right',
-    icons: {
-      arrow: 'arrow-forward-outline',
-    },
     home: 'رئيسيه',
     transactions: 'عمليات',
     edit: 'تحرير',
