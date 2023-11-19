@@ -24,6 +24,7 @@ export default function Toptab_Layout() {
   return (
     <View s='f'>
       <Appbar
+        color
         logo
         startActions={[{ icon: 'account-circle', onPress: routeToProfile }]}
         endActions={[{ icon: 'cog', onPress: routeToSettings }]}

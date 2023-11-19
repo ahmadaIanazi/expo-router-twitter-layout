@@ -1,24 +1,31 @@
+import authNative from '@react-native-firebase/auth';
 import { router } from 'expo-router';
-import { RecaptchaVerifier, sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../zetup/firebase';
+import { sendPasswordResetEmail } from 'firebase/auth';
+import { useContext } from 'react';
 import { login } from '../data/auth/login';
 import { loginAnonymous } from '../data/auth/loginAnonymous';
 import { signout } from '../data/auth/signout';
 import { signup } from '../data/auth/signup';
 import { signupAnonymous } from '../data/auth/signupAnonymous';
-import { useAuthStore } from '../stores/useAuthStore';
-import { useContext } from 'react';
-import Localization from '../translations/_context';
-import { home_screen, landing_screen } from '../zetup/routing_setup';
-import { useUserStore } from '../stores';
-import authNative from '@react-native-firebase/auth';
+import { useUserStore, useAuthStore } from '../stores';
 
-export default function executeAuth() {
+import Localization from '../translations';
+import { auth } from '../zetup/firebase';
+import { home_screen, landing_screen } from '../zetup/routing_setup';
+
+import {
+  TwitterAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
+  signInWithPopup,
+} from 'firebase/auth';
+
+export default function manageAuth() {
   const { setAuthCheck, setIsAnonymous, setRefresh } = useAuthStore();
   const { setByPhone, byPhone } = useUserStore();
   const l = useContext(Localization);
 
-  const executeSignup = async (email: string, password: string): Promise<void> => {
+  const handleSignup = async (email: string, password: string): Promise<void> => {
     try {
       await signup(email, password);
       router.replace(home_screen);
@@ -50,7 +57,7 @@ export default function executeAuth() {
     }
   };
 
-  const executeSignupAnonymous = async (): Promise<void> => {
+  const handleSignupAnonymous = async (): Promise<void> => {
     try {
       await signupAnonymous();
       router.replace(home_screen);
@@ -82,7 +89,7 @@ export default function executeAuth() {
     }
   };
 
-  const executeLogin = async (email: string, password: string): Promise<void> => {
+  const handleLogin = async (email: string, password: string): Promise<void> => {
     try {
       await login(email, password);
       router.replace(home_screen);
@@ -114,7 +121,7 @@ export default function executeAuth() {
     }
   };
 
-  const executeLoginAnonymous = async (email: string, password: string): Promise<void> => {
+  const handleLoginAnonymous = async (email: string, password: string): Promise<void> => {
     try {
       await loginAnonymous(email, password);
       router.replace(home_screen);
@@ -147,10 +154,10 @@ export default function executeAuth() {
     }
   };
 
-  const executeLogout = async (): Promise<void> => {
+  const handleLogout = async (): Promise<void> => {
     try {
-      if (byPhone){
-        await authNative().signOut()
+      if (byPhone) {
+        await authNative().signOut();
       } else {
         await signout();
       }
@@ -158,6 +165,7 @@ export default function executeAuth() {
       setRefresh(true);
       setIsAnonymous(null);
       setAuthCheck(null);
+      setByPhone(false)
     } catch (error: any) {
       switch (error.code) {
         case 'auth/email-already-in-use':
@@ -182,7 +190,7 @@ export default function executeAuth() {
     }
   };
 
-  const executeResetPassword = async (email: string): Promise<void> => {
+  const handleResetPassword = async (email: string): Promise<void> => {
     try {
       await sendPasswordResetEmail(auth, email);
       router.back();
@@ -210,7 +218,7 @@ export default function executeAuth() {
     }
   };
 
-  const executeSignByPhone_confirmOTP_andSign = async (
+  const handleLoginSignupByPhone = async (
     confirmationResult,
     otp: number
   ): Promise<void> => {
@@ -223,7 +231,6 @@ export default function executeAuth() {
       setRefresh(true);
       setIsAnonymous(false);
       setAuthCheck(true);
-      // I am not sure how to route them but after we perform the auth refresh.
       router.replace(home_screen);
       console.log('SUCCESS PHONE OTP CONFIRMATION');
     } catch (error) {
@@ -233,13 +240,78 @@ export default function executeAuth() {
     }
   };
 
+  const handleAuthWithTwitter = async () => {
+    try{
+
+      const provider = new TwitterAuthProvider();
+      provider.setCustomParameters({
+        lang: l.l,
+      });
+      await signInWithPopup(auth, provider);
+
+
+    } catch (error){
+      console.log('ERROR With Twitter Redirect')
+    }
+  }
+
+  const handleAuthWithTwitterConfirm = async () => {
+    getRedirectResult(auth)
+      .then((result) => {
+        // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
+        // You can use these server side with your app's credentials to access the Twitter API.
+        const credential = TwitterAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const secret = credential.secret;
+        // ...
+        setByPhone(true);
+        setRefresh(true);
+        setIsAnonymous(false);
+        setAuthCheck(true);
+        router.replace(home_screen);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        console.log('Authentication Error:', error)
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = TwitterAuthProvider.credentialFromError(error);
+        // ...
+      });
+  }
+
   return {
-    executeSignup,
-    executeLogin,
-    executeSignupAnonymous,
-    executeLoginAnonymous,
-    executeLogout,
-    executeResetPassword,
-    executeSignByPhone_confirmOTP_andSign,
+    emailAndPassword: {
+      signup: '',
+      signin: '',
+      signout: '',
+    },
+    phoneNumber: {
+      sendCode: '',
+      confirmCodeAndSign: '',
+      signout: '',
+    },
+    apple: {
+      authenticate: '',
+      confirmAndSign: '',
+    },
+    google: {
+      authenticate: '',
+      confirmAndSign: '',
+    },
+    twitter: {
+      authenticate: handleAuthWithTwitter,
+      confirmAndSign: handleAuthWithTwitterConfirm,
+    },
+    handleEmailSignup: handleSignup,
+    handleLogin,
+    handleSignupAnonymous,
+    handleLoginAnonymous,
+    handleLogout,
+    handleResetPassword,
+    handleLoginSignupByPhone,
   };
 }

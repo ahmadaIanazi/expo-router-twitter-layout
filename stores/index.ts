@@ -1,7 +1,8 @@
 export { useAuthStore } from './useAuthStore';
 export { useUserStore } from './useUserStore';
-export { useNavigationStore } from './useNavigationStore';
+export { useScreensStore } from './useScreensStore';
 export { usePlatformStore } from './usePlatformStore';
+export { usePermissionStore } from './usePermissionStore';
 
 /* TYPES */
 export { PlatformStore } from './usePlatformStore';

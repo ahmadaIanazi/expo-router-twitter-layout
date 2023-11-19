@@ -10,8 +10,6 @@ export default function ToptabTwo() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>B</Text>
-      <Button title='Open Modal' color='white' onPress={() => router.push('/modal')} />
-      <Button title='Toggle Drawer' color='white' onPress={() => navigation.toggleDrawer()} />
     </View>
   );
 }

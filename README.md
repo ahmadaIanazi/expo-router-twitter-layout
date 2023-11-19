@@ -107,6 +107,17 @@ This is correct. If you are using EAS build and Managed Workflow and found out t
 14. download new google-services.json and GoogleService-Info.plist and put them into your project root
 15. "eas build --profile simulator --platform ios"
 
+# Push Notification
+
+## For Deep Nesting and navigating directly from a notificaiton
+
+Add this to your Push Notification Data object.
+`{
+  date:{
+  "route": '/navigate/to/route/param'
+  }
+}`
+
 ## EAS JSON
 
 ``{

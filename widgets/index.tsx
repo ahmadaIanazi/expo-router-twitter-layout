@@ -25,6 +25,7 @@ export { ViewComponent as Div } from './components/view';
 export { TextComponent as Text } from './components/text';
 export { TextComponent as T } from './components/text';
 export { Tap } from './components/tap';
+export { Spacer } from './components/Spacer';
 
 // react-native-paper
 export { PaperIcons as Icon } from './components/PaperIcons';

@@ -1,9 +1,9 @@
 import { Dimensions, Image, View } from 'react-native';
-import { Text } from 'react-native-paper';
+import { Text, useTheme } from 'react-native-paper';
 
 export default function OnboardSlider({ item }) {
   const { height, width } = Dimensions.get('screen');
-
+  const colors = useTheme()
   return (
     <View style={{ alignItems: 'center', width: width }}>
       <View style={{ marginTop: height * 0.07 }}>

@@ -1,4 +1,4 @@
-import executeAuth from '../execute/executeAuth';
+import manageAuth from '../managers/manageAuth';
 import { useUserStore } from '../stores';
 
 
@@ -35,11 +35,11 @@ export default function Settings() {
 
   const [error, setError] = useState('');
 
-  const { executeLogout } = executeAuth();
+  const { handleLogout } = manageAuth();
 
   const logout = async () => {
     try {
-      await executeLogout();
+      await handleLogout();
     } catch (error: any) {
       setError(error.message);
     }

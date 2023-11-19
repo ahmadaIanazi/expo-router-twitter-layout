@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuthentication } from '../hooks/useAuthentication';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -7,7 +7,7 @@ interface AuthProviderProps {
 
 const AuthProvider = ({ children }: AuthProviderProps): React.JSX.Element => {
 
-  useAuth();
+  useAuthentication();
   return <>{children}</>;
 };
 

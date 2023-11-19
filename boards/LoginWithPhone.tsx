@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet } from 'react-native';
-import { Button, useTheme, Text, TextInput, HelperText } from 'react-native-paper';
-import { BackButton, Background, Header, Logo, Paragraph, Snackbar, View } from '../widgets';
-import { router } from 'expo-router';
-import ActionButton from '../widgets/components/Button';
-import executeAuth from '../execute/executeAuth';
-import validatePhone, { validatePhoneNumber } from '../validations/validatePhone';
 import auth from '@react-native-firebase/auth';
+import { router } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import { Button, HelperText, Text, TextInput } from 'react-native-paper';
+import manageAuth from '../managers/manageAuth';
+import { validatePhoneNumber } from '../validations/validatePhone';
+import { BackButton, Background, Header, Logo, Paragraph, Snackbar, View } from '../widgets';
+import ActionButton from '../widgets/components/Button';
 import OTPpaper from '../widgets/components/OTPpaper';
-import usePhoneNumberValidation from '../utils/validate/usePhoneValidation'
+
 import { validateOTP } from '../validations/validateOTP';
 
 export default function LoginWithPhone() {
@@ -22,7 +21,7 @@ export default function LoginWithPhone() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { executeSignByPhone_confirmOTP_andSign } = executeAuth();
+  const { handleLoginSignupByPhone } = manageAuth();
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -69,21 +68,13 @@ export default function LoginWithPhone() {
       return;
     }
     try {
-      await executeSignByPhone_confirmOTP_andSign(confirmations, OTP.value);
+      await handleLoginSignupByPhone(confirmations, OTP.value);
     } catch (error: any) {
       setLoading(false);
       console.log('OTP Error');
     }
   };
 
-  console.log(
-    'showOTP? isValidOTP : isValidPhone',
-    showOTP ? isValidOTP : isValidPhone,
-    '||',
-    showOTP,
-    isValidOTP,
-    isValidPhone
-  );
   return (
     <Background keyboard>
       <BackButton />
@@ -111,7 +102,6 @@ export default function LoginWithPhone() {
         {phone.error}
       </HelperText>
       <ActionButton
-        // disabled={showOTP? isValidOTP : isValidPhone}
         loading={loading}
         mode='contained'
         onPress={() => (showOTP ? handleConfirmOTP() : handleSendOTP())}

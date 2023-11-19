@@ -6,7 +6,7 @@ import { HelperText, Paragraph, TextInput } from 'react-native-paper';
 
 import { validateEmail } from '../validations/validateEmail'
 
-import executeAuth from '../execute/executeAuth'
+import manageAuth from '../managers/manageAuth'
 
 import {
   View,
@@ -34,7 +34,7 @@ export default function Reset(): React.JSX.Element {
 
   const [error, setError] = useState('');
 
-  const { executeResetPassword } = executeAuth();
+  const { handleResetPassword } = manageAuth();
 
   const onResetPassword = async () => {
     console.log('VALIDATE')
@@ -47,7 +47,7 @@ export default function Reset(): React.JSX.Element {
       return;
     }
     try {
-      await executeResetPassword(email.value);
+      await handleResetPassword(email.value);
     } catch (error: any) {
       console.log('ERROR:', error);
       setLoading(false);

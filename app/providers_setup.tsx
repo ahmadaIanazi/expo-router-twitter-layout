@@ -9,7 +9,9 @@ import ImportsProvider from '../providers/ImportsProvider';
 import AnalyticsProvider from '../providers/AnalyticsProvider';
 import UpdateProvider from '../providers/UpdateProvider';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-// import { BottomsProvider } from 'bottoms';
+import PushNotificationsProvider from '../providers/PushNotificationsProvider';
+import { BottomsProvider } from 'bottoms';
+import bottoms_layout from './(bottoms)/bottoms_layout';
 // import Layout from '@/app/(bottoms)';
 
 interface RootProviderProps {
@@ -25,17 +27,19 @@ export default function RootProvider({ children }: RootProviderProps): React.JSX
             <FirebaseProvider>
               <AuthProvider>
                 <Hooks>
-                  {/* <QueryProvider> */}
-                  <AnalyticsProvider>
-                    <ThemeProvider>
-                      <SafeAreaProvider>
-                        {/* <BottomsProvider config={Layout}> */}
-                        <>{children}</>
-                        {/* </BottomsProvider> */}
-                      </SafeAreaProvider>
-                    </ThemeProvider>
-                  </AnalyticsProvider>
-                  {/* </QueryProvider> */}
+                  <QueryProvider>
+                    <PushNotificationsProvider>
+                      <AnalyticsProvider>
+                        <ThemeProvider>
+                          <SafeAreaProvider>
+                            <BottomsProvider config={bottoms_layout}>
+                              <>{children}</>
+                            </BottomsProvider>
+                          </SafeAreaProvider>
+                        </ThemeProvider>
+                      </AnalyticsProvider>
+                    </PushNotificationsProvider>
+                  </QueryProvider>
                 </Hooks>
               </AuthProvider>
             </FirebaseProvider>

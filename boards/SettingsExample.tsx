@@ -1,189 +1,88 @@
+import React, { useContext } from 'react';
+import { ScrollView } from 'react-native';
+import { Switch, List, TouchableRipple, Icon } from 'react-native-paper';
+import { Appbar, Main } from '../widgets';
+import Localization from '../translations';
 
-
-import React, { useState, useMemo } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { Avatar, List, Text, Switch as PaperSwitch, useTheme, Button } from 'react-native-paper';
-
-import {
-
-  Div,
-
-  Tap,
-  Appbar,
-  BackButton,
-  Background,
-  Banner,
-  Button as ActionButton,
-  Header,
-  Paragraph,
-
-  SliderIndicator,
-  Snackbar,
-  TextInput,
-  Logo,
-  Main,
-  OnboardSlider,
-  OnboardingButton,
-} from '../widgets';
-import executeAuth from '../execute/executeAuth';
-
-const SECTIONS = [
+// Updated sample settings configuration with category titles
+const settingsConfig = [
   {
-    header: 'Preferences',
-    icon: 'heart',
-    items: [
-      { label: 'Language', value: 'English', type: 'input' },
-      { label: 'Dark Mode', value: false, type: 'boolean' },
-      { label: 'Use Wi-Fi', value: true, type: 'boolean' },
-      { label: 'Location', value: 'Los Angeles, CA', type: 'input' },
-      { label: 'Show collaborators', value: true, type: 'boolean' },
-      { label: 'Accessibility mode', value: false, type: 'boolean' },
+    id: 'category1',
+    category: 'Appearance',
+    settings: [
+      {
+        id: 'darkMode',
+        label: 'Dark Mode',
+        type: 'switch',
+        value: false,
+        action: (value) => console.log('Toggle Dark Mode:', value),
+        icon: 'brightness-4',
+      },
     ],
   },
   {
-    header: 'Help',
-    icon: 'help-circle',
-    items: [
-      { label: 'Item 1', type: 'link' },
-      { label: 'Item 2', type: 'input', value: 'Value' },
-      { label: 'Item 3', type: 'boolean', value: true },
-      { label: 'Item 4', type: 'boolean', value: false },
-      { label: 'Item 5', type: 'link' },
+    id: 'category2',
+    category: 'Preferences',
+    settings: [
+      {
+        id: 'language',
+        label: 'Language',
+        type: 'navigation',
+        action: () => console.log('Navigate to Language Settings'),
+        icon: 'text',
+      },
+      {
+        id: 'notifications',
+        label: 'Notifications',
+        type: 'switch',
+        value: true,
+        action: (value) => console.log('Toggle Notifications:', value),
+        icon: 'bell',
+      },
     ],
   },
-  {
-    header: 'Content',
-    icon: 'heart',
-    items: [
-      { label: 'Item 1', type: 'link' },
-      { label: 'Item 2', type: 'input', value: 'Value' },
-      { label: 'Item 3', type: 'boolean', value: true },
-      { label: 'Item 4', type: 'boolean', value: false },
-      { label: 'Item 5', type: 'link' },
-    ],
-  },
+  // Add more categories and settings as needed
 ];
 
-export default function SettingsExample() {
-  const colors = useTheme();
-  const { executeLogout } = executeAuth()
-  const [value, setValue] = useState(0);
-  const { tabs, items } = useMemo(() => {
-    return {
-      tabs: SECTIONS.map(({ header, icon }) => ({
-        name: header,
-        icon,
-      })),
-      items: SECTIONS[value].items,
-    };
-  }, [value]);
+export default function Settings() {
 
-  const handleLogout = async () => {
-    try {
-      await executeLogout()
+  const l = useContext(Localization)
 
-    } catch (error){
 
+  const handleSettingPress = (setting) => {
+    if (setting.type === 'switch') {
+      setting.action(!setting.value);
+    } else if (setting.type === 'navigation') {
+      setting.action();
     }
-  }
+    // Add more cases for different types of settings (e.g., dropdown, etc.)
+  };
+
+  const renderSettingItem = (setting) => (
+    <List.Item
+      key={setting.id}
+      title={setting.label}
+      left={(props) => <List.Icon {...props} icon={setting.icon} />}
+      right={
+        setting.type === 'switch'
+          ? () => <Switch value={setting.value} onValueChange={() => handleSettingPress(setting)} />
+          : () => <Icon source={l.navigation_chevron_arrow} size={24} />
+      }
+      onPress={() => (setting.type === 'navigation' ? handleSettingPress(setting) : null)}
+    />
+  );
 
   return (
-    <Main safe='bottom'>
-      <Appbar safe={false} title='Settings' showBackAction />
+    <Main>
+      <Appbar showBackAction title='Settings' modal />
       <ScrollView>
-        <View
-          style={[
-            styles.profile,
-            {
-              backgroundColor: colors.colors.background,
-              borderColor: colors.colors.outline,
-            },
-          ]}
-        >
-          <Avatar.Image
-            size={60}
-            source={{
-              uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80',
-            }}
-          />
-          <Text variant='bodyLarge'>John Doe</Text>
-          <Text variant='bodyMedium'>@john.doe</Text>
-          <List.Item
-            title='Edit Profile'
-            left={(props) => (
-              <List.Icon {...props} icon='pencil' color={colors.colors.onBackground} />
-            )}
-          />
-        </View>
-        <View style={styles.tabs}>
-          {tabs.map(({ name, icon }, index) => {
-            const isActive = index === value;
-            return (
-              <List.Item
-                key={name}
-                title={name}
-                left={(props) => (
-                  <List.Icon
-                    {...props}
-                    icon={icon}
-                    color={isActive ? colors.colors.secondary : colors.colors.primary}
-                  />
-                )}
-                onPress={() => {
-                  setValue(index);
-                }}
-              />
-            );
-          })}
-        </View>
-        {items.map(({ label, type, value }, index) => {
-          return (
-            <List.Item
-              key={label}
-              title={label}
-              description={
-                type === 'input' ? value : type === 'boolean' ? (value ? 'On' : 'Off') : null
-              }
-              left={(props) => (
-                <List.Icon {...props} icon={type === 'boolean' ? 'check' : 'chevron-right'} />
-              )}
-              right={(props) =>
-                type === 'boolean' && (
-                  <PaperSwitch
-                    value={value}
-                    onValueChange={() => {
-                      // Handle switch state change here
-                    }}
-                  />
-                )
-              }
-            />
-          );
-        })}
+        {settingsConfig.map((category) => (
+          <List.Section key={category.id}>
+            <List.Subheader>{category.category}</List.Subheader>
+            {category.settings.map((setting) => renderSettingItem(setting))}
+          </List.Section>
+        ))}
       </ScrollView>
-      <Button mode='contained' onPress={handleLogout}>Logout</Button>
     </Main>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  profile: {
-    padding: 16,
-    borderBottomWidth: 1,
-    alignItems: 'center',
-  },
-  profileName: {
-    fontSize: 17,
-    fontWeight: '600',
-  },
-  profileHandle: {
-    fontSize: 15,
-  },
-  tabs: {
-    flexDirection: 'row',
-    paddingVertical: 16,
-  },
-});

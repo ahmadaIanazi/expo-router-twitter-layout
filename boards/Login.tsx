@@ -11,14 +11,14 @@ import { BackButton } from '../widgets';
 import { validateEmail } from '../validations/validateEmail';
 import { validatePassword } from '../validations/validatePassword';
 
-import executeAuth from '../execute/executeAuth';
+import manageAuth from '../managers/manageAuth';
 import { Snackbar } from '../widgets';
 import { router } from 'expo-router';
 import { View } from '../widgets';
 
 export default function Login(): React.JSX.Element {
   const colors = useTheme();
-  const { executeLogin } = executeAuth()
+  const { handleLogin } = manageAuth()
 
   const [email, setEmail] = useState({ value: '', error: '' });
   const [password, setPassword] = useState({ value: '', error: '' });
@@ -38,7 +38,7 @@ export default function Login(): React.JSX.Element {
       return;
     } 
     try {
-      await executeLogin(email.value, password.value)
+      await handleLogin(email.value, password.value)
     } catch (error: any) {
       console.log('ERROR:', error)
       setLoading(false);

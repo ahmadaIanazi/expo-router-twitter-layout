@@ -13,6 +13,8 @@ type AuthStore = {
   setLoadingUserData: (res: boolean) => void;
   emailVerified: boolean;
   setEmailVerified: (res: boolean) => void;
+  isOffline: boolean;
+  setIsOffline: (res: boolean) => void;
 };
 
 export const useAuthStore = create<AuthStore>((set, get) => ({
@@ -20,6 +22,10 @@ export const useAuthStore = create<AuthStore>((set, get) => ({
   setRefresh: () => {
     const refreshState = get().refresh;
     set({ refresh: !refreshState });
+  },
+  isOffline: true,
+  setIsOffline: (res) => {
+    set({ isOffline: res });
   },
   isAnonymous: null,
   setIsAnonymous: (res) => {

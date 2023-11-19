@@ -1,17 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Button, Icon } from 'react-native-paper';
 import Localization from '../translations';
 import { Safe, Tap, View } from '../widgets';
 import DrawerDarkmode from './DrawerDarkmode';
 import { useUserStore } from '../stores';
+import useResponsive from '../hooks/useResponsive';
+import manageAuth from '../managers/manageAuth';
 
-export default function DrawerLogout() {
-
+export default function DrawerBottomButtons() {
   return (
     <View s=' w-100% b-10 ps-10 mt-10'>
       <Safe safe='bottom'>
         <View s='row ac w-100%'>
-          <LogoutButton/>
+          <LogoutButton />
           <DarkModeButton />
         </View>
       </Safe>
@@ -30,10 +31,23 @@ function DarkModeButton() {
 
 function LogoutButton() {
   const l = useContext(Localization);
+  const { showLabel } = useResponsive();
+  const [loading, setLoading] = useState(false)
+
+  const { handleLogout } = manageAuth()
+
+  const onPressLogout = async () => {
+    setLoading(true)
+    try {
+      await handleLogout()
+    } catch(error) {
+      setLoading(false)
+    }
+  }
 
   return (
-    <Button onPress={() => {}} icon={() => <Icon source='logout' size={20} />}>
-      {l.logout}
+    <Button loading={loading} onPress={onPressLogout} icon='logout'>
+      {showLabel && l.logout}
     </Button>
   );
 }

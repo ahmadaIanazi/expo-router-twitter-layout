@@ -7,16 +7,16 @@ import Localization from '../translations/_context';
 import { router } from 'expo-router';
 import { useTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigationStore } from '../stores/useNavigationStore';
+import { useScreensStore } from '../stores/useScreensStore';
 import { useRemoteStore } from '../stores/useRemoteStore';
 import {OnboardSlider} from '../widgets';
 import {SliderIndicator} from '../widgets';
-
+ 
 export default function Introduction() {
   const colors = useTheme();
   const l = useContext(Localization);
   const { shared } = useRemoteStore();
-  const { setSeenOnboard } = useNavigationStore();
+  const { setSeenOnboard } = useScreensStore();
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [lastSlide, setLastSlide] = useState(false);
   const [loading, setLoading] = useState(false);

@@ -18,6 +18,7 @@ export default function TabTwoScreen() {
         onChangeText={setParam}
       />
       <Button title='Next' color='white' onPress={() => router.push(`/nested/${param}`)} />
+      <Button title='Next' color='white' onPress={() => router.push(`/(modals)/Notification`)} />
     </View>
   );
 }

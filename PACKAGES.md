@@ -12,6 +12,16 @@
 
 ## Packages
 
+### Store Review
+
+- npx expo install expo-store-review
+
+### Apple Authentication
+
+#### Prerequisites
+
+- npx expo install expo-apple-authentication
+
 - yarn add axios
 - yarn add @react-native-async-storage/async-storage
 - yarn add zustand

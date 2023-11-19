@@ -39,6 +39,10 @@ export function firebase() {
     : console.log('#4 Firebase: Engine Not Working.');
 }
 
+export function isFirebaseConnected() {
+  return fire !== undefined && fire.options && fire.options.databaseURL !== undefined;
+}
+
 /* Firestore */
 // export const db = getFirestore(fire);
 

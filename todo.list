@@ -1,0 +1,11 @@
+- LoginWithPhone Screen: Setup dropdown menu to pick country codes and flags.
+- LoginWithPhone Screen: Action Button should have more validation and opactiy.
+- Rate us: Setup storeReview and all its configurations.
+- Welcome Screen Terms and Services, and include it in all authentication screen.
+- Welcome Screen Setup Discover button to signin annonymously. 
+- manageAuth phone must know if its signup or signin to create user or fetch user.
+- managePermissions complete it to route to specific permission and set status of that permission.
+- manageEvents: This to handle flow of anonymous user when to ask them for their information and when you must ask them to signup.
+- manageRoles: This is to setup roles for users, anonymous .. etc
+- manageUser: This is to manage user data and talk with the store and the hooks
+- manageData: This is to manage all API data 

@@ -1,14 +1,17 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from 'react-native-paper';
+import Localization from '../../translations';
 
 interface MainProps {
   children?: ReactNode;
   align?: 'none' | 'center' | 'top' | 'left' | 'right' | 'bottom';
   padding?: number;
   safe?: 'none' | 'all' | 'top' | 'bottom' | 'left' | 'right';
-  color?: string
+  color?: string;
+  direction?: string;
+  modal?: boolean;
 }
 
 export default function Main({
@@ -16,9 +19,11 @@ export default function Main({
   align = 'none',
   padding = 0,
   safe = 'none',
+  modal = false,
   color
 }: MainProps): React.JSX.Element {
   const colors = useTheme();
+  const l = useContext(Localization)
   const { top, bottom, left, right } = useSafeAreaInsets();
   const background = color ? color : colors.colors.background
 
@@ -28,16 +33,17 @@ export default function Main({
     padding,
     alignSelf: 'center',
     backgroundColor: background,
+    direction: l.direction
   };
 
-  if (safe === 'all') {
+  if (safe === 'all' && modal) {
     mainStyles.paddingTop = top + padding;
     mainStyles.paddingBottom = bottom + padding;
     mainStyles.paddingLeft = left + padding;
     mainStyles.paddingRight = right + padding;
-  } else if (safe === 'top') {
+  } else if (safe === 'top' && modal) {
     mainStyles.paddingTop = top;
-  } else if (safe === 'bottom') {
+  } else if (safe === 'bottom' && modal) {
     mainStyles.paddingBottom = bottom;
   } else if (safe === 'left') {
     mainStyles.paddingLeft = left;
@@ -69,8 +75,6 @@ export default function Main({
     mainStyles.justifyContent = undefined;
     mainStyles.alignItems = undefined;
   }
-
-  console.log('ALIGN?:', align)
 
   return <View style={mainStyles}>{children}</View>;
 }

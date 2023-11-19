@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Animated, Keyboard, Platform, StyleSheet, TextInput, View, Text } from 'react-native';
-import { useKeyboard } from '../../Hooks/useKeyboard';
+import { useKeyboard } from '../../hooks/useKeyboard';
 import themeContext from '../../Theme/theme';
 
 const AuthPassword = ({ setPassword, password }) => {

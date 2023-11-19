@@ -29,6 +29,10 @@ export const useUserStore = create(
       setUserId: (res) => {
         set({ userId: res });
       },
+      pushToken: '',
+      setUserPushToken: (res) => {
+        set({ pushToken: res });
+      },
       user: [],
       setUserDoc: (res) => {
         set({ user: res });

@@ -72,7 +72,6 @@ export const signup = (email, password) =>
 // import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 
 // import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-// import generateColor from '../../utils/generateColor';
 
 // export const signup = (email, password) =>
 //   new Promise((resolve, reject) => {

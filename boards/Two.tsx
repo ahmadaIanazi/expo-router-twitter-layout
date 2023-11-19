@@ -1,25 +1,7 @@
-import { Text } from 'react-native-paper'
+import { Text } from 'react-native-paper';
 
 import {
-  View,
-  Div,
-
-  Tap,
-  Appbar,
-  BackButton,
-  Background,
-  Banner,
-  Button as ActionButton,
-  Header,
-  Paragraph,
-  ScrollView,
-  SliderIndicator,
-  Snackbar,
-  TextInput,
-  Logo,
-  Main,
-  OnboardSlider,
-  OnboardingButton,
+  View
 } from '../widgets';
 
 export default function Two() {

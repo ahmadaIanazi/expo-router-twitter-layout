@@ -9,6 +9,7 @@ interface ButtonProps {
   children: ReactNode; // Add children prop
   loading?: boolean;
   disabled?: boolean;
+  icon?: string;
   onPress?: () => void; // Add onPress prop
 }
 
@@ -16,6 +17,7 @@ export default function ActionButton({
   mode,
   loading = false, 
   disabled = false,
+  icon,
   style,
   labelStyle,
   children,
@@ -27,6 +29,7 @@ export default function ActionButton({
   return (
     <PaperButton
       disabled={disabled}
+      icon={icon}
       style={[
         {
           width: '100%',

@@ -3,9 +3,8 @@ export const en = {
   textAlign: 'left',
   position: 'left',
   direction: 'ltr',
-  icons: {
-    arrow: 'arrow-back-outline',
-  },
+  navigation_chevron_arrow: 'chevron-right',
+  navigation_chevron_arrow_back: 'chevron-left',
   home: 'Home',
   transactions: 'Transactions',
   see_all: 'See all',

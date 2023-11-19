@@ -1,4 +1,4 @@
-import executeAuth from '../execute/executeAuth'
+import manageAuth from '../managers/manageAuth'
 import { validateEmail } from '../validations/validateEmail'
 import { validateName } from '../validations/validateName'
 import { validatePassword } from '../validations/validatePassword'
@@ -37,7 +37,7 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { executeSignup } = executeAuth();
+  const { handleSignup } = manageAuth();
 
   const onSignUpPressed = async () => {
     const emailError = validateEmail(email.value);
@@ -50,7 +50,7 @@ export default function Register() {
       return;
     }
     try {
-      await executeSignup(email.value, password.value);
+      await handleSignup(email.value, password.value);
     } catch (error: any) {
       console.log('ERROR:', error);
       setLoading(false);
@@ -65,6 +65,12 @@ export default function Register() {
       <BackButton />
       <Logo />
       <Text variant='headlineLarge'>Register</Text>
+      <View s='row ac'>
+        <Text>Different method ?</Text>
+        <Button mode='text' compact onPress={() => router.replace('/LoginByPhone')}>
+          Use Phone number
+        </Button>
+      </View>
       <TextInput
         label='Email'
         mode='outlined'

@@ -16,7 +16,7 @@ export default function ThemeProvider({ children }: ThemeProviderProps): React.J
   // User Settings
   const userSetToDark = useUserStore((state) => state.dark); // boolean true or false
   const userSetToArabic = useUserStore((state) => state.arabic); // boolean true or false
-  const { setIsWeb, setHeight, setWidth, setIsTablet, setOs, setIsDark, setLanguage } = usePlatformStore();
+  const { setHeight, setWidth, setOs, setIsDark, setLanguage, setTypeByWidth } = usePlatformStore();
   const { width, height } = Dimensions.get('screen');
   // Device Settings
   const getDeviceAppearance = useColorScheme(); // 'light' or 'dark'
@@ -35,9 +35,9 @@ export default function ThemeProvider({ children }: ThemeProviderProps): React.J
   const setLocal = selectedLocalization ? ar : en;
 
   useEffect(() => {
-    setIsWeb(Platform.OS === 'web');
     setHeight(height);
     setWidth(width);
+    setTypeByWidth(width);
     setOs(Platform.OS);
     setIsDark(getDeviceAppearance === 'dark');
     setLanguage(getDeviceLocale);

@@ -1,5 +1,4 @@
 /* ===== EXPO DRAWE ===== */
-
 import { Drawer } from 'expo-router/drawer';
 import React, { useContext } from 'react';
 import { Icon, useTheme } from 'react-native-paper';
@@ -29,34 +28,56 @@ const Screens = [
 export const lists = [
   {
     title: 'Settings',
+    icon: 'cog',
     items: [
       {
-      title: 'Settings',
-      icon: 'cog',
-      onPress: () => {router.push('/(modals)/Settings')},
-    },
+        title: 'Settings',
+        icon: 'cog',
+        onPress: () => {
+          router.push('/(modals)/Settings');
+        },
+      },
       {
-      title: 'Help Center',
-      icon: 'lifebuoy',
-      onPress: () => {router.push('/(drawer)/(tabs)/(toptabs)/B')},
-    },
+        title: 'Help Center',
+        icon: 'lifebuoy',
+        onPress: () => {
+          router.push('/(modals)/Help');
+        },
+      },
       {
-      title: 'About us',
-      icon: 'information',
-      onPress: () => {router.push('/(drawer)/(tabs)/(toptabs)/B')},
-    },
-  ]
+        title: 'Terms and Conditions',
+        icon: 'file-star',
+        onPress: () => {
+          router.push('/(modals)/Terms');
+        },
+      },
+      {
+        title: 'Rate us',
+        icon: 'star',
+        onPress: () => {},
+      },
+      {
+        title: 'About us',
+        icon: 'information',
+        onPress: () => {
+          router.push('/(modals)/About');
+        },
+      },
+    ],
   },
 ];
 
 export default function Drawer_Layout() {
   const colors = useTheme();
   const l = useContext(Localization);
-  const { drawerType, drawerWidth } = useResponsive();
+  const { drawerType, drawerWidth, showLabel } = useResponsive();
 
   return (
     <Drawer
-      drawerContent={(props) => <DrawerContainer {...props} />}
+      drawerContent={(props) => {
+      const otherProps = { lists, ...props}
+      return <DrawerContainer {...otherProps} />;
+    }}
       screenOptions={{
         headerShown: false,
         drawerPosition: l.position,
@@ -79,7 +100,7 @@ export default function Drawer_Layout() {
             key={screen.name}
             name={screen.name}
             options={{
-              drawerLabel: screen.title,
+              drawerLabel: showLabel ? screen.title : '',
               drawerActiveTintColor: colors.colors.primary,
               drawerLabelStyle: {
                 color: colors.colors.onBackground,

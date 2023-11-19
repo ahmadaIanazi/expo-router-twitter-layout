@@ -1,30 +1,7 @@
-
 import { useRouter } from 'expo-router';
-import { Text } from 'react-native-paper';
+import { Divider, Text } from 'react-native-paper';
 
-
-import {
-  View,
-  Div,
-
-  Tap,
-  Appbar,
-  BackButton,
-  Background,
-  Banner,
-  Button,
-  Header,
-  Paragraph,
-  ScrollView,
-  SliderIndicator,
-  Snackbar,
-  TextInput,
-  Logo,
-  Main,
-  OnboardSlider,
-  OnboardingButton,
-} from '../widgets';
-
+import { Background, Button, Logo, Paragraph, Spacer, View } from '../widgets';
 
 export default function Welcome(): React.JSX.Element {
   const router = useRouter();
@@ -32,19 +9,28 @@ export default function Welcome(): React.JSX.Element {
   return (
     <Background>
       <Logo />
-      <Text variant='headlineLarge'>Expo Router</Text>
-      <Paragraph>The Ultimate Starter-kit by Ahmad</Paragraph>
-      <Button mode='contained' onPress={() => {
-        router.push('/Login')
-        router.setParams({ postDatas: 'This is the post data' });
-      }}>
-        Log in
+      <Spacer />
+      <View s='row'>
+        <Divider theme={{ colors: { outline: 'black' } }} />
+        <Text>Sign up to enjoy SIMPLE</Text>
+        <Divider />
+      </View>
+      <Button icon='email' mode='outlined' onPress={() => router.push('/Register')}>
+        Continue with Email
       </Button>
-      <Button mode='outlined' onPress={() => router.push('/Register')}>
-        Create an account
+
+      <Spacer />
+      <View s='row'>
+        <Divider theme={{ colors: { outlineVariant: 'black' } }} />
+        <Text>or</Text>
+        <Divider />
+      </View>
+      <Spacer />
+      <Button onPress={() => router.push('/(auth)/LoginByPhone')} mode='outlined' icon='phone'>
+        Continue with phone
       </Button>
       <View s='absolute b-0'>
-      <Paragraph>By using the app you agree to</Paragraph>
+        <Text variant='bodySmall'>By continuing to the next page, you acknowledge that you have read and agreed to the Terms of use and Privacy Policy</Text>
       </View>
     </Background>
   );

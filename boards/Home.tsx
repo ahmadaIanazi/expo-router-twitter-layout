@@ -14,6 +14,7 @@ export default function Home() {
   return (
     <>
       <Appbar
+        color
         logo
         startActions={[{ icon: 'account-circle', onPress: routeToProfile }]}
         endActions={[{ icon: 'cog', onPress: routeToSettings }]}

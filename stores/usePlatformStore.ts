@@ -1,8 +1,18 @@
 import { create } from 'zustand';
+import {
+  mobile_min_width,
+  mobile_max_width,
+  tablet_min_width,
+  tablet_max_width,
+  desktop_min_width,
+  desktop_max_width,
+} from '../xonstant/platform';
 
 export type PlatformStore = {
-  isWeb: boolean;
-  setIsWeb: (res: boolean) => void;
+  isMobile: boolean;
+  setIsMobile: (res: boolean) => void;
+  isDesktop: boolean;
+  setisDesktop: (res: boolean) => void;
   isTablet: boolean;
   setIsTablet: (res: boolean) => void;
   isDark: boolean;
@@ -19,12 +29,19 @@ export type PlatformStore = {
   setHeight: (res: number) => void;
   orientation: null | string;
   setOrientation: (res: string) => void;
+  deviceType: 'Mobile' | 'Tablet' | 'Desktop';
+  setTypeByWidth: (res: number) => void;
 };
 
-export const usePlatformStore = create<PlatformStore>((set) => ({
-  isWeb: false,
-  setIsWeb: (res) => {
-    set({ isWeb: res });
+export const usePlatformStore = create<PlatformStore>((set, get) => ({
+  deviceType: 'Mobile',
+  isMobile: false,
+  setIsMobile: (res) => {
+    set({ isMobile: res });
+  },
+  isDesktop: false,
+  setisDesktop: (res) => {
+    set({ isDesktop: res });
   },
   isTablet: false,
   setIsTablet: (res) => {
@@ -48,7 +65,6 @@ export const usePlatformStore = create<PlatformStore>((set) => ({
   },
   width: null,
   setWidth: (res) => {
-    console.log('STORE WIDTH:', res)
     set({ width: res });
   },
   height: null,
@@ -58,5 +74,32 @@ export const usePlatformStore = create<PlatformStore>((set) => ({
   orientation: null,
   setOrientation: (res) => {
     set({ orientation: res });
+  },
+  setTypeByWidth: (width) => {
+    if (width >= mobile_min_width && width <= mobile_max_width) {
+      set({ isMobile: false });
+      set({ isTablet: false });
+      set({ isDesktop: false });
+      set({ deviceType: 'Mobile' });
+      return;
+    } else if (width >= tablet_min_width && width <= tablet_max_width) {
+      set({ isMobile: false });
+      set({ isTablet: true });
+      set({ isDesktop: false });
+      set({ deviceType: 'Tablet' });
+      return;
+    } else if (width >= desktop_min_width && width <= desktop_max_width) {
+      set({ isMobile: false });
+      set({ isTablet: false });
+      set({ isDesktop: true });
+      set({ deviceType: 'Desktop' });
+      return;
+    } else {
+      set({ isMobile: true });
+      set({ isTablet: false });
+      set({ isDesktop: false });
+      set({ deviceType: 'Mobile' });
+      return;
+    }
   },
 }));

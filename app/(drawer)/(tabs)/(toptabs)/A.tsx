@@ -1,34 +1,17 @@
-import { Button, StyleSheet } from 'react-native';
-
 import { router, useNavigation } from 'expo-router';
-import { Text, View } from 'react-native';
+import { bottom } from 'bottoms';
+import { Button, Text } from 'react-native-paper';
+import { Background } from '../../../../widgets';
 
 export default function ToptabOne() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>A</Text>
-      <Button title='Open Modal' color='white' onPress={() => router.push('/Settings')} />
-      <Button title='Toggle Drawer' color='white' onPress={() => navigation.toggleDrawer()} />
-    </View>
+    <Background>
+      <Text variant='displayLarge'>A</Text>
+      <Button onPress={() => navigation.toggleDrawer()}>Toggle Drawer</Button>
+      <Button onPress={() => router.push('/Settings')}>Open Modal</Button>
+      <Button onPress={() => bottom.open('One')}>Open Bottom Sheet</Button>
+    </Background>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor:'grey'
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
