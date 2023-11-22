@@ -9,3 +9,4 @@
 - manageRoles: This is to setup roles for users, anonymous .. etc
 - manageUser: This is to manage user data and talk with the store and the hooks
 - manageData: This is to manage all API data 
+- Theme Roudness Fix for all elements and widgets to make sure a number affects all.

@@ -6,6 +6,7 @@ import DrawerContainer from '../../components/DrawerContainer';
 import useResponsive from '../../hooks/useResponsive';
 import Localization from '../../translations';
 import { router } from 'expo-router';
+import { triggerAppReview } from '../../features/storeReview';
 
 const Screens = [
   // {
@@ -54,7 +55,7 @@ export const lists = [
       {
         title: 'Rate us',
         icon: 'star',
-        onPress: () => {},
+        onPress: () => triggerAppReview(),
       },
       {
         title: 'About us',
@@ -75,9 +76,9 @@ export default function Drawer_Layout() {
   return (
     <Drawer
       drawerContent={(props) => {
-      const otherProps = { lists, ...props}
-      return <DrawerContainer {...otherProps} />;
-    }}
+        const otherProps = { lists, ...props }
+        return <DrawerContainer {...otherProps} />;
+      }}
       screenOptions={{
         headerShown: false,
         drawerPosition: l.position,

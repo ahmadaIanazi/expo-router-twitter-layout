@@ -1,13 +1,19 @@
 import { useRouter } from 'expo-router';
 import { Divider, Text } from 'react-native-paper';
 
-import { Background, Button, Logo, Paragraph, Spacer, View } from '../widgets';
+import SignByProviderButton from '../components/SignByProviderButton';
+import TextAndLink from '../components/TextAndLink';
+import onPressAuthentication from '../events/onPressAuthentication';
+import { Background, Button, Logo, Spacer, View } from '../widgets';
 
 export default function Welcome(): React.JSX.Element {
+
+  const { appleAuth, googleAuth, loading, error } = onPressAuthentication()
+
   const router = useRouter();
 
   return (
-    <Background>
+    <Background safe='all'>
       <Logo />
       <Spacer />
       <View s='row'>
@@ -15,10 +21,9 @@ export default function Welcome(): React.JSX.Element {
         <Text>Sign up to enjoy SIMPLE</Text>
         <Divider />
       </View>
-      <Button icon='email' mode='outlined' onPress={() => router.push('/Register')}>
-        Continue with Email
-      </Button>
-
+      <SignByProviderButton type='apple' loading={loading} onPress={() => appleAuth.login()} />
+      <SignByProviderButton type='google' loading={loading} onPress={() => googleAuth.login()} />
+      <SignByProviderButton type='phone' loading={loading} onPress={() => router.push('/(auth)/LoginByPhone')} />
       <Spacer />
       <View s='row'>
         <Divider theme={{ colors: { outlineVariant: 'black' } }} />
@@ -26,12 +31,19 @@ export default function Welcome(): React.JSX.Element {
         <Divider />
       </View>
       <Spacer />
-      <Button onPress={() => router.push('/(auth)/LoginByPhone')} mode='outlined' icon='phone'>
-        Continue with phone
-      </Button>
-      <View s='absolute b-0'>
-        <Text variant='bodySmall'>By continuing to the next page, you acknowledge that you have read and agreed to the Terms of use and Privacy Policy</Text>
-      </View>
+      <SignByProviderButton type='email' loading={loading} onPress={() => router.push('/Register')} />
+      <Explore  />
+      <TextAndLink
+        text='By continuing, you acknowledge that you have read and agreed to the'
+        url='https://www.expo.dev'
+        linkText='Terms of Use and Privacy Policy'
+      />
     </Background>
   );
+}
+
+function Explore () {
+  return <Button mode='text' onPress={() => router.push('/Register')}>
+    Explore
+  </Button>
 }

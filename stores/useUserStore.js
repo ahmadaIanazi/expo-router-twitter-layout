@@ -6,30 +6,30 @@ export const useUserStore = create(
   persist(
     (set, get) => ({
       // ======= FIREBASE AUTH ======= //
-      byPhone: null,
-      setByPhone: (res) => {
-        set({ byPhone: res });
+      byFirebaseNativeAuth: null,
+      setByFirebaseNativeAuth: (res) => {
+        set({ byFirebaseNativeAuth: res });
       },
-      apiKey: '',
-      appName: '',
-      createdAt: '',
-      displayName: '',
-      email: '',
-      emailVerified: '',
-      lastLoginAt: '',
-      phoneNumber: '',
-      photoURL: '',
-      uid: '',
+      apiKey: "",
+      appName: "",
+      createdAt: "",
+      displayName: "",
+      email: "",
+      emailVerified: "",
+      lastLoginAt: "",
+      phoneNumber: "",
+      photoURL: "",
+      uid: "",
       // SETTERS
       setUid: (res) => {
         set({ uid: res });
       },
       // ======= STORAGE DATA ======= //
-      userId: '',
+      userId: "",
       setUserId: (res) => {
         set({ userId: res });
       },
-      pushToken: '',
+      pushToken: "",
       setUserPushToken: (res) => {
         set({ pushToken: res });
       },
@@ -37,20 +37,20 @@ export const useUserStore = create(
       setUserDoc: (res) => {
         set({ user: res });
       },
-      role: 'merchant',
+      role: "merchant",
       isMerchant: true,
       setRole: (res) => {
         if (res !== undefined && res !== null) {
-          const validate = res == 'merchant';
+          const validate = res == "merchant";
           set({ isMerchant: validate });
           set({ role: res });
         } else {
           const validate = true;
           set({ isMerchant: validate });
-          set({ role: 'merchant' });
+          set({ role: "merchant" });
         }
       },
-      merchantId: '',
+      merchantId: "",
       setMerchantId: (res) => {
         set({ merchantId: res });
       },
@@ -81,7 +81,7 @@ export const useUserStore = create(
       location: [26.375835699930835, 50.14057920308092],
       address: [],
       fullLocation: [],
-      status: '',
+      status: "",
       locationUpdated: false,
       getUserLocation: (res) => {
         set({ location: res });
@@ -137,7 +137,7 @@ export const useUserStore = create(
       },
     }),
     {
-      name: 'userLocalStorage',
+      name: "userLocalStorage",
       storage: createJSONStorage(() => AsyncStorage),
     }
   )

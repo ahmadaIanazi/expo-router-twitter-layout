@@ -20,7 +20,9 @@
 
 #### Prerequisites
 
+- npx expo install @react-native-google-signin/google-signin
 - npx expo install expo-apple-authentication
+- npx expo install jwt-decode
 
 - yarn add axios
 - yarn add @react-native-async-storage/async-storage

@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth'; // Ensure you're using the correct import path
-import { auth } from '../zetup/firebase';
+import { auth, db } from '../zetup/firebase';
 import authNative from '@react-native-firebase/auth';
 import { getCurrentUserData } from '../data/get/getUserData';
 import { useUserStore } from '../stores/useUserStore';
 import { useAuthStore } from '../stores/useAuthStore';
+import * as AppleAuthentication from 'expo-apple-authentication';
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 
 
 interface User {
@@ -27,7 +29,7 @@ interface User {
 }
 
 export const useAuthentication = () => {
-  const { setUid, setUserId, setUserDoc, setDisplayName, setRole, setMerchantId, byPhone } =
+  const { setUid, setUserId, setUserDoc, setDisplayName, setRole, setMerchantId, byFirebaseNativeAuth } =
     useUserStore();
 
   const { setLoadingUser, setLoadingUserData, refresh, setAuthCheck, setIsAnonymous } =
@@ -36,6 +38,7 @@ export const useAuthentication = () => {
   useEffect(() => {
     const handleAuthStateChanged = (user: User | null) => {
       if (user) {
+        
         const customUser = {
           createdAt: user?.metadata?.creationTime || undefined,
           displayName: user?.displayName || undefined,
@@ -48,7 +51,7 @@ export const useAuthentication = () => {
           providerData: user?.providerData || [],
           uid: user?.uid || '',
         };
-
+        
         setAuthCheck(true);
         setLoadingUser(false);
         setLoadingUserData(true);
@@ -59,11 +62,51 @@ export const useAuthentication = () => {
 
         getCurrentUserData(customUser.uid)
           .then((userData) => {
+            
             const userRole = userData?.role || 'cashier';
             const merchantId = userData?.merchantId || '';
             setRole(userRole);
             setMerchantId(merchantId);
-            setLoadingUserData(false);
+
+            if(userData === undefined){
+              console.log('userData === undefined');
+              const displayName = user.displayName || '';
+              const photoURL = user.photoURL || '';
+              const emailVerified = user.emailVerified || false;
+              const email = user.email || false;
+              const uid = user.uid || '';
+              const isAnonymous = user.isAnonymous || false;
+              const phoneNumber = user.phoneNumber || '';
+
+              setDoc(doc(db, 'users', uid), {
+                displayName,
+                email,
+                uid,
+                joinedData: serverTimestamp(),
+                photoURL,
+                emailVerified,
+                isAnonymous,
+                phoneNumber,
+                role: 'merchant',
+              })
+                .then(() => {
+                  // authResolve(); // Resolve the inner promise
+                  setLoadingUserData(false);
+
+                  console.log('New User Document Created.')
+                })
+                .catch((err) => {
+                  setLoadingUserData(false);
+
+                  console.log('New User Document NOT Created.', err);
+                });
+            } else {
+              setLoadingUserData(false);
+              console.log('GOT USER DATA FROM STORE:')
+
+
+            }
+
           })
           .catch((err) => {
             console.log('Get Current User Data Failed', err);
@@ -80,10 +123,9 @@ export const useAuthentication = () => {
       }
     };
 
-    console.log('BY PHONE?', byPhone)
     setLoadingUser(true);
 
-    if (byPhone) {
+    if (byFirebaseNativeAuth) {
       const subscriber = authNative().onAuthStateChanged(handleAuthStateChanged);
       return subscriber; // unsubscribe on unmount
     } else {
@@ -92,5 +134,5 @@ export const useAuthentication = () => {
         unsubscribe();
       };
     }
-  }, [byPhone, refresh]);
+  }, [byFirebaseNativeAuth, refresh]);
 };

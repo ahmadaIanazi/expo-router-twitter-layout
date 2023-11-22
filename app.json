@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./resources/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "simple",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./resources/images/splash.png",
@@ -17,6 +17,7 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "usesAppleSignIn": true,
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
         "NSUserTrackingUsageDescription": "Allow this app to collect app-related data that can be used for tracking you or your device."
@@ -27,7 +28,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./resources/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ahmadalanazi.simple"
     },
     "web": {
       "bundler": "metro",
@@ -36,9 +38,11 @@
     "plugins": [
       "expo-router",
       "expo-tracking-transparency",
+      "expo-apple-authentication",
       "expo-localization",
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
+      "@react-native-google-signin/google-signin",
       [
         "expo-build-properties",
         {

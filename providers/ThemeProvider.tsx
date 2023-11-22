@@ -30,8 +30,8 @@ export default function ThemeProvider({ children }: ThemeProviderProps): React.J
 
   // Set the values
   const setTheme = selectedTheme
-    ? { ...MD3DarkTheme, colors: Theme.colors.dark }
-    : { ...MD3LightTheme, colors: Theme.colors.light };
+    ? { ...MD3DarkTheme, colors: Theme.colors.dark, roundness: Theme.roundness }
+    : { ...MD3LightTheme, colors: Theme.colors.light, roundness: Theme.roundness };
   const setLocal = selectedLocalization ? ar : en;
 
   useEffect(() => {

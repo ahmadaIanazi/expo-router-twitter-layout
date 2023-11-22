@@ -3,13 +3,14 @@ import { Button as PaperButton, useTheme } from 'react-native-paper';
 import { ViewStyle, TextStyle } from 'react-native';
 
 interface ButtonProps {
-  mode: 'text' | 'outlined' | 'contained';
+  mode?: 'text' | 'outlined' | 'contained';
   style?: ViewStyle;
   labelStyle?: TextStyle;
   children: ReactNode; // Add children prop
   loading?: boolean;
   disabled?: boolean;
   icon?: string;
+  theme?: object;
   onPress?: () => void; // Add onPress prop
 }
 
@@ -21,10 +22,11 @@ export default function ActionButton({
   style,
   labelStyle,
   children,
+  theme,
   onPress,
   ...props
 }: ButtonProps) {
-  const theme = useTheme();
+  // const theme = useTheme();
 
   return (
     <PaperButton
@@ -41,11 +43,12 @@ export default function ActionButton({
       ]}
       labelStyle={{
         fontWeight: 'bold',
-        fontSize: 15,
+        fontSize: 18,
         lineHeight: 26,
         ...labelStyle,
       }}
       mode={mode}
+      // theme={theme}
       theme={theme}
       loading={loading}
       onPress={onPress}

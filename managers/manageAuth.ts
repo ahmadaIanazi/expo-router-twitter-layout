@@ -1,53 +1,53 @@
-import authNative from '@react-native-firebase/auth';
-import { router } from 'expo-router';
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { useContext } from 'react';
-import { login } from '../data/auth/login';
-import { loginAnonymous } from '../data/auth/loginAnonymous';
-import { signout } from '../data/auth/signout';
-import { signup } from '../data/auth/signup';
-import { signupAnonymous } from '../data/auth/signupAnonymous';
-import { useUserStore, useAuthStore } from '../stores';
+import { useContext } from "react";
+import { router } from "expo-router";
 
-import Localization from '../translations';
-import { auth } from '../zetup/firebase';
-import { home_screen, landing_screen } from '../zetup/routing_setup';
+import { auth } from "../zetup/firebase";
+import authNative from "@react-native-firebase/auth";
+import { createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import * as AppleAuthentication from "expo-apple-authentication";
+import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 
-import {
-  TwitterAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
-  signInWithPopup,
-} from 'firebase/auth';
+import { login } from "../data/auth/login";
+import { loginAnonymous } from "../data/auth/loginAnonymous";
+import { signout } from "../data/auth/signout";
+import { signup } from "../data/auth/signup";
+import { signupAnonymous } from "../data/auth/signupAnonymous";
+
+import { useUserStore, useAuthStore } from "../stores";
+
+import Localization from "../translations";
+
+import { home_screen, landing_screen } from "../zetup/routing_setup";
 
 export default function manageAuth() {
   const { setAuthCheck, setIsAnonymous, setRefresh } = useAuthStore();
-  const { setByPhone, byPhone } = useUserStore();
+  const { byFirebaseNativeAuth, setByFirebaseNativeAuth } = useUserStore();
   const l = useContext(Localization);
 
-  const handleSignup = async (email: string, password: string): Promise<void> => {
+  const handleSignupByEmailAndPassword = async (email: string, password: string): Promise<void> => {
     try {
-      await signup(email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
       router.replace(home_screen);
-      setByPhone(false);
+      setByFirebaseNativeAuth(false);
       setRefresh(true);
       setIsAnonymous(false);
       setAuthCheck(true);
     } catch (error: any) {
+      console.log('ERROR:', error)
       switch (error.code) {
-        case 'auth/email-already-in-use':
+        case "auth/email-already-in-use":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'email-already-in-use' });
           throw l.error_email_in_use;
-        case 'auth/wrong-password':
+        case "auth/wrong-password":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'auth/wrong-password' });
           throw l.error_password_wrong;
-        case 'auth/too-many-requests':
+        case "auth/too-many-requests":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'too-many-requests' });
           throw l.error_account_locked;
-        case 'auth/invalid-email':
+        case "auth/invalid-email":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'invalid-email' });
           throw l.error_email_invalid;
-        case 'auth/weak-password':
+        case "auth/weak-password":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'weak-password' });
           throw l.error_password_too_weak;
         default:
@@ -61,25 +61,25 @@ export default function manageAuth() {
     try {
       await signupAnonymous();
       router.replace(home_screen);
-      setByPhone(false);
+      setByFirebaseNativeAuth(false);
       setRefresh(true);
       setIsAnonymous(true);
       setAuthCheck(true);
     } catch (error: any) {
       switch (error.code) {
-        case 'auth/email-already-in-use':
+        case "auth/email-already-in-use":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'email-already-in-use' });
           throw l.error_email_in_use;
-        case 'auth/wrong-password':
+        case "auth/wrong-password":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'auth/wrong-password' });
           throw l.error_password_wrong;
-        case 'auth/too-many-requests':
+        case "auth/too-many-requests":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'too-many-requests' });
           throw l.error_account_locked;
-        case 'auth/invalid-email':
+        case "auth/invalid-email":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'invalid-email' });
           throw l.error_email_invalid;
-        case 'auth/weak-password':
+        case "auth/weak-password":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'weak-password' });
           throw l.error_password_too_weak;
         default:
@@ -93,25 +93,25 @@ export default function manageAuth() {
     try {
       await login(email, password);
       router.replace(home_screen);
-      setByPhone(false);
+      setByFirebaseNativeAuth(false);
       setRefresh(true);
       setIsAnonymous(false);
       setAuthCheck(true);
     } catch (error: any) {
       switch (error.code) {
-        case 'auth/email-already-in-use':
+        case "auth/email-already-in-use":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'email-already-in-use' });
           throw l.error_email_in_use;
-        case 'auth/wrong-password':
+        case "auth/wrong-password":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'auth/wrong-password' });
           throw l.error_password_wrong;
-        case 'auth/too-many-requests':
+        case "auth/too-many-requests":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'too-many-requests' });
           throw l.error_account_locked;
-        case 'auth/invalid-email':
+        case "auth/invalid-email":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'invalid-email' });
           throw l.error_email_invalid;
-        case 'auth/weak-password':
+        case "auth/weak-password":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'weak-password' });
           throw l.error_password_too_weak;
         default:
@@ -125,26 +125,26 @@ export default function manageAuth() {
     try {
       await loginAnonymous(email, password);
       router.replace(home_screen);
-      setByPhone(false);
+      setByFirebaseNativeAuth(false);
       setRefresh(true);
       setIsAnonymous(false);
       setAuthCheck(true);
     } catch (error: any) {
       setAuthCheck(null);
       switch (error.code) {
-        case 'auth/email-already-in-use':
+        case "auth/email-already-in-use":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'email-already-in-use' });
           throw l.error_email_in_use;
-        case 'auth/wrong-password':
+        case "auth/wrong-password":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'auth/wrong-password' });
           throw l.error_password_wrong;
-        case 'auth/too-many-requests':
+        case "auth/too-many-requests":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'too-many-requests' });
           throw l.error_account_locked;
-        case 'auth/invalid-email':
+        case "auth/invalid-email":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'invalid-email' });
           throw l.error_email_invalid;
-        case 'auth/weak-password':
+        case "auth/weak-password":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'weak-password' });
           throw l.error_password_too_weak;
         default:
@@ -156,7 +156,7 @@ export default function manageAuth() {
 
   const handleLogout = async (): Promise<void> => {
     try {
-      if (byPhone) {
+      if (byFirebaseNativeAuth) {
         await authNative().signOut();
       } else {
         await signout();
@@ -165,22 +165,22 @@ export default function manageAuth() {
       setRefresh(true);
       setIsAnonymous(null);
       setAuthCheck(null);
-      setByPhone(false)
+      setByFirebaseNativeAuth(false);
     } catch (error: any) {
       switch (error.code) {
-        case 'auth/email-already-in-use':
+        case "auth/email-already-in-use":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'email-already-in-use' });
           throw l.error_email_in_use;
-        case 'auth/wrong-password':
+        case "auth/wrong-password":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'auth/wrong-password' });
           throw l.error_password_wrong;
-        case 'auth/too-many-requests':
+        case "auth/too-many-requests":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'too-many-requests' });
           throw l.error_account_locked;
-        case 'auth/invalid-email':
+        case "auth/invalid-email":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'invalid-email' });
           throw l.error_email_invalid;
-        case 'auth/weak-password':
+        case "auth/weak-password":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'weak-password' });
           throw l.error_password_too_weak;
         default:
@@ -196,19 +196,19 @@ export default function manageAuth() {
       router.back();
     } catch (error: any) {
       switch (error.code) {
-        case 'auth/email-already-in-use':
+        case "auth/email-already-in-use":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'email-already-in-use' });
           throw l.error_email_in_use;
-        case 'auth/wrong-password':
+        case "auth/wrong-password":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'auth/wrong-password' });
           throw l.error_password_wrong;
-        case 'auth/too-many-requests':
+        case "auth/too-many-requests":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'too-many-requests' });
           throw l.error_account_locked;
-        case 'auth/invalid-email':
+        case "auth/invalid-email":
           //  vexoit('AUTH', { method: 'login', status: 'failed', event: 'invalid-email' });
           throw l.error_email_invalid;
-        case 'auth/weak-password':
+        case "auth/weak-password":
           //  vexoit('AUTH', { method: 'signup', status: 'failed', event: 'weak-password' });
           throw l.error_password_too_weak;
         default:
@@ -218,96 +218,128 @@ export default function manageAuth() {
     }
   };
 
-  const handleLoginSignupByPhone = async (
-    confirmationResult,
-    otp: number
-  ): Promise<void> => {
+  const handleLoginSignupByPhone = async (confirmationResult, otp: number): Promise<void> => {
     try {
       await confirmationResult.confirm(otp.toString()); // Convert OTP to string if it's a number
       // Handle successful verification (e.g., navigate to the home screen)
       // One more step needs to be done, I want to take this confirmation and get the user,
       // And perform Auth by Firebase SDK not Auth by Firebase React Native.
-      setByPhone(true);
+      setByFirebaseNativeAuth(true);
       setRefresh(true);
       setIsAnonymous(false);
       setAuthCheck(true);
       router.replace(home_screen);
-      console.log('SUCCESS PHONE OTP CONFIRMATION');
+      console.log("SUCCESS PHONE OTP CONFIRMATION");
     } catch (error) {
       // Handle verification error
-      console.error('Error during OTP confirmation:', error);
+      console.error("Error during OTP confirmation:", error);
       // Customize error handling based on your requirements
     }
   };
 
-  const handleAuthWithTwitter = async () => {
-    try{
-
-      const provider = new TwitterAuthProvider();
-      provider.setCustomParameters({
-        lang: l.l,
+  const handleAuthWithApple = async () => {
+    try {
+      const credential = await AppleAuthentication.signInAsync({
+        requestedScopes: [AppleAuthentication.AppleAuthenticationScope.FULL_NAME, AppleAuthentication.AppleAuthenticationScope.EMAIL],
       });
-      await signInWithPopup(auth, provider);
-
-
-    } catch (error){
-      console.log('ERROR With Twitter Redirect')
+      console.log(credential);
+      // Handle credentials and setAppleAuthCredentials
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
 
-  const handleAuthWithTwitterConfirm = async () => {
-    getRedirectResult(auth)
-      .then((result) => {
-        // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-        // You can use these server side with your app's credentials to access the Twitter API.
-        const credential = TwitterAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const secret = credential.secret;
-        // ...
-        setByPhone(true);
-        setRefresh(true);
-        setIsAnonymous(false);
-        setAuthCheck(true);
-        router.replace(home_screen);
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        console.log('Authentication Error:', error)
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // The email of the user's account used.
-        const email = error.customData.email;
-        // The AuthCredential type that was used.
-        const credential = TwitterAuthProvider.credentialFromError(error);
-        // ...
+  const handleAuthWithAppleGetCredentials = async () => {
+    const credentialState = await AppleAuthentication.getCredentialStateAsync(userToken.user);
+    console.log(credentialState);
+    return credentialState;
+  };
+
+  const handleAuthWithAppleRefresh = async () => {
+    const result = await AppleAuthentication.refreshAsync({
+      user: userToken.user,
+    });
+    console.log(result);
+    // setUser .. etc
+  };
+
+  const handleAuthWithGoogle = async () => {
+    try {
+      GoogleSignin.configure({
+        // scopes: ["https://www.googleapis.com/auth/drive.readonly"], // what API you want to access on behalf of the user, default is email and profile
+        webClientId: process.env.EXPO_PUBLIC_GOOGLE_OAuth_client_ID_FIREBASE, // client ID of type WEB for your server. Required to get the idToken on the user object, and for offline access.
       });
-  }
+
+      await GoogleSignin.hasPlayServices();
+      const { idToken } = await GoogleSignin.signIn();
+
+      const googleCredential = authNative.GoogleAuthProvider.credential(idToken);
+      await authNative().signInWithCredential(googleCredential);
+
+      // Update state or perform necessary actions after successful authentication
+      setByFirebaseNativeAuth(true);
+      setRefresh(true);
+      setIsAnonymous(false);
+      setAuthCheck(true);
+
+      router.replace(home_screen);
+    } catch (error) {
+      console.log('Error:', error )
+      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+        // Handle cancellation of the login flow
+      } else if (error.code === statusCodes.IN_PROGRESS) {
+        // Handle if an operation (e.g., sign-in) is already in progress
+      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+        // Handle scenario when play services are not available or outdated
+      } else {
+        // Handle other errors that might occur during authentication
+      }
+    }
+  };
+
+  const handleAuthWithGoogleGetCurrentUser = async () => {
+    const currentUser = await GoogleSignin.getCurrentUser();
+    // setState({ currentUser });
+    console.log("Get Current User:", currentUser);
+  };
+
+  const handleAuthGoogleSignout = async () => {
+    try {
+      await GoogleSignin.signOut();
+      // setState({ user: null }); // Remember to remove the user from your app's state as well
+      // Do authcheck .. etc
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return {
     emailAndPassword: {
-      signup: '',
-      signin: '',
-      signout: '',
+      signup: handleSignupByEmailAndPassword,
+      signin: handleLogin,
+      signout: handleLogout,
+      reset: handleResetPassword,
     },
     phoneNumber: {
-      sendCode: '',
-      confirmCodeAndSign: '',
-      signout: '',
+      confirm: handleLoginSignupByPhone,
     },
     apple: {
-      authenticate: '',
-      confirmAndSign: '',
+      authenticate: handleAuthWithApple,
+      getCredentials: handleAuthWithAppleGetCredentials,
+      refresh: handleAuthWithAppleRefresh,
     },
     google: {
-      authenticate: '',
-      confirmAndSign: '',
+      authenticate: handleAuthWithGoogle,
+      getCurrentUser: handleAuthWithGoogleGetCurrentUser,
+      signout: handleAuthGoogleSignout,
     },
-    twitter: {
-      authenticate: handleAuthWithTwitter,
-      confirmAndSign: handleAuthWithTwitterConfirm,
+    anonymous: {
+      signup: handleSignupAnonymous,
+      signin: handleLoginAnonymous,
+      signout: handleLogout,
+      link: "",
     },
-    handleEmailSignup: handleSignup,
-    handleLogin,
+    handleEmailLogin: handleLogin,
     handleSignupAnonymous,
     handleLoginAnonymous,
     handleLogout,

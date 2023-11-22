@@ -1,6 +1,6 @@
 export const Theme = {
   animation: { scale: 1 },
-  roundness: 5,
+  roundness: 3,
   // === Colors === //
   colors: {
     light: {

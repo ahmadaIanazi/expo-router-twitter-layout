@@ -1,11 +1,11 @@
 
-import React from 'react'
-import { Background, Safe, View } from '../widgets'
-import { Avatar, Switch, Text } from 'react-native-paper'
-import { useUserStore } from '../stores'
+import React from 'react';
+import { Switch } from 'react-native-paper';
+import { View } from '../widgets';
 
-export default function DrawerDarkmode() {
-  const { displayName } = useUserStore();
+export default function SwitchButton() {
+
+
   return (
     <View s='mt-0'>
       <Switch />
