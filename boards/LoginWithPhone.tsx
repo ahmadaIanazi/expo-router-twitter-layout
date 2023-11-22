@@ -1,13 +1,15 @@
 import { router } from 'expo-router';
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, HelperText, Text, TextInput, useTheme } from 'react-native-paper';
 import { BackButton, Background, Header, Logo, Paragraph, Snackbar, View } from '../widgets';
 import ActionButton from '../widgets/components/Button';
 import OTPpaper from '../widgets/components/OTPpaper';
-
 import onPressAuthentication from '../events/onPressAuthentication';
+import CountryPickerButton from '../components/CountryPickerButton';
+
 
 export default function LoginWithPhone() {
+
   const colors = useTheme()
   const {
     phoneAuth,
@@ -29,9 +31,7 @@ export default function LoginWithPhone() {
         <OTPpaper mode='outlined' onChangeText={setOTP} />
       ) : (
         <View s='w-100% row c'>
-          {/* <Button>
-            +966
-          </Button> */}
+          <CountryPickerButton />
           <TextInput
             label='Phone number'
             mode='outlined'
@@ -43,7 +43,7 @@ export default function LoginWithPhone() {
             autoComplete='tel-national'
             textContentType='telephoneNumber'
             keyboardType='phone-pad'
-            style={{ width: '100%' }}
+            style={{ width: '80%' }}
             left={<TextInput.Icon icon='phone' />}
             outlineStyle={{ borderRadius: colors.roundness * 5 }}
 

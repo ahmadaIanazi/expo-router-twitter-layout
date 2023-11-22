@@ -4,6 +4,12 @@ Expo Router v2 with Twitter Layout, Drawer, Tabs, Onboarding, and Authentication
 
 ## Gettings started
 
+## Prerequsites
+
+- Apple Provisioning profile must have " Apple Sign-in" checked from the developer account. 
+- Google Firebase, and Google Console access.
+- package, bundleIdentifier, schema, slug, GoogleService-info.plist its better to have a one unified audience.
+
 ```yarn install```
 
 Then

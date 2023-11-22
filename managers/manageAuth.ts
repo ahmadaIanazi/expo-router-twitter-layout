@@ -3,7 +3,7 @@ import { router } from "expo-router";
 
 import { auth } from "../zetup/firebase";
 import authNative from "@react-native-firebase/auth";
-import { createUserWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { OAuthProvider, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithCredential } from "firebase/auth";
 import * as AppleAuthentication from "expo-apple-authentication";
 import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 
@@ -239,10 +239,23 @@ export default function manageAuth() {
 
   const handleAuthWithApple = async () => {
     try {
-      const credential = await AppleAuthentication.signInAsync({
+      const appleCredentials = await AppleAuthentication.signInAsync({
         requestedScopes: [AppleAuthentication.AppleAuthenticationScope.FULL_NAME, AppleAuthentication.AppleAuthenticationScope.EMAIL],
       });
-      console.log(credential);
+      const { identityToken } = appleCredentials;
+      if(identityToken){
+        // Create a Firebase credential from the response
+        const provider = new OAuthProvider('apple.com')
+        provider.addScope('email')
+        provider.addScope('name')
+        const credentials = provider.credential({ idToken: identityToken })
+
+        await signInWithCredential(auth, credentials)
+        setByFirebaseNativeAuth(true);
+        setRefresh(true);
+        setIsAnonymous(false);
+        setAuthCheck(true);
+      }
       // Handle credentials and setAppleAuthCredentials
     } catch (e) {
       console.log(e);

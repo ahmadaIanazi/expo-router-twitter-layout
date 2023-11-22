@@ -24,6 +24,7 @@
 - npx expo install expo-apple-authentication
 - npx expo install jwt-decode
 
+- npx expo install react-native-country-picker-modal
 - yarn add axios
 - yarn add @react-native-async-storage/async-storage
 - yarn add zustand
