@@ -1,33 +1,12 @@
-import { Button, StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
-import { router, useNavigation } from 'expo-router';
-import { Text, View } from 'react-native';
-
-export default function TabOneScreen() {
-  const navigation = useNavigation();
-
+export default function index() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab (index)</Text>
-      <Button title='Open Modal' color='white' onPress={() => router.push('/modal')} />
-      <Button title='Toggle Drawer' color='white' onPress={() => navigation.toggleDrawer()} />
+    <View>
+      <Text>index</Text>
     </View>
-  );
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});
+const styles = StyleSheet.create({})

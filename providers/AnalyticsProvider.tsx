@@ -4,6 +4,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { useUserStore } from '../stores';
 import { useAuthStore } from '../stores';
 import * as Device from 'expo-device';
+import { providers_config } from '../zetup/providers_setup';
 
 interface AnalyticsProviderProps {
   children: ReactNode;
@@ -51,3 +52,11 @@ export default function AnalyticsProvider({ children }: AnalyticsProviderProps):
 
   return <>{children}</>;
 }
+
+interface EmptyProvider {
+  children: ReactNode;
+}
+
+const Provider = ({ children }: EmptyProvider): React.JSX.Element => {
+  return <>{children}</>;
+};

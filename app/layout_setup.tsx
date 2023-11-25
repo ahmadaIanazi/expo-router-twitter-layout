@@ -44,6 +44,7 @@ export default function Layout() {
       <Stack.Screen name='(modals)/Terms' options={{ presentation: 'modal' }} />
       <Stack.Screen name='(modals)/Help' options={{ presentation: 'modal' }} />
       <Stack.Screen name='(modals)/About' options={{ presentation: 'modal' }} />
+      <Stack.Screen name='(modals)/Alerts' options={{ presentation: 'containedTransparentModal', animation:'fade' }} />
     </Stack>
   );
 }

@@ -35,3 +35,11 @@ export default function PushNotificationsProvider({
 
   return <>{children}</>;
 }
+
+interface EmptyProvider {
+  children: ReactNode;
+}
+
+const Provider = ({ children }: EmptyProvider): React.JSX.Element => {
+  return <>{children}</>;
+};

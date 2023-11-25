@@ -12,6 +12,10 @@
 
 ## Packages
 
+### TAMAGUI
+
+ yarn add @tamagui/babel-plugin babel-plugin-transform-inline-environment-variables
+
 ### Store Review
 
 - npx expo install expo-store-review

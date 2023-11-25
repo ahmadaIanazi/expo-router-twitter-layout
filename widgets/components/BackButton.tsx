@@ -11,6 +11,7 @@ export default function BackButton() {
       onPress={()=> router.back()}
       s='l-4 absolute'
       style={{
+        zIndex: 10,
         top: 10 + insents.top
       }}
     >

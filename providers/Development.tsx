@@ -38,3 +38,11 @@ export default function Development({ children }: DevelopmentProps): React.JSX.E
 
   return <>{children}</>;
 }
+
+interface EmptyProvider {
+  children: ReactNode;
+}
+
+const Provider = ({ children }: EmptyProvider): React.JSX.Element => {
+  return <>{children}</>;
+};

@@ -1,6 +1,12 @@
 export const Theme = {
   animation: { scale: 1 },
-  roundness: 3,
+  props: {
+    radius: 30,
+    roundness: 3,
+    padding: 20,
+    margin: 20,
+    alignment: 'center',
+  },
   // === Colors === //
   colors: {
     light: {
@@ -62,7 +68,7 @@ export const Theme = {
       // 11. Elevation Colors
       elevation: {
         level0: 'transparent',
-        level1: 'rgb(255, 216, 87)',
+        level1: 'rgba(255, 255, 255, 1)',
         level2: 'rgb(255, 205, 64)',
         level3: 'rgb(255, 195, 41)',
         level4: 'rgb(255, 184, 19)',
@@ -125,7 +131,7 @@ export const Theme = {
       // 11. Elevation Colors
       elevation: {
         level0: 'transparent',
-        level1: 'rgb(255, 216, 87)',
+        level1: 'rgba(255, 255, 255, 1)',
         level2: 'rgb(255, 205, 64)',
         level3: 'rgb(255, 195, 41)',
         level4: 'rgb(255, 184, 19)',
@@ -133,7 +139,7 @@ export const Theme = {
       },
     },
   },
-};
+}
 
 
 

@@ -22,7 +22,6 @@ const TermsAndConditions = ({ contents }) => {
 
             {section.bulletPoints && (
               <React.Fragment>
-                <Text style={styles.bulletPointsTitle}>Bullet Points:</Text>
                 <List.Section style={styles.bulletPointsList}>
                   {section.bulletPoints.map((bullet, bulletIndex) => (
                     <List.Item

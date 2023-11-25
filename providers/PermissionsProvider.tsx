@@ -94,3 +94,11 @@ export default function PermissionsProvider({ children }: PermissionsProviderPro
 
   return <>{children}</>;
 }
+
+interface EmptyProvider {
+  children: ReactNode;
+}
+
+const Provider = ({ children }: EmptyProvider): React.JSX.Element => {
+  return <>{children}</>;
+};

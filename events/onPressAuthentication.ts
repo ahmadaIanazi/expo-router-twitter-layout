@@ -7,7 +7,7 @@ import { validatePhoneNumber } from "../validations/validatePhone";
 import { validateOTP } from "../validations/validateOTP";
 
 export default function onPressAuthentication() {
-  const { emailAndPassword, phoneNumber, apple, google } = manageAuth();
+  const { emailAndPassword, phoneNumber, apple, google, anonymous } = manageAuth();
 
   const [email, setEmail] = useState({ value: "", error: "" });
   const [password, setPassword] = useState({ value: "", error: "" });
@@ -39,6 +39,14 @@ export default function onPressAuthentication() {
       setIsValidOTP(true);
     }
   }, [OTP]);
+
+  const onPressAnonymousSignup = async () => {
+    try {
+      await anonymous.signup();
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
 
   const onPressEmailLogin = async () => {
     const emailError = validateEmail(email.value);
@@ -164,6 +172,9 @@ export default function onPressAuthentication() {
     },
     googleAuth: {
       login: onPressGoogleAuthenticate,
+    },
+    anonymous: {
+      login: onPressAnonymousSignup,
     },
     onPressToggleSecureText,
     email,

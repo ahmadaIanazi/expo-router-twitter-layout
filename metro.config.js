@@ -12,6 +12,8 @@ const config = getDefaultConfig(__dirname, {
 
 // For Firebase
 config.resolver.sourceExts.push('cjs');
+// For Tamagui
+config.resolver.sourceExts.push("mjs");
 
 // Export
 module.exports = config;

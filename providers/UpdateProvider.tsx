@@ -24,3 +24,11 @@ export default function UpdateProvider({ children }: UpdateProviderProps): React
 
   return <>{children}</>;
 }
+
+interface EmptyProvider {
+  children: ReactNode;
+}
+
+const Provider = ({ children }: EmptyProvider): React.JSX.Element => {
+  return <>{children}</>;
+};

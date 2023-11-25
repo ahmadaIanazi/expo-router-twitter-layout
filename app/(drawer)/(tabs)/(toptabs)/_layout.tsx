@@ -4,9 +4,10 @@ import {
 } from '@react-navigation/material-top-tabs';
 import { router, useNavigation, withLayoutContext } from 'expo-router';
 
-import { useTheme } from 'react-native-paper';
-import { Appbar, View } from '../../../../widgets';
 import { NavigationProp } from '@react-navigation/native';
+import { useTheme } from 'react-native-paper';
+import TopTabBar from '../../../../components/TopTabBar';
+import { Appbar, Safe, View } from '../../../../widgets';
 
 const { Navigator } = createMaterialTopTabNavigator();
 
@@ -15,43 +16,55 @@ export const Toptabs = withLayoutContext<MaterialTopTabNavigationOptions, typeof
 );
 
 export default function Toptab_Layout() {
+
   const colors = useTheme();
   const navigation = useNavigation<NavigationProp<DrawerParamList>>();
 
-  const routeToSettings = () => router.push('/(modals)/Settings');
+  const routeToSettings = () => router.push('/(modals)/Alerts');
   const routeToProfile = () => navigation.toggleDrawer();
 
   return (
     <View s='f'>
       <Appbar
-        color
+        // color
+        blur={80}
         logo
         startActions={[{ icon: 'account-circle', onPress: routeToProfile }]}
-        endActions={[{ icon: 'cog', onPress: routeToSettings }]}
+        endActions={[{ icon: 'bell', onPress: routeToSettings }]}
       />
-      <ToptabLayout />
+      {/* <Safe safe='header' flex> */}
+        <ToptabLayout />
+      {/* </Safe> */}
     </View>
   );
 }
 
 function ToptabLayout() {
   const colors = useTheme();
+
   return (
     <Toptabs
+      tabBar={(props) => (<TopTabBar {...props} />)}
       screenOptions={{
-        tabBarStyle: {
-          backgroundColor: colors.colors.background,
-        },
-        tabBarLabelStyle: {
-          color: colors.colors.onBackground,
-        },
         tabBarIndicatorStyle: {
           backgroundColor: colors.colors.primary,
+          height: 2
         },
+        tabBarStyle:{
+          // blur: true,
+          blurIntensity: 80,
+          // backgroundColor: 'blue',
+        }
       }}
     >
-      <Toptabs.Screen name='A' />
-      <Toptabs.Screen name='B' />
+      <Toptabs.Screen name='A'
+        options={{
+          title: 'For You'
+        }}
+      />
+      <Toptabs.Screen name='B'
+        options={{ title: 'Following' }}
+      />
     </Toptabs>
   );
 }

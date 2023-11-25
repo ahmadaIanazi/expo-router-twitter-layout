@@ -1,7 +1,7 @@
 import { router, useNavigation } from 'expo-router';
 import { bottom } from 'bottoms';
-import { Button, Text } from 'react-native-paper';
-import { Background } from '../../../../widgets';
+import { Text } from 'react-native-paper';
+import { Background, Button } from '../../../../widgets';
 
 export default function ToptabOne() {
   const navigation = useNavigation();
@@ -9,9 +9,9 @@ export default function ToptabOne() {
   return (
     <Background>
       <Text variant='displayLarge'>A</Text>
-      <Button onPress={() => navigation.toggleDrawer()}>Toggle Drawer</Button>
-      <Button onPress={() => router.push('/Settings')}>Open Modal</Button>
-      <Button onPress={() => bottom.open('One')}>Open Bottom Sheet</Button>
+      <Button mode='contained' onPress={() => navigation.toggleDrawer()}>Toggle Drawer</Button>
+      <Button mode='contained' onPress={() => router.push('/Settings')}>Open Modal</Button>
+      <Button mode='contained' onPress={() => bottom.open('One')}>Open Bottom Sheet</Button>
     </Background>
   );
 }

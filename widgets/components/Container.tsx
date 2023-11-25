@@ -2,32 +2,27 @@ import React, { ReactNode } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from 'react-native-paper';
-import useResponsive from '../../hooks/useResponsive';
 
 interface MainProps {
   children?: ReactNode;
   align?: 'none' | 'center' | 'top' | 'left' | 'right' | 'bottom';
   padding?: number;
-  safe?: 'none' | 'header' | 'all' | 'top' | 'bottom' | 'left' | 'right';
+  safe?: 'none' | 'all' | 'top' | 'bottom' | 'left' | 'right';
   color?: string
-  flex?: boolean
 }
 
-export default function Safe({
+export default function Container({
   children,
   align = 'none',
   padding = 0,
   safe = 'all',
   color,
-  flex = false,
 }: MainProps): React.JSX.Element {
   const colors = useTheme();
-  const { header } = useResponsive()
   const { top, bottom, left, right } = useSafeAreaInsets();
   const background = color ? color : colors.colors.background;
 
   const mainStyles: StyleProp<ViewStyle> = {
-    flex: flex ? 1 : 0,
     padding,
     backgroundColor: background,
   };
@@ -37,8 +32,6 @@ export default function Safe({
     mainStyles.paddingBottom = bottom + padding;
     mainStyles.paddingLeft = left + padding;
     mainStyles.paddingRight = right + padding;
-  } else if (safe === 'header') {
-    mainStyles.paddingTop = header.safePadding;
   } else if (safe === 'top') {
     mainStyles.paddingTop = top;
   } else if (safe === 'bottom') {

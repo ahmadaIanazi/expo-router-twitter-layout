@@ -71,7 +71,7 @@ export const lists = [
 export default function Drawer_Layout() {
   const colors = useTheme();
   const l = useContext(Localization);
-  const { drawerType, drawerWidth, showLabel } = useResponsive();
+  const { drawer } = useResponsive();
 
   return (
     <Drawer
@@ -82,7 +82,7 @@ export default function Drawer_Layout() {
       screenOptions={{
         headerShown: false,
         drawerPosition: l.position,
-        drawerType: drawerType,
+        drawerType: drawer.drawerType,
         overlayColor: colors.colors.backdrop,
         drawerActiveBackgroundColor: colors.colors.background,
         drawerActiveTintColor: colors.colors.background,
@@ -90,7 +90,7 @@ export default function Drawer_Layout() {
         drawerInactiveTintColor: colors.colors.background,
 
         drawerStyle: {
-          width: drawerWidth,
+          width: drawer.drawerWidth,
           backgroundColor: colors.colors.background,
         },
       }}
@@ -101,7 +101,7 @@ export default function Drawer_Layout() {
             key={screen.name}
             name={screen.name}
             options={{
-              drawerLabel: showLabel ? screen.title : '',
+              drawerLabel: drawer.showLabel ? screen.title : '',
               drawerActiveTintColor: colors.colors.primary,
               drawerLabelStyle: {
                 color: colors.colors.onBackground,

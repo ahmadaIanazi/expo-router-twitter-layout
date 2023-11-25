@@ -10,3 +10,11 @@ export default function ImportsProvider({ children }: ImportsProviderProps): Rea
 
   return <>{children}</>;
 }
+
+interface EmptyProvider {
+  children: ReactNode;
+}
+
+const Provider = ({ children }: EmptyProvider): React.JSX.Element => {
+  return <>{children}</>;
+};

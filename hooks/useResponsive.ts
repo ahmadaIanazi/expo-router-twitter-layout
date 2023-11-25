@@ -1,36 +1,87 @@
-import { useEffect, useState } from 'react';
-import { usePlatformStore, PlatformStore } from '../stores';
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { usePlatformStore } from '../stores'
 
-import { Dimensions } from 'react-native';
+export default function useResponsive() {
+  const { height, width, isDesktop, isTablet, isMobile, deviceType } =
+    usePlatformStore()
+  const { top, bottom, left, right } = useSafeAreaInsets()
 
-interface ResponsiveConfig {
-  drawerWidth: string;
-  drawerType: 'permanent' | 'slide';
-  showLabel: boolean
-}
+  const getDrawerResponsive = () => {
+    let drawerWidth = '60%'
+    let drawerType = 'slide'
+    let showLabel = true
 
-export default function useResponsive(): ResponsiveConfig {
-  const { height, width } = Dimensions.get('window');
-  const { deviceType } = usePlatformStore();
-
-  const getResponsiveConfig = (): ResponsiveConfig => {
     switch (deviceType) {
       case 'Desktop':
-        return { drawerWidth: '30%', drawerType: 'permanent', showLabel: true };
+        drawerWidth = '30%'
+        drawerType = 'permanent'
+        break
       case 'Tablet':
-        return { drawerWidth: '10%', drawerType: 'permanent', showLabel: false };
+        drawerWidth = '10%'
+        drawerType = 'permanent'
+        showLabel = false
+        break
       case 'Mobile':
-        return { drawerWidth: '75%', drawerType: 'slide', showLabel: true };
+        drawerWidth = '75%'
+        drawerType = 'slide'
+        break
       default:
-        return { drawerWidth: '60%', drawerType: 'slide', showLabel: true };
+        break
     }
-  };
 
-  const [responsiveConfig, setResponsiveConfig] = useState<ResponsiveConfig>(getResponsiveConfig);
+    return { drawerWidth, drawerType, showLabel }
+  }
 
-  useEffect(() => {
-    setResponsiveConfig(getResponsiveConfig());
-  }, []); // Update the configuration when width or height changes
+  const getHeaderResponsive = () => {
+    const dynamicHeaderHeight = height / 24
+    const dynamicLargeHeaderHeight = dynamicHeaderHeight * 4
+    const dynamicMinimizeTo = dynamicHeaderHeight / 1.5
 
-  return responsiveConfig;
+    let headerHeight = dynamicHeaderHeight + top
+    let largeHeaderHeight = dynamicLargeHeaderHeight + top
+    let minimizeTo = dynamicMinimizeTo + top
+
+    // if (width < height) {
+    //   // Portrait mode - ensure width is no larger than height
+    //   headerHeight = Math.min(headerHeight, width);
+    //   largeHeaderHeight = Math.min(largeHeaderHeight, width * 4);
+    //   minimizeTo = Math.min(minimizeTo, width / 1.5);
+    // }
+
+    let disappearTo = top + 20 + headerHeight
+    let largeDisappearTo = top + largeHeaderHeight
+    // Clean up
+    headerHeight = Math.floor(headerHeight)
+    largeHeaderHeight = Math.floor(largeHeaderHeight)
+    minimizeTo = Math.floor(minimizeTo)
+    disappearTo = Math.floor(disappearTo)
+    largeDisappearTo = Math.floor(largeDisappearTo)
+    let safePadding = Math.floor(disappearTo)
+
+    return {
+      headerHeight,
+      largeHeaderHeight,
+      minimizeTo,
+      disappearTo,
+      largeDisappearTo,
+      safePadding,
+    }
+  }
+
+  const getTopTabBarResponsive = () => {
+    const dynamicHeaderHeight = height / 24
+
+    let headerHeight = dynamicHeaderHeight / 2
+    return {
+      headerHeight,
+    }
+  }
+
+  return {
+    drawer: getDrawerResponsive(),
+    header: getHeaderResponsive(),
+    topTabBar: getTopTabBarResponsive(),
+    width,
+    height,
+  }
 }

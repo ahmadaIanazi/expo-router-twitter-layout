@@ -10,3 +10,11 @@ interface QueryProviderProps {
 export default function QueryProvider({ children }: QueryProviderProps): React.JSX.Element {
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 }
+
+interface EmptyProvider {
+  children: ReactNode;
+}
+
+const Provider = ({ children }: EmptyProvider): React.JSX.Element => {
+  return <>{children}</>;
+};

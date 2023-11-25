@@ -1,12 +1,15 @@
 import { useUserStore } from '../stores/';
 import { en, ar } from '../translations';
-import { Theme } from '../zetup/setup_theme';
+import { Theme as ThemeConfig } from '../zetup/setup_theme';
 import Localization from '../translations/_context';
 import { getLocales } from 'expo-localization';
 import React, { ReactNode, useEffect } from 'react';
 import { Dimensions, Platform, useColorScheme } from 'react-native';
 import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
 import { usePlatformStore } from '../stores';
+import { TamaguiProvider, Theme } from 'tamagui'
+
+import config from '../tamagui.config'
 
 interface ThemeProviderProps {
   children: ReactNode;
@@ -30,9 +33,11 @@ export default function ThemeProvider({ children }: ThemeProviderProps): React.J
 
   // Set the values
   const setTheme = selectedTheme
-    ? { ...MD3DarkTheme, colors: Theme.colors.dark, roundness: Theme.roundness }
-    : { ...MD3LightTheme, colors: Theme.colors.light, roundness: Theme.roundness };
+    ? { ...MD3DarkTheme, colors: ThemeConfig.colors.dark, ...ThemeConfig.props }
+    : { ...MD3LightTheme, colors: ThemeConfig.colors.light, ...ThemeConfig.props };
   const setLocal = selectedLocalization ? ar : en;
+
+  const setTamaguiTheme = selectedTheme ? 'dark' : 'light'
 
   useEffect(() => {
     setHeight(height);
@@ -44,10 +49,14 @@ export default function ThemeProvider({ children }: ThemeProviderProps): React.J
   }, [Platform, height, width, getDeviceAppearance, getDeviceLocale]);
 
   return (
-    <PaperProvider theme={setTheme}>
-      <Localization.Provider value={setLocal}>
-        <>{children}</>
-      </Localization.Provider>
-    </PaperProvider>
+    <TamaguiProvider config={config}>
+      <Theme name={setTamaguiTheme}>
+        <PaperProvider theme={setTheme}>
+          <Localization.Provider value={setLocal}>
+            <>{children}</>
+          </Localization.Provider>
+        </PaperProvider>
+      </Theme>
+    </TamaguiProvider>
   );
 }
