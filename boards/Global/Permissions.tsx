@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { ScrollView, Image, Dimensions } from 'react-native';
 import { Text, Button, Icon } from 'react-native-paper';
-import { Main, Safe, Spacer, View } from '../widgets';
-import Localization from '../translations';
-import { useScreensStore } from '../stores';
+import { Main, Safe, Spacer, View } from '../../widgets';
+import Localization from '../../translations';
+import { useScreensStore } from '../../stores';
 
 const Permissions = ({ access, contents }) => {
   const { title, image, text, iconA, iconB, textA, textB } = contents[access];

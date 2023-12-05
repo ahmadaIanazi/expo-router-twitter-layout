@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Divider, Text, List } from 'react-native-paper';
-import { BackButton, Background, Logo } from '../widgets';
+import { BackButton, Background, Logo } from '../../widgets';
 
 const AboutUs = ({ contents }) => {
   const renderAboutSections = (aboutSections) => {

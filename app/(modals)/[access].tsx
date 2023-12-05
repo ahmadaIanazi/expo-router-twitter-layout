@@ -1,6 +1,6 @@
 import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
-import Permissions from '../../boards/Permissions';
+import Permissions from '../../boards/Global/Permissions';
 import { permissionData } from '../../xonstant/permissions_setup';
 
 export default function PermissionAccess() {

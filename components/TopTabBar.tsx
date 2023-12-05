@@ -126,7 +126,8 @@ export default function TopTabBar({ state, descriptors, navigation }) {
               onPress={() => handleTabPress(index)}
               style={styles.tabWrap}
             >
-              {icon && <Icon source={icon} size={20} />}
+              {icon && <Icon source={icon} size={18}
+               />}
               <Text
                 variant="labelLarge"
                 style={{
@@ -156,7 +157,7 @@ const styles = StyleSheet.create({
   tabsContainer: {
     flexDirection: 'row'
   },
-  tabWrap: { flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 4 },
+  tabWrap: { flex: 1, flexDirection:'row', justifyContent: 'center', alignItems: 'center', marginBottom: 4 },
   indicator: {
     position: 'absolute',
     bottom: 0,

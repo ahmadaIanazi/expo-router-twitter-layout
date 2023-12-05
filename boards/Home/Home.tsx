@@ -2,7 +2,7 @@ import { router, useNavigation } from 'expo-router';
 
 import { NavigationProp } from '@react-navigation/native';
 import { Text } from 'react-native-paper';
-import { Appbar, Main } from '../widgets';
+import { Appbar, Main } from '../../widgets';
 
 export default function Home() {
 

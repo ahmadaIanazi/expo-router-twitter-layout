@@ -1,4 +1,4 @@
-import Reset from '../../boards/Reset';
+import Reset from '../../boards/Authentication/Reset';
 
 export default function Reset_Route() {
   return <Reset />

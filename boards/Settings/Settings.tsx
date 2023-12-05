@@ -1,5 +1,5 @@
-import manageAuth from '../managers/manageAuth';
-import { useUserStore } from '../stores';
+import manageAuth from '../../managers/manageAuth';
+import { useUserStore } from '../../stores';
 
 
 import React, { useState } from 'react';
@@ -26,7 +26,7 @@ import {
   Main,
   OnboardSlider,
   OnboardingButton,
-} from '../widgets';
+} from '../../widgets';
 
 export default function Settings() {
   const [expanded, setExpanded] = useState(true);

@@ -1,10 +1,10 @@
 import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { Button, HelperText, Text, TextInput, useTheme } from 'react-native-paper';
-import { BackButton, Background, Header, Logo, Paragraph, Snackbar, View } from '../widgets';
-import ActionButton from '../widgets/components/Button';
-import OTPpaper from '../widgets/components/OTPpaper';
-import onPressAuthentication from '../events/onPressAuthentication';
+import { BackButton, Background, Header, Logo, Paragraph, Snackbar, View } from '../../widgets';
+import ActionButton from '../../widgets/components/Button';
+import OTPpaper from '../../widgets/components/OTPpaper';
+import onPressAuthentication from '../../events/onPressAuthentication';
 import CountryPicker, { DARK_THEME } from 'react-native-country-picker-modal'
 import { XStack, YStack } from 'tamagui'
 import { Input } from 'tamagui';

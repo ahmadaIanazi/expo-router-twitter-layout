@@ -3,7 +3,7 @@
 import React from 'react';
 import { HelperText, Paragraph, TextInput } from 'react-native-paper';
 
-import onPressAuthentication from '../events/onPressAuthentication';
+import onPressAuthentication from '../../events/onPressAuthentication';
 import {
   Button as ActionButton,
   BackButton,
@@ -11,7 +11,7 @@ import {
   Header,
   Logo,
   Snackbar
-} from '../widgets';
+} from '../../widgets';
 
 export default function Reset(): React.JSX.Element {
   const {

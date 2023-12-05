@@ -1,7 +1,7 @@
 import { Animated, View } from 'react-native';
 import { Text } from 'react-native-paper';
-import useAnimatedHeader from '../events/useAnimatedHeader';
-import { Main, Safe } from '../widgets';
+import useAnimatedHeader from '../../events/useAnimatedHeader';
+import { Main, Safe } from '../../widgets';
 
 export default function SecondTabExample() {
 

@@ -10,7 +10,7 @@ export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Another Tab</Text>
-      <Text style={styles.paragraph}>Type anything below to set as a local param</Text>
+      <Text>Type anything below to set as a local param</Text>
       <TextInput
         style={styles.input}
         placeholder='Type here ..'

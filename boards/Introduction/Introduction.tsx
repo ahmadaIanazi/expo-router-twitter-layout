@@ -1,16 +1,16 @@
-import { onboardBones, onboardBonesAR } from '../xonstant/onboard_setup';
+import { onboardBones, onboardBonesAR } from '../../xonstant/onboard_setup';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
-import {OnboardingButton} from '../widgets';
+import {OnboardingButton} from '../../widgets';
 
-import Localization from '../translations/_context';
+import Localization from '../../translations/_context';
 import { router } from 'expo-router';
 import { useTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useScreensStore } from '../stores/useScreensStore';
-import { useRemoteStore } from '../stores/useRemoteStore';
-import {OnboardSlider} from '../widgets';
-import {SliderIndicator} from '../widgets';
+import { useScreensStore } from '../../stores/useScreensStore';
+import { useRemoteStore } from '../../stores/useRemoteStore';
+import {OnboardSlider} from '../../widgets';
+import {SliderIndicator} from '../../widgets';
  
 export default function Introduction() {
   const colors = useTheme();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { Text, Title, List } from 'react-native-paper';
-import { BackButton, Background } from '../widgets';
+import { BackButton, Background } from '../../widgets';
 
 const TermsAndConditions = ({ contents }) => {
   return (

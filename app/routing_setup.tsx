@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useAuthStore, useScreensStore } from '../stores';
 import { useNotificationStore } from '../stores/useNotificationStore';
 import { home_group, home_screen, landing_screen, onboard_screen, loading_app,
-loading_user } from '../zetup/routing_setup';
+loading_user } from '../app/_layout/constants';
 import Layout from './layout_setup';
 
 export default function Routing() {
@@ -23,6 +23,7 @@ export default function Routing() {
 
     const isRoutesGroups = segment[0] === home_group;
 
+    console.log('segment[0]', segment[0])
     let navigateTo: any;
     switch (true) {
       case isLoadingApp:
@@ -34,15 +35,19 @@ export default function Routing() {
         navigateTo = loading_user;
         break;
       case !seenOnboard:
+        console.log('TO ONBOARD SCREEN')
         navigateTo = onboard_screen;
         break;
-      case !isSignedIn:
+        case !isSignedIn:
+        console.log('TO LANDING SCREEN')
         navigateTo = landing_screen;
         break;
-      case isSignedIn && !isRoutesGroups:
+        case isSignedIn && !isRoutesGroups:
+        console.log('TO HOME')
         navigateTo = home_screen;
         break;
-      case isSignedIn && isRoutesGroups:
+        case isSignedIn && isRoutesGroups:
+        console.log('TO HOME')
         navigateTo = home_screen;
         break;
       default:

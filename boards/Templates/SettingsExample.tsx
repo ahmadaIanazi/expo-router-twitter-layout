@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { ScrollView } from 'react-native';
 import { Switch, List, TouchableRipple, Icon } from 'react-native-paper';
-import { Appbar, Main } from '../widgets';
-import Localization from '../translations';
+import { Appbar, Main } from '../../widgets';
+import Localization from '../../translations';
 
 // Updated sample settings configuration with category titles
 const settingsConfig = [

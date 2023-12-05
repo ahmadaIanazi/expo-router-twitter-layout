@@ -1,5 +1,5 @@
 import { Button, Icon, Text } from 'react-native-paper';
-import { Safe, View } from '../widgets';
+import { Safe, View } from '../../widgets';
 
 export default function EmptyState() {
     return (

@@ -1,28 +1,8 @@
-import { StyleSheet } from 'react-native';
-
-import { Text, View } from 'react-native';
+import Home1 from '../../boards/Templates/Home1';
+import Home2 from '../../boards/Templates/Home2';
+import Home3 from '../../boards/Templates/Home3';
+import Home4 from '../../boards/Templates/Home4';
 
 export default function DrawerTwo() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Drawer Two</Text>
-    </View>
-  );
+  return <Home4 />
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
-  },
-});

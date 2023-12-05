@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { TextInput, Button, Snackbar, Title } from 'react-native-paper';
-import { BackButton, Background } from '../widgets';
+import { BackButton, Background } from '../../widgets';
 
 const HelpCenter = () => {
   const [name, setName] = useState('');

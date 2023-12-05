@@ -1,4 +1,4 @@
-import Alerts from '../../boards/Alerts'
+import Alerts from '../../boards/Others/Alerts'
 
 export default function Alerts_layout() {
 

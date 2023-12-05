@@ -1,10 +1,10 @@
 import { router } from 'expo-router';
 import { Divider, Text } from 'react-native-paper';
 
-import SignByProviderButton from '../components/SignByProviderButton';
-import TextAndLink from '../components/TextAndLink';
-import onPressAuthentication from '../events/onPressAuthentication';
-import { Background, Button, Logo, Spacer, View } from '../widgets';
+import SignByProviderButton from '../../components/SignByProviderButton';
+import TextAndLink from '../../components/TextAndLink';
+import onPressAuthentication from '../../events/onPressAuthentication';
+import { Background, Button, Logo, Spacer, View } from '../../widgets';
 import { Slider } from 'tamagui'
 
 export default function Welcome(): React.JSX.Element {
