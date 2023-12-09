@@ -92,7 +92,6 @@ export default function layout() {
   }
 
   return {
-    structure,
     drawer,
     settingsLists
   }

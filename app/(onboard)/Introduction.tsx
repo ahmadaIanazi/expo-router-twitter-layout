@@ -1,5 +1,6 @@
-import Introduction from '../../boards/Introduction/Introduction';
+import boards from '../../boards';
 
 export default function Introduction_route(): React.JSX.Element {
-  return <Introduction />;
+
+  return boards.Introduction
 }

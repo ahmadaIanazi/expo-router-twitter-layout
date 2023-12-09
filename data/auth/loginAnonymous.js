@@ -1,4 +1,4 @@
-import { auth, db } from '../../zetup/firebase';
+import { auth, db } from '../../lib/firebase';
 
 import { doc, updateDoc } from 'firebase/firestore';
 

@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { useAuthentication } from '../hooks/useAuthentication';
-import { providers_config } from '../zetup/providers_setup';
+import { providers_config } from '../keys/providers_setup';
 
 interface AuthProviderProps {
   children: ReactNode;

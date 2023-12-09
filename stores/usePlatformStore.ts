@@ -6,7 +6,7 @@ import {
   tablet_max_width,
   desktop_min_width,
   desktop_max_width,
-} from '../xonstant/platform';
+} from '../keys/platform';
 
 export type PlatformStore = {
   isMobile: boolean;

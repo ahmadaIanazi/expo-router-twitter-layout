@@ -1,4 +1,4 @@
-import { onboardBones, onboardBonesAR } from '../../xonstant/onboard_setup';
+import { onboardBones, onboardBonesAR } from '../../keys/onboard_setup';
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
 import {OnboardingButton} from '../../widgets';

@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect } from 'react';
-import { firebase, isFirebaseConnected } from '../zetup/firebase';
+import { firebase, isFirebaseConnected } from '../lib/firebase';
 import { useAuthStore } from '../stores';
 
 interface FirebaseProviderProps {

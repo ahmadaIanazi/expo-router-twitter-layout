@@ -1,6 +1,6 @@
 import * as StoreReview from 'expo-store-review';
 import { Linking, Platform } from 'react-native';
-import { ANDROID_PACKAGE_NAME, ITUNES_ITEM_NAME } from '../zetup/app_store_id';
+import { ANDROID_PACKAGE_NAME, ITUNES_ITEM_NAME } from '../keys/app_store_id';
 
 export const triggerAppReview = async () => {
     try {

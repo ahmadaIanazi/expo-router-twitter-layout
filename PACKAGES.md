@@ -10,6 +10,15 @@
 
 - yarn remove ..
 
+## Development Build Packages
+
+- npx expo install react-native-mmkv
+
+## Development Packages
+
+- npm install --save-dev @babel/helper-create-regexp-features-plugin @babel/helper-remap-async-to-generator @babel/plugin-syntax-export-namespace-from @babel/runtime @commitlint/cli @commitlint/config-conventional @react-native-community/eslint-config @testing-library/jest-native @testing-library/react-native @types/mustache @types/react-native @types/react-test-renderer @types/styled-components @types/styled-components-react-native @typescript-eslint/eslint-plugin @typescript-eslint/parser babel-plugin-module-resolver eslint-plugin-prettier husky metro-react-native-babel-preset mustache replace-in-file
+
+
 ## Packages
 
 ### TAMAGUI

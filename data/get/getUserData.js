@@ -1,5 +1,5 @@
 import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../zetup/firebase';
+import { db } from '../../lib/firebase';
 
 export const getCurrentUserData = (user) => new Promise ((resolve, reject) => {
   const collectionRef = doc(db, 'users', user);

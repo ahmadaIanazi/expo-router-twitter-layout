@@ -3,17 +3,16 @@ import { ScrollView, Image, Dimensions } from 'react-native';
 import { Text, Button, Icon } from 'react-native-paper';
 import { Main, Safe, Spacer, View } from '../../widgets';
 import Localization from '../../translations';
-import { useScreensStore } from '../../stores';
 
 const Permissions = ({ access, contents }) => {
   const { title, image, text, iconA, iconB, textA, textB } = contents[access];
-    const { height } = Dimensions.get('screen')
+  const { height } = Dimensions.get('screen')
   const l = useContext(Localization);
 
   return (
     <Main>
       <ScrollView contentContainerStyle={{ padding: 20 }}>
-        <Image source={image} style={{ width: '100%', height: height * 0.4 , resizeMode: 'contain' }} />
+        <Image source={image} style={{ width: '100%', height: height * 0.4, resizeMode: 'contain' }} />
         <Text variant='displayMedium' style={{ alignSelf: 'center' }}>
           {title}
         </Text>
@@ -33,7 +32,7 @@ const Permissions = ({ access, contents }) => {
       </ScrollView>
       <Safe safe='all'>
         <View s='p-20'>
-          <Button mode='contained' onPress={() => {}}>
+          <Button mode='contained' onPress={() => { }}>
             {l.continue}
           </Button>
         </View>

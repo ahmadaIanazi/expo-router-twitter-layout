@@ -1,7 +1,7 @@
-import layout from '../../../_layout/layout';
+import boards from "../../../../boards";
+
 
 export default function ToptabOne() {
-  const board = layout()
 
-  return board.structure.Drawer.Tabs.Home.Feed
+  return boards.Feed
 }

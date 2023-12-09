@@ -4,7 +4,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { useUserStore } from '../stores';
 import { useAuthStore } from '../stores';
 import * as Device from 'expo-device';
-import { providers_config } from '../zetup/providers_setup';
+import { providers_config } from '../keys/providers_setup';
 
 interface AnalyticsProviderProps {
   children: ReactNode;

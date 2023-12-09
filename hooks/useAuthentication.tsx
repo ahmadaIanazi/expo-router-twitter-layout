@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth'; // Ensure you're using the correct import path
-import { auth, db } from '../zetup/firebase';
+import { auth, db } from '../lib/firebase';
 import authNative from '@react-native-firebase/auth';
 import { getCurrentUserData } from '../data/get/getUserData';
 import { useUserStore } from '../stores/useUserStore';

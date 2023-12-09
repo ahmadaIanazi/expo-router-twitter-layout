@@ -1,4 +1,4 @@
-import { auth } from '../../zetup/firebase';
+import { auth } from '../../lib/firebase';
 
 
 import { signInAnonymously } from 'firebase/auth';

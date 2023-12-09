@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { router } from "expo-router";
 
-import { auth } from "../zetup/firebase";
+import { auth } from "../lib/firebase";
 import authNative from "@react-native-firebase/auth";
 import { OAuthProvider, createUserWithEmailAndPassword, sendPasswordResetEmail, signInWithCredential } from "firebase/auth";
 import * as AppleAuthentication from "expo-apple-authentication";
@@ -17,7 +17,7 @@ import { useUserStore, useAuthStore } from "../stores";
 
 import Localization from "../translations";
 
-import { home_screen, landing_screen } from "../zetup/routing_setup";
+import { RouteNames } from "../app/_layout/constants";
 
 export default function manageAuth() {
   const { setAuthCheck, setIsAnonymous, setRefresh } = useAuthStore();
@@ -27,7 +27,7 @@ export default function manageAuth() {
   const handleSignupByEmailAndPassword = async (email: string, password: string): Promise<void> => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      router.replace(home_screen);
+      router.replace(RouteNames.homeRoute);
       setByFirebaseNativeAuth(false);
       setRefresh(true);
       setIsAnonymous(false);
@@ -60,7 +60,7 @@ export default function manageAuth() {
   const handleSignupAnonymous = async (): Promise<void> => {
     try {
       await signupAnonymous();
-      router.replace(home_screen);
+      router.replace(RouteNames.homeRoute)
       setByFirebaseNativeAuth(false);
       setRefresh(true);
       setIsAnonymous(true);
@@ -92,7 +92,7 @@ export default function manageAuth() {
   const handleLogin = async (email: string, password: string): Promise<void> => {
     try {
       await login(email, password);
-      router.replace(home_screen);
+      router.replace(RouteNames.homeRoute)
       setByFirebaseNativeAuth(false);
       setRefresh(true);
       setIsAnonymous(false);
@@ -124,7 +124,7 @@ export default function manageAuth() {
   const handleLoginAnonymous = async (email: string, password: string): Promise<void> => {
     try {
       await loginAnonymous(email, password);
-      router.replace(home_screen);
+      router.replace(RouteNames.homeRoute)
       setByFirebaseNativeAuth(false);
       setRefresh(true);
       setIsAnonymous(false);
@@ -161,7 +161,7 @@ export default function manageAuth() {
       } else {
         await signout();
       }
-      router.replace(landing_screen);
+      router.replace(RouteNames.landingRoute)
       setRefresh(true);
       setIsAnonymous(null);
       setAuthCheck(null);
@@ -228,7 +228,7 @@ export default function manageAuth() {
       setRefresh(true);
       setIsAnonymous(false);
       setAuthCheck(true);
-      router.replace(home_screen);
+      router.replace(RouteNames.homeRoute)
       console.log("SUCCESS PHONE OTP CONFIRMATION");
     } catch (error) {
       // Handle verification error
@@ -295,7 +295,7 @@ export default function manageAuth() {
       setIsAnonymous(false);
       setAuthCheck(true);
 
-      router.replace(home_screen);
+      router.replace(RouteNames.homeRoute)
     } catch (error) {
       console.log('Error:', error )
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {

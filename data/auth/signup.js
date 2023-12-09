@@ -1,4 +1,4 @@
-import { db, auth } from '../../zetup/firebase';
+import { db, auth } from '../../lib/firebase';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 
