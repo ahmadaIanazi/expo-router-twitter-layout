@@ -1,10 +1,10 @@
 import { Stack } from 'expo-router';
 
 const screens = [
-  { name: 'index', options: { headerShown: false, animation: 'default' } },
-  { name: '(drawer)', options: { headerShown: false, animation: 'default' } },
-  { name: '(loading)/LoadingUser', options: { headerShown: false, animation: 'default' } },
-  { name: '(loading)/LoadingApp', options: { headerShown: false, animation: 'default' } },
+  { name: 'index', options: { headerShown: false, animation: 'fade' } },
+  { name: '(drawer)', options: { headerShown: false, animation: 'fade' } },
+  { name: '(loading)/LoadingUser', options: { headerShown: false, animation: 'fade' } },
+  { name: '(loading)/LoadingApp', options: { headerShown: false, animation: 'fade' } },
   { name: '(onboard)/Introduction', options: { headerShown: false, animation: 'fade' } },
   { name: '(onboard)/Welcome', options: { headerShown: false, animation: 'fade_from_bottom' } },
   { name: '(auth)/Login', options: { headerShown: false, animation: 'default' } },

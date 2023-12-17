@@ -9,6 +9,7 @@ import {
   Text,
 } from 'react-native';
 import { Icon } from 'react-native-paper';
+import { Main, Safe } from '../../widgets';
 
 const categories = [
   [
@@ -51,53 +52,59 @@ const categories = [
 
 export default function Home2() {
   return (
-    <SafeAreaView style={[styles.container,{top: 80}]}>
-      <ScrollView>
-        <View style={styles.topContent}>
-          <TouchableOpacity
-            onPress={() => {
-              // handle onPress
-            }}>
-            <View style={styles.banner}>
-              <Text>🤑</Text>
-              <Text style={styles.bannerText}>Invite friends, earn $5,000</Text>
-              <Icon source="arrow-right" size={20} color="#fff" />
-            </View>
-          </TouchableOpacity>
-          <View style={styles.categories}>
-            {categories.map((row, index) => (
-              <View style={styles.categoriesRow} key={index}>
-                {row.map(item => (
-                  <TouchableOpacity
-                    style={styles.category}
-                    key={item.name}
-                    onPress={() => {
-                      // handle onPress
-                    }}>
-                    <View style={styles.categoryIcon}>
-                      <Text style={{ fontSize: 36 }}>{item.icon}</Text>
-                    </View>
-                    <Text style={styles.categoryText}>{item.name}</Text>
-                  </TouchableOpacity>
-                ))}
+    <Main>
+      <Safe safe='header'>
+        <ScrollView>
+          <View style={styles.topContent}>
+            <TouchableOpacity
+              onPress={() => {
+                // handle onPress
+              }}
+            >
+              <View style={styles.banner}>
+                <Text>🤑</Text>
+                <Text style={styles.bannerText}>
+                  Invite friends, earn $5,000
+                </Text>
+                <Icon source='arrow-right' size={20} color='#fff' />
               </View>
-            ))}
-          </View>
-        </View>
-        <View style={styles.content}>
-          <View style={styles.contentHeader}>
-            <Text style={styles.contentTitle}>Deals</Text>
-            <TouchableOpacity>
-              <Text style={styles.contentLink}>View all</Text>
             </TouchableOpacity>
+            <View style={styles.categories}>
+              {categories.map((row, index) => (
+                <View style={styles.categoriesRow} key={index}>
+                  {row.map((item) => (
+                    <TouchableOpacity
+                      style={styles.category}
+                      key={item.name}
+                      onPress={() => {
+                        // handle onPress
+                      }}
+                    >
+                      <View style={styles.categoryIcon}>
+                        <Text style={{ fontSize: 36 }}>{item.icon}</Text>
+                      </View>
+                      <Text style={styles.categoryText}>{item.name}</Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              ))}
+            </View>
           </View>
-          <View style={styles.contentPlaceholder}>
-            {/* Replace with your content */}
+          <View style={styles.content}>
+            <View style={styles.contentHeader}>
+              <Text style={styles.contentTitle}>Deals</Text>
+              <TouchableOpacity>
+                <Text style={styles.contentLink}>View all</Text>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.contentPlaceholder}>
+              {/* Replace with your content */}
+            </View>
           </View>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+        </ScrollView>
+      </Safe>
+    </Main>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -125,14 +132,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: '#07a9e3',
+    // backgroundColor: '#07a9e3',
     padding: 16,
     borderRadius: 16,
   },
   bannerText: {
     fontSize: 16,
     fontWeight: '600',
-    color: '#fff',
+    // color: '#fff',
     marginLeft: 8,
     marginRight: 'auto',
   },

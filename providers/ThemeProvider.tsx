@@ -1,6 +1,6 @@
 import { useUserStore } from '../stores/';
 import { en, ar } from '../translations';
-import { Theme as ThemeConfig } from '../zetup/setup_theme';
+import { Theme as ThemeConfig } from '../keys/setup_theme';
 import Localization from '../translations/_context';
 import { getLocales } from 'expo-localization';
 import React, { ReactNode, useEffect } from 'react';
@@ -9,7 +9,7 @@ import { MD3DarkTheme, MD3LightTheme, PaperProvider } from 'react-native-paper';
 import { usePlatformStore } from '../stores';
 import { TamaguiProvider, Theme } from 'tamagui'
 
-import config from '../tamagui.config'
+import config from '../lib/tamagui.config'
 
 interface ThemeProviderProps {
   children: ReactNode;

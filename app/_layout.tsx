@@ -4,7 +4,7 @@ import { SplashScreen } from 'expo-router';
 import { useEffect } from 'react';
 import Providers from './providers_setup';
 import Routing from './routing_setup';
-import { SpaceMono } from '../zetup/require';
+import { SpaceMono } from '../global/require';
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary

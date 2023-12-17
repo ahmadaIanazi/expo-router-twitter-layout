@@ -119,17 +119,26 @@ export default function TopTabBar({ state, descriptors, navigation }) {
           return (
             <TouchableOpacity
               key={route.key}
-              accessibilityRole="button"
+              accessibilityRole='button'
               accessibilityState={isFocused ? { selected: true } : {}}
               accessibilityLabel={options.tabBarAccessibilityLabel}
               testID={options.tabBarTestID}
               onPress={() => handleTabPress(index)}
               style={styles.tabWrap}
             >
-              {icon && <Icon source={icon} size={18}
-               />}
+              {icon && (
+                <Icon
+                  source={icon}
+                  size={18}
+                  color={
+                    isFocused
+                      ? colors.colors.primary
+                      : colors.colors.onBackground
+                  }
+                />
+              )}
               <Text
-                variant="labelLarge"
+                variant='labelLarge'
                 style={{
                   color: isFocused
                     ? colors.colors.primary
@@ -139,7 +148,7 @@ export default function TopTabBar({ state, descriptors, navigation }) {
                 {label}
               </Text>
             </TouchableOpacity>
-          );
+          )
         })}
       </BlurView>
       {renderIndicator()}

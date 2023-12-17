@@ -62,5 +62,5 @@ export const storage = getStorage();
 /* Initialize Remote Config || (Doesnt work for Expo Go) */
 // export const remote = getRemoteConfig(fire);
 
-/* Initialize Serverless Functions */
-// export const functions = getFunctions(fire);
+/* Initialize Functions */
+export const functions = getFunctions(fire);

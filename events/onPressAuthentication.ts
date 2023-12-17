@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import auth from "@react-native-firebase/auth";
 import manageAuth from "../managers/manageAuth";
-import { validateEmail } from "../validations/validateEmail";
-import { validatePassword } from "../validations/validatePassword";
-import { validatePhoneNumber } from "../validations/validatePhone";
-import { validateOTP } from "../validations/validateOTP";
+import { validateEmail } from "../utils/validations/validateEmail";
+import { validatePassword } from "../utils/validations/validatePassword";
+import { validatePhoneNumber } from "../utils/validations/validatePhone";
+import { validateOTP } from "../utils/validations/validateOTP";
 
 export default function onPressAuthentication() {
   const { emailAndPassword, phoneNumber, apple, google, anonymous } = manageAuth();

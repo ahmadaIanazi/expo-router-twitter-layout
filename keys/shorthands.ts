@@ -37,6 +37,5 @@ export const shorthands = {
   // figure out text specifics
   lh: 'lineHeight',
   ta: 'textAlign',
-  // TODO
   // fs: 'fontSize',
 } as const

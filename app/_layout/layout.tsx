@@ -6,44 +6,10 @@ import Home3 from '../../boards/Templates/Home3'
 import Home4 from '../../boards/Templates/Home4'
 import { triggerAppReview } from '../../features/storeReview';
 
+/**
+ * TODO: Drawer Settings, components and functions remove structure
+ */
 export default function layout() {
-
-  const structure = {
-    landingStack: {
-      onboarding: '',
-      welcome: '',
-    },
-    loadingStack: {
-      splash: '',
-      missing: '',
-      loadingApp: '',
-      loadingData: '',
-    },
-    authStack: {
-      login: '',
-      loginByPhone: '',
-      register: '',
-      reset: '',
-    },
-    Drawer: {
-      Tabs: {
-        Home: {
-          Feed: <Home2 />,
-          SecondFeed: <Home2 />,
-        },
-        Action: '',
-        Activity: '',
-      },
-      Global: '',
-      User: '',
-      UserActivities: '',
-      SystemActivities: '',
-      Settings: '',
-    },
-    Settings: {
-
-    },
-  }
 
   const settingsLists = [
     {

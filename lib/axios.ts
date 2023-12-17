@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const instance = axios.create({
-  baseURL: 'https://bettaga.herokuapp.com/',
-});
+const api = axios.create({
+  baseURL: process.env.EXPO_PUBLIC_AXIOS_baseUrl,
+})
 
-export default instance;
+export default api;

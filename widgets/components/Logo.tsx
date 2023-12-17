@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
-import { logo } from '../../zetup/require'
+import { logo } from '../../global/require'
 
 export default function Logo() {
   return <Image source={logo} style={styles.image} />;

@@ -4,7 +4,7 @@ onboard_2,
 onboard_3,
 onboard_4,
 onboard_5,
-} from '../zetup/require'
+} from '../global/require'
 
 export const onboardBones = [
   {

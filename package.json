@@ -5,6 +5,7 @@
   "scripts": {
     "start": "expo start",
     "clear": "expo start --clear",
+    "serve": "cd api & firebase emulators:start --only functions",
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
@@ -13,7 +14,9 @@
     "build-device": "eas build --profile device --platform ios",
     "build-ios": "eas build --platform ios",
     "submit-ios": "eas submit -p ios --latest",
-    "credentials": "eas credentials"
+    "credentials": "eas credentials",
+    "cd-api": "cd api && echo In API directory",
+    "start-emulators": "firebase emulators:start --only functions"
   },
   "jest": {
     "preset": "jest-expo"

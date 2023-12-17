@@ -16,6 +16,11 @@ Then
 
 ```yarn run start```
 
+Then
+Open a new terminal and run
+
+```npm run serve```
+
 ## Structure
 
 I tried to keep it as simple as possible. it contains drawer that is the main navigation, and the drawer contains tabs.
