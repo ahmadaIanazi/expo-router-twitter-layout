@@ -9,8 +9,11 @@ import Home2 from './Templates/Home2';
 import { Boards } from './index.types';
 
 const boards: Boards = {
+  Splash: <Login />,
+  LoadingApp: <Login />,
+  LoadingUser: <Login />,
   Login: <Login />,
-  LoginWithPhone: <LoginWithPhone />,
+  LoginByPhone: <LoginWithPhone />,
   Register: <Register />,
   Reset: <Reset />,
   Feed: <FunctionsTest />,

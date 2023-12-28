@@ -1,3 +1,4 @@
 export enum endpoints {
-  GET_endpoint = 'endpoint'
+  health = 'health',
+  GET_endpoint = 'endpoint',
 }

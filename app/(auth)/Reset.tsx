@@ -1,5 +1,5 @@
-import Reset from '../../boards/Authentication/Reset';
+import boards from '../../boards';
 
 export default function Reset_Route() {
-  return <Reset />
+  return boards.Reset
 }

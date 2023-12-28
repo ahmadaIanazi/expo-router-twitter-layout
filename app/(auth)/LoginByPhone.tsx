@@ -1,6 +1,5 @@
-import Login from "../../boards/Authentication/Login";
-import LoginWithPhone from "../../boards/Authentication/LoginWithPhone";
+import boards from "../../boards";
 
 export default function LoginLayout(): React.JSX.Element {
-  return <LoginWithPhone />;
+  return boards.LoginByPhone
 }

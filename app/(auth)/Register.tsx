@@ -1,5 +1,5 @@
-import Register from '../../boards/Authentication/Register';
+import boards from '../../boards';
 
 export default function RegisterLayout() {
-  return <Register />
+  return boards.Register
 }

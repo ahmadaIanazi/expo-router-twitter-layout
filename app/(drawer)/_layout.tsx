@@ -1,72 +1,10 @@
-/* ===== EXPO DRAWE ===== */
 import { Drawer } from 'expo-router/drawer';
 import React, { useContext } from 'react';
 import { Icon, useTheme } from 'react-native-paper';
 import DrawerContainer from '../../components/DrawerContainer';
 import useResponsive from '../../hooks/useResponsive';
 import Localization from '../../translations';
-import { router } from 'expo-router';
-import { triggerAppReview } from '../../features/storeReview';
-
-const Screens = [
-  // {
-  //   name: '(tabs)',
-  //   title: 'Home',
-  //   icon: 'home-outline',
-  // },
-  {
-    name: 'index',
-    title: 'Drawer One',
-    icon: 'bell-outline',
-  },
-  {
-    name: 'DrawerTwo',
-    title: 'Drawer Two',
-    icon: 'heart-outline',
-  },
-];
-
-export const lists = [
-  {
-    title: 'Settings',
-    icon: 'cog',
-    items: [
-      {
-        title: 'Settings',
-        icon: 'cog',
-        onPress: () => {
-          router.push('/(modals)/Settings');
-        },
-      },
-      {
-        title: 'Help Center',
-        icon: 'lifebuoy',
-        onPress: () => {
-          router.push('/(modals)/Help');
-        },
-      },
-      {
-        title: 'Terms and Conditions',
-        icon: 'file-star',
-        onPress: () => {
-          router.push('/(modals)/Terms');
-        },
-      },
-      {
-        title: 'Rate us',
-        icon: 'star',
-        onPress: () => triggerAppReview(),
-      },
-      {
-        title: 'About us',
-        icon: 'information',
-        onPress: () => {
-          router.push('/(modals)/About');
-        },
-      },
-    ],
-  },
-];
+import { Drawers, lists } from '../_layout/layout';
 
 export default function Drawer_Layout() {
   const colors = useTheme();
@@ -77,7 +15,7 @@ export default function Drawer_Layout() {
     <Drawer
       drawerContent={(props) => {
         const otherProps = { lists, ...props }
-        return <DrawerContainer {...otherProps} />;
+        return <DrawerContainer {...otherProps} />
       }}
       screenOptions={{
         headerShown: false,
@@ -95,7 +33,7 @@ export default function Drawer_Layout() {
         },
       }}
     >
-      {Screens.map((screen) => {
+      {Drawers.map((screen) => {
         return (
           <Drawer.Screen
             key={screen.name}
@@ -110,12 +48,18 @@ export default function Drawer_Layout() {
               },
               drawerAllowFontScaling: true,
               drawerIcon(props) {
-                return <Icon source={screen.icon} size={24} color={colors.colors.onBackground} />;
+                return (
+                  <Icon
+                    source={screen.icon}
+                    size={24}
+                    color={colors.colors.onBackground}
+                  />
+                )
               },
             }}
           />
-        );
+        )
       })}
     </Drawer>
-  );
+  )
 }

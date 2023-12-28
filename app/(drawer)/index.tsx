@@ -1,5 +1,5 @@
-import Home from '../../boards/Home/Home';
+import boards from '../../boards';
 
 export default function DrawerOne() {
-  return <Home/> 
+  return boards.Feed
 }

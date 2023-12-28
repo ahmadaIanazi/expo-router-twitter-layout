@@ -7,6 +7,7 @@ import { withLayoutContext } from 'expo-router';
 import { useTheme } from 'react-native-paper';
 import HomeWrapper from '../../../../components/HomeWrapper';
 import TopTabBar from '../../../../components/TopTabBar';
+import { topTabs } from '../../../_layout/layout';
 
 const { Navigator } = createMaterialTopTabNavigator();
 
@@ -22,11 +23,6 @@ export default function Toptab_Layout() {
     </HomeWrapper>
   ) 
 }
-
-const topTabs = [
-  { name: 'Feed', options: { title: 'For You', icon: 'account' } },
-  { name: 'SecondFeed', options: { title: 'Following' } },
-];
 
 function ToptabLayout() {
   const colors = useTheme();

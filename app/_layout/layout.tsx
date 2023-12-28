@@ -1,17 +1,38 @@
 import { router } from 'expo-router'
-import Home from '../../boards/Home/Home'
-import Home1 from '../../boards/Templates/Home1'
-import Home2 from '../../boards/Templates/Home2'
-import Home3 from '../../boards/Templates/Home3'
-import Home4 from '../../boards/Templates/Home4'
+
 import { triggerAppReview } from '../../features/storeReview';
 
-/**
- * TODO: Drawer Settings, components and functions remove structure
- */
-export default function layout() {
+export const Drawers = [
+  // {
+  //   name: '(tabs)',
+  //   title: 'Home',
+  //   icon: 'home-outline',
+  // },
+  {
+    name: 'index',
+    title: 'Drawer One',
+    icon: 'bell-outline',
+  },
+  {
+    name: 'DrawerTwo',
+    title: 'Drawer Two',
+    icon: 'heart-outline',
+  },
+]
 
-  const settingsLists = [
+export const tabs = [
+  { name: '(home)', options: { title: 'Home', tabBarIcon: 'home' } },
+  { name: 'Action', options: { title: 'Explore', icon: 'account' } },
+  { name: 'Activity', options: { title: 'Tabs', icon: 'cart' } },
+  { name: 'nested', options: { show: false } },
+]
+
+export const topTabs = [
+  { name: 'Feed', options: { title: 'For You', icon: 'account' } },
+  { name: 'SecondFeed', options: { title: 'Following' } },
+]
+
+export const lists = [
     {
       title: 'Settings',
       icon: 'cog',
@@ -52,42 +73,3 @@ export default function layout() {
       ],
     },
   ];
-
-  const drawer = {
-
-  }
-
-  return {
-    drawer,
-    settingsLists
-  }
-}
-
-/**
- * The App Technical Structure
- * App
- * |- Stack (Landing)
- * |  |- Onboarding
- * |  |- Welcome
- * |- Stack (Loading)
- * |  |- Splash
- * |  |- Missing
- * |  |- Loading
- * |- Stack (Authentication)
- * |  |- Login
- * |  |- LoginByPhone
- * |  |- Register
- * |  |- Reset
- * |- Drawer (Main)
- * |  |- Bottom Tabs (Home)
- * |  |   |- Top Tabs (Feed)
- * |  |   |   |- Feed (Could be: For you, Explore, Dashboard)
- * |  |   |   |- Second Feed (Could be: Following, Friends, subscriptions, nearby  ..etc )
- * |  |   |- Action (Scan, Record, Post, Active orders.. etc )
- * |  |   |- Activity (Could be: My profile, My Cart, Messages, Inbox.)
- * |  |- Global (Search ..etc)
- * |  |- User (Profile, Dashboard, Page, Inbox ..etc)
- * |  |- UserActivities (Favorite, Likes, Bookmarks, Saved, History, Wishlist..etc)
- * |  |- SystemActivities (Notification, Payments, Invoices .. etc)
- * |  |- Settings
-*/

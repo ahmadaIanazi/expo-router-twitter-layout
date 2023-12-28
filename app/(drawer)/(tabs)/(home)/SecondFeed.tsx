@@ -1,7 +1,6 @@
-import EmptyState from '../../../../boards/Others/EmptyState';
-import SecondTabExample from '../../../../boards/Templates/SecondTabExample';
+import boards from '../../../../boards';
 
 export default function ToptabTwo() {
 
-  return <SecondTabExample />
+  return boards.Feed
 }
