@@ -1,6 +1,6 @@
 
 import { router } from 'expo-router';
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, HelperText, Text, TextInput } from 'react-native-paper';
 
 import onPressAuthentication from '../../events/onPressAuthentication';
@@ -12,6 +12,8 @@ import {
   Snackbar,
   View
 } from '../../widgets';
+import Localization from '../../translations';
+import manageLocales from '../../managers/manageLocales';
 
 export default function Register() {
   const {
@@ -26,13 +28,15 @@ export default function Register() {
     onPressToggleSecureText
   } = onPressAuthentication()
 
+const { l } = manageLocales()
+
   return (
     <Background keyboard>
       <BackButton />
       <Logo />
       <Text variant='headlineLarge'>Register</Text>
       <View s='row ac'>
-        <Text>Different method ?</Text>
+        <Text>Different method?</Text>
         <Button mode='text' compact onPress={() => router.replace('/LoginByPhone')}>
           Use Phone number
         </Button>
@@ -70,7 +74,7 @@ export default function Register() {
         Next
       </ActionButton>
       <View s='row c'>
-        <Text>I already have an account. </Text>
+        <Text>Already have an account?</Text>
         <Button mode='text' onPress={() => router.push('/Login')}>
           Log in
         </Button>

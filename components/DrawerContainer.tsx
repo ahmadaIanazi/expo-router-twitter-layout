@@ -6,9 +6,11 @@ import { Safe, Tap, View } from '../widgets';
 import { useUserStore } from '../stores';
 import useResponsive from '../hooks/useResponsive';
 import manageAuth from '../managers/manageAuth';
+import { router } from 'expo-router';
+import manageLocales from '../managers/manageLocales';
 
 export default function DrawerContainer(props: any) {
-  const l = useContext(Localization);
+const { l } = manageLocales()
 
   return (
     <View s='f'>
@@ -125,7 +127,9 @@ function DarkModeButton() {
 }
 
 function LogoutButton() {
-  const l = useContext(Localization);
+  const isAnonymous = manageAuth().status.isAnonymous
+
+const { l } = manageLocales()
   const { drawer } = useResponsive();
   const [loading, setLoading] = useState(false)
 
@@ -140,9 +144,19 @@ function LogoutButton() {
     }
   }
 
-  return (
+  const onPressRegister = () => router.push('/(modals)/Authentication')
+
+  const LogoutButtonView = (
     <Button loading={loading} onPress={onPressLogout} icon='logout'>
       {drawer.showLabel && l.logout}
     </Button>
-  );
+  )
+
+  const registerButtonView = (
+    <Button onPress={onPressRegister} icon='login'>
+      {drawer.showLabel && l.login}
+    </Button>
+  )
+
+  return isAnonymous ? registerButtonView : LogoutButtonView
 }

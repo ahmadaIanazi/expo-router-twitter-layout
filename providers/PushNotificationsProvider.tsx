@@ -25,7 +25,9 @@ export default function PushNotificationsProvider({
     });
 
     // Now expoPushToken can be safely used
-    console.log(expoPushToken);
+    if(expoPushToken){
+      console.log('Expo Push Notification',expoPushToken);
+    }
     setUserPushToken(expoPushToken)
 
     return () => {

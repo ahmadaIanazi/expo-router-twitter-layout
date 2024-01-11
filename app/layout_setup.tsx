@@ -18,6 +18,7 @@ const screens = [
   { name: '(modals)/Help', options: { presentation: 'modal' } },
   { name: '(modals)/About', options: { presentation: 'modal' } },
   { name: '(modals)/Alerts', options: { presentation: 'containedTransparentModal', animation: 'fade' } },
+  { name: '(modals)/Authentication', options: { presentation: 'modal' } },
 ];
 
 export default function Layout() {

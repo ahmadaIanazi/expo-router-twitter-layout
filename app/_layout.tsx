@@ -5,6 +5,8 @@ import { useEffect } from 'react';
 import Providers from './providers_setup';
 import Routing from './routing_setup';
 import { SpaceMono } from '../global/require';
+import NullScreen from '../boards/Global/NullScreen';
+import { RouteNames } from './_layout/constants';
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary
@@ -12,8 +14,8 @@ export {
 
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
-  initialRouteName: '(tabs)',
-};
+  initialRouteName: RouteNames.landingRoute,
+}
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -31,16 +33,16 @@ export default function RootLayout() {
 
   useEffect(() => {
     if (loaded) {
-      console.log('#6 ROOT LOADING EFFECT');
+      console.log('#6 ROOT HIDE NULL SCREEN');
       SplashScreen.hideAsync();
     } else {
-      console.log('#3 ROOT NOT LOADED');
+      console.log('#3 ROOT DONT HIDE NULL SCREEN');
     }
   }, [loaded]);
 
   if (!loaded) {
     console.log('#1 ROOT RETURN NULL');
-    return <></>;
+    return <NullScreen/>
   }
 
 

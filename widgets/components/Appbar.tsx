@@ -7,6 +7,7 @@ import useResponsive from '../../hooks/useResponsive';
 import Localization from '../../translations';
 import Logo from './Logo';
 import { useAnimationStore } from '../../stores/useAnimationStore';
+import manageLocales from '../../managers/manageLocales';
 
 interface Action {
   icon: string;
@@ -44,7 +45,7 @@ const Appbar = ({
   const { header } = useResponsive()
 
   const colors = useTheme();
-  const l = useContext(Localization);
+const { l } = manageLocales()
 
   const backAction = () => router.back();
   // Determine the backgroundColor based on the color prop

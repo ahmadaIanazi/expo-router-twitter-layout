@@ -11,10 +11,11 @@ import { useScreensStore } from '../../stores/useScreensStore';
 import { useRemoteStore } from '../../stores/useRemoteStore';
 import {OnboardSlider} from '../../widgets';
 import {SliderIndicator} from '../../widgets';
+import manageLocales from '../../managers/manageLocales';
  
 export default function Introduction() {
   const colors = useTheme();
-  const l = useContext(Localization);
+const { l } = manageLocales()
   const { shared } = useRemoteStore();
   const { setSeenOnboard } = useScreensStore();
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);

@@ -34,7 +34,9 @@ export default function Development({ children }: DevelopmentProps): React.JSX.E
     '[zustand persist middleware]',
     'vexo-analytics:',
     'expo',
-  ]);
+    '[2024',
+    'The navigation',
+  ])
 
   return <>{children}</>;
 }

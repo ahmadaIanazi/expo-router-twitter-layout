@@ -1,6 +1,6 @@
 import { useUserStore } from '../stores/';
 import { en, ar } from '../translations';
-import { Theme as ThemeConfig } from '../keys/setup_theme';
+import { Theme as ThemeConfig } from '../lib/theme.config';
 import Localization from '../translations/_context';
 import { getLocales } from 'expo-localization';
 import React, { ReactNode, useEffect } from 'react';

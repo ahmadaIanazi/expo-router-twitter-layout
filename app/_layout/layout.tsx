@@ -3,11 +3,11 @@ import { router } from 'expo-router'
 import { triggerAppReview } from '../../features/storeReview';
 
 export const Drawers = [
-  // {
-  //   name: '(tabs)',
-  //   title: 'Home',
-  //   icon: 'home-outline',
-  // },
+  {
+    name: '(tabs)',
+    title: 'Home',
+    icon: 'home-outline',
+  },
   {
     name: 'index',
     title: 'Drawer One',

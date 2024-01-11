@@ -114,7 +114,7 @@ export const useAuthentication = () => {
             setLoadingUserData(false);
           });
       } else {
-        setIsAnonymous(false);
+        setIsAnonymous(true);
         setDisplayName(null);
         setAuthCheck(false);
         setUserId(null);

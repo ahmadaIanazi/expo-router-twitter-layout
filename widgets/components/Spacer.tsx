@@ -5,6 +5,7 @@ import Localization from '../../translations/_context';
 
 import { applyStyles } from '../functions';
 import { useTheme } from 'react-native-paper';
+import manageLocales from '../../managers/manageLocales';
 
 /**
  * Spacer component
@@ -29,7 +30,7 @@ export function Spacer({
   borderColor?: string;
 }): React.JSX.Element {
   const colors = useTheme();
-  const l = useContext(Localization);
+const { l } = manageLocales()
   const styleColor = {
     padding: space,
     shadowColor: shadowColor || colors.colors.shadow || null,

@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import LOCALIZATION from '@context/locales';
+import manageLocales from '../../managers/manageLocales'
 
 export function useEmailValidation(email){
-  const l = useContext(LOCALIZATION)
+const { l } = manageLocales()
   const [errorValidate, setError] = useState('');
   const [isValid, setIsValid] = useState(false);
 

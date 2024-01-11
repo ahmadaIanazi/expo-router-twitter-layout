@@ -5,4 +5,5 @@ export enum RouteNames {
   homeRouteGroup = '(drawer)',
   loading_app = '(loading)/LoadingApp',
   loading_user = '(loading)/LoadingUser',
+  authentication = '/(modals)/Authentication',
 }

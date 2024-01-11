@@ -3,13 +3,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, TouchableHighlight, View } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useKeyboard } from '../hooks/useKeyboard';
+import manageLocales from '../managers/manageLocales';
 const { height, width } = Dimensions.get('window');
 
 export default function OnboardingButton({ loading, handleOnPress, lastSlide }) {
   const { keyboardHeight } = useKeyboard();
 
   const colors = useTheme();
-  const l = useContext(Localization);
+const { l } = manageLocales()
   const [buttonText, setButtonText] = useState('Next');
 
   useEffect(() => {

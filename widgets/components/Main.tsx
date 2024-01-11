@@ -3,6 +3,7 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from 'react-native-paper';
 import Localization from '../../translations';
+import manageLocales from '../../managers/manageLocales';
 
 interface MainProps {
   children?: ReactNode;
@@ -23,7 +24,7 @@ export default function Main({
   color
 }: MainProps): React.JSX.Element {
   const colors = useTheme();
-  const l = useContext(Localization)
+const { l } = manageLocales()
   const { top, bottom, left, right } = useSafeAreaInsets();
   const background = color ? color : colors.colors.background
 

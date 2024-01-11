@@ -3,6 +3,7 @@ import { ScrollView } from 'react-native';
 import { Switch, List, TouchableRipple, Icon } from 'react-native-paper';
 import { Appbar, Main } from '../../widgets';
 import Localization from '../../translations';
+import manageLocales from '../../managers/manageLocales';
 
 // Updated sample settings configuration with category titles
 const settingsConfig = [
@@ -46,7 +47,7 @@ const settingsConfig = [
 
 export default function Settings() {
 
-  const l = useContext(Localization)
+const { l } = manageLocales()
 
 
   const handleSettingPress = (setting) => {

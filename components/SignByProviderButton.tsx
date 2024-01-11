@@ -3,9 +3,10 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useTheme } from 'react-native-paper'
 import Localization from '../translations'
 import { Button } from '../widgets'
+import manageLocales from '../managers/manageLocales';
 
 export default function SignByProviderButton({ type, loading, onPress }) {
-    const l = useContext(Localization)
+const { l } = manageLocales()
     const colors = useTheme()
 
     const [appleAuthAvailable, setAppleAuthAvailable] = useState(false);

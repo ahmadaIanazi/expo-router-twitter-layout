@@ -5,10 +5,11 @@ import DrawerContainer from '../../components/DrawerContainer';
 import useResponsive from '../../hooks/useResponsive';
 import Localization from '../../translations';
 import { Drawers, lists } from '../_layout/layout';
+import manageLocales from '../../managers/manageLocales';
 
 export default function Drawer_Layout() {
   const colors = useTheme();
-  const l = useContext(Localization);
+const { l } = manageLocales()
   const { drawer } = useResponsive();
 
   return (

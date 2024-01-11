@@ -18,11 +18,18 @@ import { useUserStore, useAuthStore } from "../stores";
 import Localization from "../translations";
 
 import { RouteNames } from "../app/_layout/constants";
+import manageLocales from "./manageLocales";
 
 export default function manageAuth() {
-  const { setAuthCheck, setIsAnonymous, setRefresh } = useAuthStore();
+  const { setAuthCheck, setIsAnonymous, setRefresh, isAnonymous, isOffline } = useAuthStore();
   const { byFirebaseNativeAuth, setByFirebaseNativeAuth } = useUserStore();
-  const l = useContext(Localization);
+
+  const { l } = manageLocales()
+
+  const status = {
+    isAnonymous,
+    isOffline
+  }
 
   const handleSignupByEmailAndPassword = async (email: string, password: string): Promise<void> => {
     try {
@@ -327,6 +334,7 @@ export default function manageAuth() {
   };
 
   return {
+    status,
     emailAndPassword: {
       signup: handleSignupByEmailAndPassword,
       signin: handleLogin,

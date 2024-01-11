@@ -26,7 +26,7 @@ export default function ActionButton({
   onPress,
   ...props
 }: ButtonProps) {
-  // const theme = useTheme();
+  const colors = useTheme();
 
   return (
     <PaperButton
@@ -35,7 +35,7 @@ export default function ActionButton({
       style={[
         {
           width: '100%',
-          opacity: disabled || loading ? 0.5 : 1,
+          // opacity: disabled || loading ? 0.5 : 1,
           marginVertical: 10,
           paddingVertical: 2,
           ...style,

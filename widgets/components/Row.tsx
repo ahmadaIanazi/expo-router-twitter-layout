@@ -10,6 +10,7 @@ import { useTheme } from 'react-native-paper';
 import {
     applyStyles
 } from '../functions';
+import manageLocales from '../../managers/manageLocales';
 
 /**
  * View component
@@ -20,7 +21,7 @@ import {
 export function X({ s, ref, children, color, shadowColor, borderColor }) {
 
   const colors = useTheme()
-  const l = useContext(Localization);
+const { l } = manageLocales()
   const styleColor = {
     flexDirection: 'row',
     shadowColor: shadowColor || colors.colors.shadow || null,
