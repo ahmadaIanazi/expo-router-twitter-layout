@@ -1,5 +1,5 @@
-import Missing from '../boards/Global/Missing';
+import boards from '../boards';
 
 export default function NotFoundScreen() {
-  return <Missing />
+  return boards.Missing
 }

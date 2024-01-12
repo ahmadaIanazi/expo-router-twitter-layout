@@ -18,7 +18,7 @@ import { useUserStore, useAuthStore } from "../stores";
 import Localization from "../translations";
 
 import { RouteNames } from "../app/_layout/constants";
-import manageLocales from "./manageLocales";
+import manageLocales from "./locales";
 
 export default function manageAuth() {
   const { setAuthCheck, setIsAnonymous, setRefresh, isAnonymous, isOffline } = useAuthStore();
@@ -168,7 +168,7 @@ export default function manageAuth() {
       } else {
         await signout();
       }
-      router.replace(RouteNames.landingRoute)
+      router.push(RouteNames.authentication) 
       setRefresh(true);
       setIsAnonymous(null);
       setAuthCheck(null);

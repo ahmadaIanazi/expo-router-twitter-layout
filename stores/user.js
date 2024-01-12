@@ -8,51 +8,51 @@ export const useUserStore = create(
       // ======= FIREBASE AUTH ======= //
       byFirebaseNativeAuth: null,
       setByFirebaseNativeAuth: (res) => {
-        set({ byFirebaseNativeAuth: res });
+        set({ byFirebaseNativeAuth: res })
       },
-      apiKey: "",
-      appName: "",
-      createdAt: "",
-      displayName: "",
-      email: "",
-      emailVerified: "",
-      lastLoginAt: "",
-      phoneNumber: "",
-      photoURL: "",
-      uid: "",
+      apiKey: '',
+      appName: '',
+      createdAt: '',
+      displayName: '',
+      email: '',
+      emailVerified: '',
+      lastLoginAt: '',
+      phoneNumber: '',
+      photoURL: '',
+      uid: '',
       // SETTERS
       setUid: (res) => {
-        set({ uid: res });
+        set({ uid: res })
       },
       // ======= STORAGE DATA ======= //
-      userId: "",
+      userId: '',
       setUserId: (res) => {
-        set({ userId: res });
+        set({ userId: res })
       },
-      pushToken: "",
+      pushToken: '',
       setUserPushToken: (res) => {
-        set({ pushToken: res });
+        set({ pushToken: res })
       },
       user: [],
       setUserDoc: (res) => {
-        set({ user: res });
+        set({ user: res })
       },
-      role: "merchant",
+      role: 'merchant',
       isMerchant: true,
       setRole: (res) => {
         if (res !== undefined && res !== null) {
-          const validate = res == "merchant";
-          set({ isMerchant: validate });
-          set({ role: res });
+          const validate = res == 'merchant'
+          set({ isMerchant: validate })
+          set({ role: res })
         } else {
-          const validate = true;
-          set({ isMerchant: validate });
-          set({ role: "merchant" });
+          const validate = true
+          set({ isMerchant: validate })
+          set({ role: 'merchant' })
         }
       },
-      merchantId: "",
+      merchantId: '',
       setMerchantId: (res) => {
-        set({ merchantId: res });
+        set({ merchantId: res })
       },
       // ======= CHANGING DATA ======= //
 
@@ -71,77 +71,79 @@ export const useUserStore = create(
       deletedChats: [],
       setDeletedChats: (res) => {
         // set({ deletedChats: res });
-        set((state) => ({ ...state.deletedChats, deletedChats: res }));
+        set((state) => ({ ...state.deletedChats, deletedChats: res }))
       },
       deletedMessages: [],
       setDeletedMessages: (res) => {
         // set({ deletedMessages: res });
-        set((state) => ({ ...state.deletedMessages, deletedMessages: res }));
+        set((state) => ({ ...state.deletedMessages, deletedMessages: res }))
       },
       location: [26.375835699930835, 50.14057920308092],
       address: [],
       fullLocation: [],
-      status: "",
+      status: '',
       locationUpdated: false,
       getUserLocation: (res) => {
-        set({ location: res });
+        set({ location: res })
       },
       getUserFullLocation: (res) => {
-        set({ fullLocation: res });
+        set({ fullLocation: res })
       },
       getUserAddress: (res) => {
-        set({ address: res });
+        set({ address: res })
       },
       getUserStatus: (res) => {
-        set({ status: res });
+        set({ status: res })
       },
       getUserLocationUpdated: (res) => {
-        set({ locationUpdated: res });
+        set({ locationUpdated: res })
       },
       displayName: null,
       setDisplayName: (res) => {
-        set({ displayName: res });
+        set({ displayName: res })
       },
       setUserColor: (res) => {
-        const userData = get().user;
-        const updatedUser = { ...userData, color: res };
-        set({ user: updatedUser });
+        const userData = get().user
+        const updatedUser = { ...userData, color: res }
+        set({ user: updatedUser })
       },
       setUserDisplayName: (res) => {
-        const userData = get().user;
-        const updatedUser = { ...userData, displayName: res };
-        set({ user: updatedUser });
+        const userData = get().user
+        const updatedUser = { ...userData, displayName: res }
+        set({ user: updatedUser })
       },
       colorSchemeStore: null,
       getColorSchemeStore: (res) => {
-        set({ colorSchemeStore: res });
+        set({ colorSchemeStore: res })
       },
       // ========= USER SETTINGS ====== //
       dark: null,
       setDark: (res) => {
-        set({ dark: res });
+        set({ dark: res })
       },
       arabic: null,
       setArabic: (res) => {
-        set({ arabic: res });
+        set({ arabic: res })
       },
       // =========== IRRELEVANT ======== //
       blocked: [],
       setBlocked: (res) => {
-        set((state) => ({ ...state.blocked, blocked: res }));
+        set((state) => ({ ...state.blocked, blocked: res }))
         // set((state) => ({ blocked: [...state.blocked, res] }));
         // set((state) => ({ blocked: null }));
       },
       setUnblock: (personId) => {
-        set((state) => ({ blocked: state.blocked.filter((id) => id !== personId) }));
+        set((state) => ({
+          blocked: state.blocked.filter((id) => id !== personId),
+        }))
       },
     }),
     {
-      name: "userLocalStorage",
+      name: 'user',
       storage: createJSONStorage(() => AsyncStorage),
     }
   )
-);
+)
 
 export const clearLocalStorage = async () => {
   try {

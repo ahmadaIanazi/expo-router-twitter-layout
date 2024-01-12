@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ActivityIndicator, Dimensions, StyleSheet, TouchableHighlight, View } from 'react-native';
 import { Text, useTheme } from 'react-native-paper';
 import { useKeyboard } from '../hooks/useKeyboard';
-import manageLocales from '../managers/manageLocales';
+import manageLocales from '../managers/locales';
 const { height, width } = Dimensions.get('window');
 
 export default function OnboardingButton({ loading, handleOnPress, lastSlide }) {
@@ -47,7 +47,7 @@ const { l } = manageLocales()
     >
       <Text
         variant='headlineLarge'
-        style={{ fontWeight: 'bold', color: colors.colors.onTertiaryContainer }}
+        style={{ fontWeight: 'bold', color: colors.colors.onPrimary }}
       >
         {buttonText}
       </Text>

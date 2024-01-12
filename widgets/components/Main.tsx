@@ -3,7 +3,7 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from 'react-native-paper';
 import Localization from '../../translations';
-import manageLocales from '../../managers/manageLocales';
+import manageLocales from '../../managers/locales';
 
 interface MainProps {
   children?: ReactNode;

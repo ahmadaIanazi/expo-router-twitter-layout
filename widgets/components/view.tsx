@@ -5,7 +5,7 @@ import Localization from '../../translations/_context'
 
 import { applyStyles } from '../functions'
 import { useTheme } from 'react-native-paper'
-import manageLocales from '../../managers/manageLocales'
+import manageLocales from '../../managers/locales'
 
 /**
  * View component

@@ -10,7 +10,7 @@ import { useTheme } from 'react-native-paper';
 import {
     applyStyles
 } from '../functions';
-import manageLocales from '../../managers/manageLocales';
+import manageLocales from '../../managers/locales';
 
 /**
  * View component

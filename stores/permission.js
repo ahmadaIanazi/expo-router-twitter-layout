@@ -16,12 +16,6 @@ export const usePermissionStore = create(
         notificationState: null,
         contacts: false,
         contactsState: null,
-        // Add more permissions and states as needed
-      },
-      seenPermissions: {
-        location: false,
-        notification: false,
-        // Add more seen permission screens as needed
       },
       setPermissionState: (permissionType, state) => {
         set((state) => ({
@@ -29,7 +23,14 @@ export const usePermissionStore = create(
             ...state.permissions,
             [permissionType]: state[permissionType],
           },
-        }));
+        }))
+      },
+      seenPermissions: {
+        location: false,
+        camera: false,
+        media: false,
+        notification: false,
+        contacts: false,
       },
       setSeenPermission: (permissionType, seen) => {
         set((state) => ({
@@ -37,12 +38,12 @@ export const usePermissionStore = create(
             ...state.seenPermissions,
             [permissionType]: seen,
           },
-        }));
+        }))
       },
     }),
     {
-      name: 'permissionStorage',
+      name: 'permission',
       storage: createJSONStorage(() => AsyncStorage),
     }
   )
-);
+)

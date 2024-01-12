@@ -10,21 +10,21 @@ export const useRemoteStore = create(
       assets: {},
       remoteDebugger: {},
       setRemoteDocs: (res) => {
-        set({ remoteDocs: res });
+        set({ remoteDocs: res })
         res.forEach((doc) => {
           if (doc.name === 'assets') {
-              set({ assets: doc });
+            set({ assets: doc })
           } else if (doc.name === 'debugger') {
-            set({ remoteDebugger: doc });
+            set({ remoteDebugger: doc })
           } else if (doc.name === 'shared') {
-            set({ shared: doc });
+            set({ shared: doc })
           }
-        });
+        })
       },
     }),
     {
-      name: 'remoteStorage',
+      name: 'remote',
       storage: createJSONStorage(() => AsyncStorage),
     }
   )
-);
+)

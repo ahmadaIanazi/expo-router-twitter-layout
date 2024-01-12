@@ -11,7 +11,7 @@ import { router } from 'expo-router'
 import onPressAuthentication from '../../events/onPressAuthentication'
 import { BackButton, Snackbar, View } from '../../widgets'
 import Localization from '../../translations'
-import manageLocales from '../../managers/manageLocales'
+import manageLocales from '../../managers/locales'
 
 export default function Login(): React.JSX.Element {
   const colors = useTheme()

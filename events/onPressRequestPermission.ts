@@ -1,5 +1,5 @@
 import { router } from 'expo-router'
-import { managePermissions } from '../managers/managePermissions'
+import { managePermissions } from '../managers/permissions'
 import { RouteNames } from '../app/_layout/constants'
 
 function onPressRequestPermission() {

@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 import type { PagerViewOnPageScrollEventData } from 'react-native-pager-view';
 import PagerView from 'react-native-pager-view';
-import { urbanears_blue, urbanears_pink, urbanears_grey, logo } from '../../global/require';
+import { urbanears_blue, urbanears_pink, urbanears_grey,urbanears_mint, logo } from '../../global/require';
 
 
 const data = [

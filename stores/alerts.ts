@@ -23,7 +23,7 @@ export const useAlertsStore = create(
       },
     }),
     {
-      name: 'alerts_Storage',
+      name: 'alerts',
       storage: createJSONStorage(() => AsyncStorage),
     }
   )

@@ -1,4 +1,4 @@
-import manageAuth from '../../managers/manageAuth';
+import manageAuth from '../../managers/authentication';
 import { useUserStore } from '../../stores';
 
 

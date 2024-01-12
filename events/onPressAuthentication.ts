@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import auth from '@react-native-firebase/auth'
-import manageAuth from '../managers/manageAuth'
+import manageAuth from '../managers/authentication'
 import { validateEmail } from '../utils/validations/validateEmail'
 import { validatePassword } from '../utils/validations/validatePassword'
 import { validatePhoneNumber } from '../utils/validations/validatePhone'
 import { validateOTP } from '../utils/validations/validateOTP'
 import { router } from 'expo-router'
-import manageLocales from '../managers/manageLocales'
+import manageLocales from '../managers/locales'
 
 export default function onPressAuthentication() {
   const { l } = manageLocales()

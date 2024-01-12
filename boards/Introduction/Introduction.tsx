@@ -1,83 +1,92 @@
-import { onboardBones, onboardBonesAR } from '../../keys/onboard_setup';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Dimensions, FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
-import {OnboardingButton} from '../../widgets';
+import { onboardBones, onboardBonesAR } from '../../keys/onboard_setup'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import {
+  Dimensions,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native'
+import { OnboardingButton } from '../../widgets'
 
-import Localization from '../../translations/_context';
-import { router } from 'expo-router';
-import { useTheme } from 'react-native-paper';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useScreensStore } from '../../stores/useScreensStore';
-import { useRemoteStore } from '../../stores/useRemoteStore';
-import {OnboardSlider} from '../../widgets';
-import {SliderIndicator} from '../../widgets';
-import manageLocales from '../../managers/manageLocales';
- 
+import { router } from 'expo-router'
+import { useTheme } from 'react-native-paper'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { useRemoteStore } from '../../stores/remote'
+import { OnboardSlider } from '../../widgets'
+import { SliderIndicator } from '../../widgets'
+import manageLocales from '../../managers/locales'
+import { routes } from '../../app/_layout/constants'
+import { useFlowStore } from '../../stores'
+import { flowName, flowState } from '../../stores/flow'
+
 export default function Introduction() {
-  const colors = useTheme();
-const { l } = manageLocales()
-  const { shared } = useRemoteStore();
-  const { setSeenOnboard } = useScreensStore();
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [lastSlide, setLastSlide] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const { height, width } = Dimensions.get('window');
-  const slidesRef = useRef();
+  const colors = useTheme()
+  const { l } = manageLocales()
+  const { shared } = useRemoteStore()
+  const { updateFlows } = useFlowStore()
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+  const [lastSlide, setLastSlide] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const { height, width } = Dimensions.get('window')
+  const slidesRef = useRef()
 
-  const SKIP = shared?.stop_onboard;
+  const SKIP = shared?.stop_onboard
 
-  const data = l.l == 'ar' ? onboardBonesAR : onboardBones;
+  const data = l.l == 'ar' ? onboardBonesAR : onboardBones
 
   useEffect(() => {
     if (currentSlideIndex == data?.length - 1) {
-      setLastSlide(true);
+      setLastSlide(true)
     } else {
-      setLastSlide(false);
+      setLastSlide(false)
     }
-  }, [currentSlideIndex]);
+  }, [currentSlideIndex])
 
   useEffect(() => {
     if (SKIP) {
-      console.log('SKIP');
-      setSeenOnboard(true);
-      setLoading(true);
-      router.replace('/Welcome');
+      console.log('SKIP')
+      updateFlows(flowName.onboarding,flowState.COMPLETED)
+      setLoading(true)
+      router.replace(routes.home)
     }
-  }, [SKIP]);
+  }, [SKIP])
 
   const handleOnPress = () => {
     if (currentSlideIndex == data?.length - 1) {
-      setSeenOnboard(true);
-      setLoading(true);
-      router.replace('/Welcome');
+      updateFlows(flowName.onboarding, flowState.COMPLETED)
+      setLoading(true)
+      router.replace(routes.home)
     } else {
-      goNextSlide();
+      goNextSlide()
     }
-  };
+  }
 
   const onMomentum = (e) => {
-    const contentOffsetX = e.nativeEvent.contentOffset.x;
-    const currentIndex = Math.round(contentOffsetX / width);
-    setCurrentSlideIndex(currentIndex);
-  };
+    const contentOffsetX = e.nativeEvent.contentOffset.x
+    const currentIndex = Math.round(contentOffsetX / width)
+    setCurrentSlideIndex(currentIndex)
+  }
   const goNextSlide = () => {
-    const nextSlideIndex = currentSlideIndex + 1;
-    const nextSlideOffset = nextSlideIndex * width;
-    slidesRef?.current?.scrollToOffset({ offset: nextSlideOffset });
-    setCurrentSlideIndex(nextSlideIndex);
-  };
+    const nextSlideIndex = currentSlideIndex + 1
+    const nextSlideOffset = nextSlideIndex * width
+    slidesRef?.current?.scrollToOffset({ offset: nextSlideOffset })
+    setCurrentSlideIndex(nextSlideIndex)
+  }
 
   // Function to navigate to a specific card
   const navigateToCard = (index) => {
-    const nextSlideOffset = index * width;
-    slidesRef?.current?.scrollToOffset({ offset: nextSlideOffset });
-    setCurrentSlideIndex(index);
-  };
+    const nextSlideOffset = index * width
+    slidesRef?.current?.scrollToOffset({ offset: nextSlideOffset })
+    setCurrentSlideIndex(index)
+  }
 
-  const RENDEROnboardSlider = ({ item }) => <OnboardSlider item={item} />;
+  const RENDEROnboardSlider = ({ item }) => <OnboardSlider item={item} />
 
   return (
-    <SafeAreaView style={[styles.main, { backgroundColor: colors.colors.tertiaryContainer }]}>
+    <SafeAreaView
+      style={[styles.main, { backgroundColor: colors.colors.surface }]}
+    >
       <View style={{ height: height * 0.8, width: width }}>
         <FlatList
           ref={slidesRef}
@@ -93,14 +102,22 @@ const { l } = manageLocales()
       <View style={styles.indicators}>
         {data?.map((_, index) => (
           <TouchableOpacity key={index} onPress={() => navigateToCard(index)}>
-            <SliderIndicator currentSlideIndex={currentSlideIndex} key={index} index={index} />
+            <SliderIndicator
+              currentSlideIndex={currentSlideIndex}
+              key={index}
+              index={index}
+            />
           </TouchableOpacity>
         ))}
       </View>
-      <OnboardingButton loading={loading} lastSlide={lastSlide} handleOnPress={handleOnPress} />
+      <OnboardingButton
+        loading={loading}
+        lastSlide={lastSlide}
+        handleOnPress={handleOnPress}
+      />
     </SafeAreaView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   main: {
@@ -114,4 +131,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
   },
-});
+})

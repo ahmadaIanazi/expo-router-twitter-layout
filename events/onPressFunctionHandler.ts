@@ -1,4 +1,4 @@
-import manageApi from '../managers/manageApi'
+import manageApi from '../managers/api'
 
 /**
  * @param method 

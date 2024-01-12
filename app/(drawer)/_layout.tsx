@@ -1,16 +1,15 @@
-import { Drawer } from 'expo-router/drawer';
-import React, { useContext } from 'react';
-import { Icon, useTheme } from 'react-native-paper';
-import DrawerContainer from '../../components/DrawerContainer';
-import useResponsive from '../../hooks/useResponsive';
-import Localization from '../../translations';
-import { Drawers, lists } from '../_layout/layout';
-import manageLocales from '../../managers/manageLocales';
+import { Drawer } from 'expo-router/drawer'
+import React from 'react'
+import { Icon, useTheme } from 'react-native-paper'
+import DrawerContainer from '../../components/DrawerContainer'
+import useResponsive from '../../hooks/useResponsive'
+import manageLocales from '../../managers/locales'
+import { Drawers, lists } from '../_layout/layout'
 
 export default function Drawer_Layout() {
-  const colors = useTheme();
-const { l } = manageLocales()
-  const { drawer } = useResponsive();
+  const colors = useTheme()
+  const { l } = manageLocales()
+  const { drawer } = useResponsive()
 
   return (
     <Drawer

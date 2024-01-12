@@ -6,8 +6,8 @@ import { IconButton, Appbar as PaperAppbar, useTheme } from 'react-native-paper'
 import useResponsive from '../../hooks/useResponsive';
 import Localization from '../../translations';
 import Logo from './Logo';
-import { useAnimationStore } from '../../stores/useAnimationStore';
-import manageLocales from '../../managers/manageLocales';
+import { useAnimationStore } from '../../stores/animation';
+import manageLocales from '../../managers/locales';
 
 interface Action {
   icon: string;

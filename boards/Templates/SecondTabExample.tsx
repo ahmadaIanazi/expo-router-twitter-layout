@@ -1,13 +1,19 @@
+import { useEffect } from 'react';
 import { Animated, View } from 'react-native';
-import { Text } from 'react-native-paper';
+import handlePopupFlow from '../../events/showPopup';
 import useAnimatedHeader from '../../events/useAnimatedHeader';
-import { Main, Safe } from '../../widgets';
 
 export default function SecondTabExample() {
 
   const {
     handleOnScroll
   } = useAnimatedHeader()
+
+  const { startPopup } = handlePopupFlow()
+
+  useEffect(()=>{
+    startPopup()
+  },[])
 
   return (
     <View>

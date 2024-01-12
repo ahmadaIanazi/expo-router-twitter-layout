@@ -17,8 +17,9 @@ const screens = [
   { name: '(modals)/Terms', options: { presentation: 'modal' } },
   { name: '(modals)/Help', options: { presentation: 'modal' } },
   { name: '(modals)/About', options: { presentation: 'modal' } },
-  { name: '(modals)/Alerts', options: { presentation: 'containedTransparentModal', animation: 'fade' } },
   { name: '(modals)/Authentication', options: { presentation: 'modal' } },
+  { name: '(modals)/Alerts', options: { presentation: 'containedTransparentModal', animation: 'fade' } },
+  { name: '(modals)/Popup', options: { presentation: 'containedTransparentModal', animation: 'fade' } },
 ];
 
 export default function Layout() {

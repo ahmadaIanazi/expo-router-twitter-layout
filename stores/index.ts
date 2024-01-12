@@ -1,10 +1,10 @@
-export { useAuthStore } from './useAuthStore';
-export { useUserStore } from './useUserStore';
-export { useScreensStore } from './useScreensStore';
-export { usePlatformStore } from './usePlatformStore';
-export { usePermissionStore } from './usePermissionStore';
-export { useAlertsStore } from './useAlertsStore'
-export { useDevStore } from './useDevStore'
+export { useAuthStore } from './Authentication';
+export { useUserStore } from './user';
+export { usePlatformStore } from './platform';
+export { usePermissionStore } from './permission';
+export { useAlertsStore } from './alerts'
+export { useFlowStore } from './flow'
+export { useDevStore } from './development'
 
 /* TYPES */
-export { PlatformStore } from './usePlatformStore';
+export { PlatformStore } from './platform';

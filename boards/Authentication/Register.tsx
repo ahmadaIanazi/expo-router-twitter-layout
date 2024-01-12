@@ -13,7 +13,7 @@ import {
   View
 } from '../../widgets';
 import Localization from '../../translations';
-import manageLocales from '../../managers/manageLocales';
+import manageLocales from '../../managers/locales';
 
 export default function Register() {
   const {

@@ -1,31 +1,29 @@
 import { useEffect } from 'react';
-import { onAuthStateChanged } from 'firebase/auth'; // Ensure you're using the correct import path
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from '../lib/firebase';
 import authNative from '@react-native-firebase/auth';
 import { getCurrentUserData } from '../data/get/getUserData';
-import { useUserStore } from '../stores/useUserStore';
-import { useAuthStore } from '../stores/useAuthStore';
-import * as AppleAuthentication from 'expo-apple-authentication';
+import { useUserStore } from '../stores/user';
+import { useAuthStore } from '../stores/Authentication';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
-
 
 interface User {
   apiKey?: string;
   appName?: string;
   createdAt?: string | undefined;
-  displayName?: string | null; // Adjusted to accommodate null
-  email?: string | null; // Adjusted to accommodate null
+  displayName?: string | null; 
+  email?: string | null; 
   emailVerified?: boolean;
   isAnonymous?: boolean;
   lastLoginAt?: string | undefined;
-  phoneNumber?: string | null; // Adjusted to accommodate null
-  photoURL?: string | null; // Adjusted to accommodate null
+  phoneNumber?: string | null; 
+  photoURL?: string | null; 
   providerData?: any[];
   uid: string;
   metadata?: {
     creationTime?: string;
     lastSignInTime?: string;
-  } | null; // Adjusted to accommodate null
+  } | null; 
 }
 
 export const useAuthentication = () => {

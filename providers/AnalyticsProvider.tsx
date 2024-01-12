@@ -1,10 +1,10 @@
-// import { enableTracking, disableTracking, identifyDevice } from 'vexo-analytics';
+import { enableTracking, disableTracking, identifyDevice } from 'vexo-analytics';
 import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 import React, { ReactNode, useEffect } from 'react';
 import { useUserStore } from '../stores';
 import { useAuthStore } from '../stores';
 import * as Device from 'expo-device';
-import { providers_config } from '../keys/providers_setup';
+import { NavigationContainer } from '@react-navigation/native';
 
 interface AnalyticsProviderProps {
   children: ReactNode;

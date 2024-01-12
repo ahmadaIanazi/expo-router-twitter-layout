@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { StyleSheet, TouchableOpacity, View, Animated } from 'react-native';
 import { Icon, Text, useTheme } from 'react-native-paper';
 import useResponsive from '../hooks/useResponsive';
-import { useAnimationStore } from '../stores/useAnimationStore';
+import { useAnimationStore } from '../stores/animation';
 import { BlurView } from 'expo-blur';
 
 export default function TopTabBar({ state, descriptors, navigation }) {

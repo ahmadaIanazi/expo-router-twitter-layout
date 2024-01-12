@@ -3,7 +3,7 @@ import { ScrollView } from 'react-native';
 import { Switch, List, TouchableRipple, Icon } from 'react-native-paper';
 import { Appbar, Main } from '../../widgets';
 import Localization from '../../translations';
-import manageLocales from '../../managers/manageLocales';
+import manageLocales from '../../managers/locales';
 
 // Updated sample settings configuration with category titles
 const settingsConfig = [

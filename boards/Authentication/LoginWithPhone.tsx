@@ -10,7 +10,7 @@ import {
 } from 'react-native-paper'
 import { XStack } from 'tamagui'
 import onPressAuthentication from '../../events/onPressAuthentication'
-import manageLocales from '../../managers/manageLocales'
+import manageLocales from '../../managers/locales'
 import {
   BackButton,
   Background,

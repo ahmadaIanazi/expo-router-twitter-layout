@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Text } from 'react-native-paper';
 import Localization from '../../translations';
 import { Background, Main } from '../../widgets';
-import manageLocales from '../../managers/manageLocales';
+import manageLocales from '../../managers/locales';
 
 const LoadingUser = () => {
 

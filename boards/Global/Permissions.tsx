@@ -3,7 +3,7 @@ import { ScrollView, Image, Dimensions } from 'react-native';
 import { Text, Button, Icon } from 'react-native-paper';
 import { Main, Safe, Spacer, View } from '../../widgets';
 import Localization from '../../translations';
-import manageLocales from '../../managers/manageLocales';
+import manageLocales from '../../managers/locales';
 
 const Permissions = ({ access, contents }) => {
   const { title, image, text, iconA, iconB, textA, textB } = contents[access];

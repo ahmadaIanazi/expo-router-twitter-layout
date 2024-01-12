@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useTheme } from 'react-native-paper'
 import Localization from '../translations'
 import { Button } from '../widgets'
-import manageLocales from '../managers/manageLocales';
+import manageLocales from '../managers/locales';
 
 export default function SignByProviderButton({ type, loading, onPress }) {
 const { l } = manageLocales()

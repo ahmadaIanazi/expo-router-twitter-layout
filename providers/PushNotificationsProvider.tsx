@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect } from 'react';
 import { usePushNotifications } from '../hooks/usePushNotifications';
 import { useAuthStore, useUserStore } from '../stores';
-import { useNotificationStore } from '../stores/useNotificationStore';
+import { useNotificationStore } from '../stores/notification';
 import * as Notifications from 'expo-notifications';
 
 interface PushNotificationsProps {

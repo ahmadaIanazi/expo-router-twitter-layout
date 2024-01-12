@@ -3,7 +3,7 @@ import React from 'react'
 import { BlurView } from 'expo-blur'
 import { Button, IconButton, useTheme } from 'react-native-paper'
 import { BackButton, Background } from '../../widgets'
-import manageAlerts from '../../managers/manageAlerts'
+import manageAlerts from '../../managers/alerts'
 import { Card } from 'react-native-paper'
 // import { ScrollView } from 'tamagui'
 

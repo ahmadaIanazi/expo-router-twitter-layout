@@ -5,9 +5,9 @@ import Localization from '../translations';
 import { Safe, Tap, View } from '../widgets';
 import { useUserStore } from '../stores';
 import useResponsive from '../hooks/useResponsive';
-import manageAuth from '../managers/manageAuth';
+import manageAuth from '../managers/authentication';
 import { router } from 'expo-router';
-import manageLocales from '../managers/manageLocales';
+import manageLocales from '../managers/locales';
 
 export default function DrawerContainer(props: any) {
 const { l } = manageLocales()

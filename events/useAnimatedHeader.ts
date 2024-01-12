@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Animated } from "react-native";
 import useResponsive from "../hooks/useResponsive";
-import { useAnimationStore } from "../stores/useAnimationStore";
+import { useAnimationStore } from "../stores/animation";
 
 const { diffClamp } = Animated;
 

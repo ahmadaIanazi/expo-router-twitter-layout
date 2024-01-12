@@ -1,14 +1,20 @@
 import { router, useSegments } from 'expo-router'
 import { useEffect } from 'react'
-import { useAuthStore, useDevStore, useScreensStore } from '../stores'
-import { useNotificationStore } from '../stores/useNotificationStore'
-import Layout from './layout_setup'
-import { RouteNames } from '../app/_layout/constants'
+import {
+  useAuthStore,
+  useDevStore,
+  useFlowStore,
+} from '../stores'
+import { useNotificationStore } from '../stores/notification'
+import Layout from './layouts'
+import { routes } from './_layout/constants'
+import { flowState } from '../stores/flow'
 
 export default function Routing() {
   const { loadingUser, loadingUserData, authCheck } = useAuthStore()
   const { isNotificationRoute, notificationRoute } = useNotificationStore()
-  const { seenOnboard } = useScreensStore()
+  const { flows, hydrated } = useFlowStore()
+
   const isSignedIn = authCheck === true
   const isLoaded = loadingUser === false && loadingUserData === false
   const isLoadingApp = loadingUser === true
@@ -21,39 +27,39 @@ export default function Routing() {
   useEffect(() => {
     console.log('============== ROUTING ===========', count)
 
-    // if (!isLoaded) return;
+    if (!isLoaded) return;
 
-    const isRoutesGroups = segment[0] === RouteNames.homeRouteGroup
+    const isRoutesGroups = segment[0] === routes.homeGroup
 
-    let navigateTo: any
+    let navigateTo
     switch (true) {
       case isLoadingApp:
         console.log('= Loading App')
-        navigateTo = RouteNames.loading_app
+        navigateTo = routes.loadingApp
         break
       case isLoadingUser:
         console.log('= Loading User')
-        navigateTo = RouteNames.loading_user
+        navigateTo = routes.loadingUser
         break
-      case !seenOnboard:
+      case hydrated && flows.onboarding === flowState.NOT_STARTED:
         console.log('= !seenOnboard TO ONBOARD SCREEN')
-        navigateTo = RouteNames.onboard_screen
+        navigateTo = routes.onboarding
         break
       case !isSignedIn:
         console.log('= !isSignedIn TO LANDING SCREEN')
-        navigateTo = RouteNames.homeRoute
+        navigateTo = routes.home
         break
       case isSignedIn && !isRoutesGroups:
         console.log('= isSignedIn && !isRoutesGroups TO HOME')
-        navigateTo = RouteNames.homeRoute
+        navigateTo = routes.home
         break
       case isSignedIn && isRoutesGroups:
         console.log('= isSignedIn && isRoutesGroups TO HOME')
-        navigateTo = RouteNames.homeRoute
+        navigateTo = routes.home
         break
       default:
         console.log('= TO DEFAULT')
-        navigateTo = RouteNames.homeRoute
+        navigateTo = routes.home
         break
     }
 
@@ -64,14 +70,13 @@ export default function Routing() {
     console.log('= segment[0]', segment[0])
     console.log('= isSignedIn :', isSignedIn)
     console.log('= isLoaded :', isLoaded)
-    console.log('= seenOnboard :', seenOnboard)
+    console.log('= flows.onboarding :', flows.onboarding)
     console.log('= isLoadingApp :', isLoadingApp)
     console.log('= isLoadingUser :', isLoadingUser)
     console.log('__________________________________')
     console.log('__________________________________')
     inc()
-
-  }, [isSignedIn, seenOnboard, isLoadingUser])
+  }, [isSignedIn, flows, isLoadingUser])
 
   return <Layout />
 }

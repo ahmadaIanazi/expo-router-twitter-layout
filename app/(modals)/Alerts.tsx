@@ -1,6 +1,5 @@
-import Alerts from '../../boards/Others/Alerts'
+import boards from '../../boards'
 
 export default function Alerts_layout() {
-
-  return <Alerts />
+  return boards.Alerts
 }

@@ -1,5 +1,5 @@
 import boards from '../../../boards'
-import manageAuth from '../../../managers/manageAuth'
+import manageAuth from '../../../managers/authentication'
 
 export default function index() {
   const { status } = manageAuth()

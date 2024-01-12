@@ -7,7 +7,7 @@ export default function OnboardSlider({ item }) {
   return (
     <View style={{ alignItems: 'center', width: width }}>
       <View style={{ marginTop: height * 0.07 }}>
-        <Text variant='headlineMedium'>{item.title}</Text>
+        <Text variant='headlineMedium' >{item.title}</Text>
       </View>
       <Image style={{ width: height * 0.403, height: height * 0.403 }} source={item.image} />
       <View style={{ marginTop: height * 0.035, marginHorizontal: height * 0.035 }}>
